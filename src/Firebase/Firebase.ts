@@ -25,3 +25,5 @@ export const auth = getAuth();
 export const db = getFirestore(app);
 // Initializing Storage
 export const storage = getStorage(app);
+
+// hoping the error goes away. 
