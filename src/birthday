@@ -1,0 +1,151 @@
+import React, { useState } from 'react'
+
+const Birthday = () => {
+        const [user, setUser] = useState({
+            fullName: "",
+            date: "",
+        })
+        
+
+    const [lists] = useState([
+        {
+            id: 1,
+            name: "Yoma",
+            team: "Jericho",
+            bornDate: "2022-05-25"
+        },
+        {
+            id: 2,
+            name: "Comfort",
+            team: "Nile",
+            bornDate: "2022-08-08"
+        },
+        {
+            id: 3,
+            name: "Peter",
+            team: "Carpernaum",
+            bornDate: "2022-06-21"
+        },
+        {
+            id: 4,
+            name: "John",
+            team: "Nile",
+            bornDate: "2022-07-28"
+        },
+        {
+            id: 5,
+            name: "Wale",
+            team: "Galilee",
+            bornDate: "2022-08-05"
+        }
+    ])
+
+    const today = new Date();
+    
+    const stringifiedToday = today.getMonth();
+    console.log(stringifiedToday);
+
+
+    // const filtered = lists.filter(filList => {
+    //     // return employee.country === 'Canada';
+    //     let birthdayMonth = parseInt(filList.bornDate.slice(6, 7));
+    //     let birthdayDate = parseInt(filList.bornDate.slice(8))
+
+    //     const todaysDate = today.getDate();
+    //     const todaysMonth = today.getMonth();
+        
+        
+    //     // if(birthdayMonth - 1 === todaysMonth && birthdayDate === todaysDate)
+    //      const value = parseInt(filList.bornDate.slice(6,7)) === today.getMonth();
+    //         return value;
+    //   });
+
+    // const filterByDate = () => {
+    //     const filteredDates = lists.filter(
+    //         list => list.bornDate.split("-")[2] === today.getDate().toString() 
+    //         && parseInt(list.bornDate.split("-")[1]) - 1 === today.getMonth())
+
+ 
+    //         // setFilteredData(filteredDates)
+    //         return filteredDates;
+    // }
+    const filterByDate = lists.filter(list => {
+        console.log(parseInt(list.bornDate.split("-")[2]))
+        return  parseInt((list.bornDate.split("-")[2])) === parseInt(today.getDate().toString()) && parseInt(list.bornDate.split("-")[1]) - 1 === today.getMonth()
+    })
+
+    console.log(filterByDate);
+
+    // console.log(filterByDate());
+
+    const handleChange = (e: any) => {
+        const name = e.target.name;
+        const value = e.target.value;
+
+        setUser((prevUser) => {
+            return {
+                ...prevUser,
+                [name]: value
+            }
+        })
+    }
+    // console.log(user);
+
+
+    
+    // console.log(user.date, typeof(user.date));
+    // let removedYear = user.date.slice(0, 4);
+    // let birthdayMonth = parseInt(user.date.slice(6, 7));
+    // // console.log(typeof(birthdayMonth))
+    // let birthdayDate = parseInt(user.date.slice(8))
+
+    // DATA FROM USER INPUT
+    // console.log(removedYear, birthdayMonth, birthdayDate);
+
+    // TODAYS DATE
+    // const todaysDate = today.getDate();
+    // const todaysMonth = today.getMonth();
+
+    // DATA FROM JS 
+    // console.log(todaysDate, todaysMonth);
+    // console.log(today);
+
+    // if(birthdayMonth - 1 === todaysMonth && birthdayDate === todaysDate){
+    //     console.log("Happy Birthday!");
+    // }
+
+  return (
+    <>
+        {}
+
+        {}
+    
+        <form>
+            <input type="date" name='date' value={user.date} onChange={handleChange}/> <br />
+            <input type="text" name="fullName" value={user.fullName} onChange={handleChange}/> <br />
+            
+            <button type='submit'>Submit</button> <br />
+        </form>
+
+        <div>
+            {lists.map(list => (
+                <div key={list.id} style={{ border: "1px solid red", marginBottom: "20px"}}>
+                    <p>{list.name}</p>
+                    <p>{list.team}</p>
+                    <p>{list.bornDate}</p>
+                </div>
+            ))}
+        </div>
+
+        <h2>Filtered Birthday List</h2>
+        {/* {filterByDate()} */}
+        {
+            filterByDate.map((data: any) => (
+                <p key={data.id}>{data.name} === {data.bornDate}</p>
+            ))
+        }
+    </>
+  )
+}
+
+export default Birthday
