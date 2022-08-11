@@ -6,15 +6,19 @@ import { getFirestore } from "firebase/firestore"
 import { getStorage } from "firebase/storage"
 
 const firebaseConfig = {
+  apiKey: `${process.env.REACT_APP_APIKEY}`,
   // apiKey: `${process.env.REACT_APP_API_KEY}`,
-  apiKey: "process.env.REACT_APP_API_KEY",
-  authDomain: `${process.env.REACT_APP_AUTH_DOMAIN}`,
-  projectId: `${process.env.REACT_APP_PROJECT_ID}`,
-  storageBucket: `${process.env.REACT_APP_STORAGE_BUCKET}`,
-  messagingSenderId: `${process.env.REACT_APP_MESSAGING_SENDER_ID}`,
-  appId: `${process.env.REACT_APP_ID}`,
-  measurementId: `${process.env.REACT_APP_MEASUREMENT_ID}`,
+  authDomain: `${process.env.REACT_APP_AUTHDOMAIN}`,
+  projectId: `${process.env.REACT_APP_PROJECTID}`,
+  storageBucket: `${process.env.REACT_APP_STORAGEBUCKET}`,
+  messagingSenderId: `${process.env.REACT_APP_MESSAGINGSENDERID}`,
+  appId: `${process.env.REACT_APPID}`,
+  measurementId: `${process.env.REACT_APP_MEASUREMENTID}`,
 };
+
+console.log(process.env.REACT_APP_MEASUREMENTID);
+console.log(process.env.REACT_APP_APIKEY);
+
 
 
 // Initialize Firebase
