@@ -161,7 +161,7 @@ const Home = () => {
                     {datum?.level} <br />
                     {datum?.email} <br />
                     {datum?.department} <br />
-                    {datum?.img && <img  loading='lazy' alt={`name${datum.name}`} style={{ width: "150px", height: "150px", objectFit: "contain", borderRadius: "99%", border: "2px solid pink" }} src={datum?.img}  />}
+                    {datum?.img && <img  loading='lazy' alt={`name${datum.name}`} style={{ width: "200px", height: "200px", objectFit: "cover", clipPath: "circle()" }} src={datum?.img}  />}
                   </div>
                 ))}
                 </>
