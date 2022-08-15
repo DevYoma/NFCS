@@ -16,11 +16,44 @@ type FbDataType = {
 
 const Birthday = () => {
     const [data, setData] = useState<FbDataType>([])
+ 
+    const [selectedTeam, setSelectedTeam] = useState('')
+    const teams = [
+      {
+        label: "All Teams",
+        value: ""
+      },
+      {
+          label: "Bethany",
+          value: "bethany",
+      },
+      {
+          label: "Capernaum", 
+          value: "capernaum",
+      },
+      {
+          label: "Galilee",
+          value: "galilee"
+      },
+      {
+          label: "Jericho",
+          value: "jericho"
+      },
+      {
+          label: "Jordan",
+          value: "jordan"
+      },
+      {
+          label: "Nile",
+          value: "nile"
+      },
+  ]
+
 
     const today = new Date();
     
     const stringifiedToday = today.getMonth();
-    console.log(stringifiedToday);
+    // console.log(stringifiedToday);
 
     useEffect(() => {
 
@@ -50,11 +83,12 @@ const Birthday = () => {
 
 
     const filterByDate = data.filter(list => {
-        console.log(parseInt(list.birthday.split("-")[2]))
+        // console.log(parseInt(list.birthday.split("-")[2]))
         return  parseInt((list.birthday.split("-")[2])) === parseInt(today.getDate().toString()) && parseInt(list.birthday.split("-")[1]) - 1 === today.getMonth()
     })
 
     console.log(filterByDate);
+    console.log(selectedTeam);
 
   return (
     <>
@@ -65,16 +99,33 @@ const Birthday = () => {
         {/* {data.length === 0 && <p>No Birthday today 🤕</p>}
 
       {!data.length && <p>No Birthdays available</p>} */}
+         <select 
+            value={selectedTeam}
+            required
+            onChange={(e: any) => setSelectedTeam(e.target.value)}
+            name="team"
+        >
+        {teams.map(team => (
+                <option key={team.value} value={team.value}>{team.label}</option>
+        ))}
+        </select>
 
         {
           data.length !== 0 ? (
             <>
-            { filterByDate.map((data: any) => (
+            { filterByDate.filter((value: any) => {
+              if(selectedTeam === ""){
+                return value
+              }else if(value?.team === selectedTeam){
+                console.log(value);
+                return value;
+              }
+            }).map((data: any) => (
                 <p key={data.id}>{data.name} === {data.birthday}</p>
             ))}
             </>
           ) : (
-            [1,2,3,4,5].map((n) => <SkeletonElement type='title' />)
+            [1,2,3,4,5].map((n) => <SkeletonElement key={n} type='title' />)
           )
         }
 

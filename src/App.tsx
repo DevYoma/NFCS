@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom'
 import Birthday from './Components/Birthday';
@@ -42,7 +42,7 @@ function App() {
         <Route path="/test" element={<Test />}/>
 
         {/* <Route path='/home' element={<RequireAuth><Home /></RequireAuth> } /> */}
-        <Route path='/home' element={<Home /> } />
+        <Route path='/home' element={<React.Suspense><Home /></React.Suspense> } />
 
         <Route path="*" element={(<h1>404 page</h1>)}/>
       </Routes>

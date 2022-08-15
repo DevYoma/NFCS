@@ -1,5 +1,4 @@
 import './Home.scss';
-
 import { useSelector, useDispatch } from 'react-redux';
 import {  logout, registeruser } from '../../Features/user/userSlice'
 import { RootState } from '../../Features/store';
@@ -27,6 +26,8 @@ const Home = () => {
     // const [data, setData] = useState<FbDataType>([])
     const [data, setData] = useState<FbDataType | any>(null)
     const [fbUser, setFbUser] = useState<any>(null);
+
+    const [searchTitle, setSearchTitle] = useState('');
 
     const navigate = useNavigate();
     const user = useSelector((state: RootState) => state.user.user)
@@ -121,7 +122,7 @@ const Home = () => {
     <>
         {user && (
           <>
-            <p style={{ fontSize: "14px" }}>Go to test page <Link to={'/test'}>Test Page</Link></p>
+            {/* <p style={{ fontSize: "14px" }}>Go to test page <Link to={'/test'}>Test Page</Link></p> */}
             <p style={{ fontSize: "14px" }}>Go to birthday page <Link to={'/birthday'}>Birthday Page</Link></p>
             <React.Fragment>
               <div>Home</div>
@@ -135,11 +136,24 @@ const Home = () => {
               <p>{userInfo?.team ? userInfo.team : apiResponse?.team}</p>
               <p>{userInfo?.level ? userInfo.level : apiResponse?.level}</p>
 
+
+              <input 
+                type="text" 
+                placeholder='Search...'
+                onChange={(e: any) => setSearchTitle(e.target.value)}
+              />
+
             
               {/* Data from FB */}
               {data ? (
                 <>
-                {data.map((datum: any) => (
+                {data.filter((value: any) => {
+                  if(searchTitle === ""){
+                    return value;
+                  } else if(value.name.toLowerCase().includes(searchTitle.toLocaleLowerCase())){
+                    return value;
+                  }
+                }).map((datum: any) => (
                   <div style={{ border: '1px solid red'}} key={datum.id}>
                     {datum?.name} <br />
                     {datum?.birthday} <br />
@@ -147,7 +161,7 @@ const Home = () => {
                     {datum?.level} <br />
                     {datum?.email} <br />
                     {datum?.department} <br />
-                    {datum?.img && <img style={{ width: "150px", height: "150px", objectFit: "contain", borderRadius: "99%" }} src={datum?.img} alt="image/photo" />}
+                    {datum?.img && <img  loading='lazy' alt={`name${datum.name}`} style={{ width: "150px", height: "150px", objectFit: "contain", borderRadius: "99%", border: "2px solid pink" }} src={datum?.img}  />}
                   </div>
                 ))}
                 </>
