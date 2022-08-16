@@ -138,6 +138,7 @@ const Home = () => {
 
 
               <input 
+                className="home__input"
                 type="text" 
                 placeholder='Search...'
                 onChange={(e: any) => setSearchTitle(e.target.value)}
@@ -146,7 +147,7 @@ const Home = () => {
             
               {/* Data from FB */}
               {data ? (
-                <>
+                <div className='home__lists'>
                 {data.filter((value: any) => {
                   if(searchTitle === ""){
                     return value;
@@ -154,17 +155,20 @@ const Home = () => {
                     return value;
                   }
                 }).map((datum: any) => (
-                  <div style={{ border: '1px solid red'}} key={datum.id}>
-                    {datum?.name} <br />
-                    {datum?.birthday} <br />
+                  <div key={datum.id} className={`home__list ${datum.team}`} >
+                    {datum?.img && <img  loading='lazy' alt={`name${datum.name}`} style={{ width: "100px", height: "100px", objectFit: "cover", clipPath: "circle()" }} src={datum?.img}  />}
+                    <div>
+                      <p>{datum?.name}</p>
+                      <p>{datum?.department}</p>
+                      <p>{datum?.birthday}</p>
+                    </div>
+                    {/* {datum?.birthday} <br />
                     {datum?.team} <br />
                     {datum?.level} <br />
-                    {datum?.email} <br />
-                    {datum?.department} <br />
-                    {datum?.img && <img  loading='lazy' alt={`name${datum.name}`} style={{ width: "200px", height: "200px", objectFit: "cover", clipPath: "circle()" }} src={datum?.img}  />}
+                    {datum?.email} <br /> */}
                   </div>
                 ))}
-                </>
+                </div>
               ) : ([1,2,3,4,5].map((n) => <SkeletonUserLoading key={n}/>))}
              
              {/* ADD THE LOADING SKELETON ABOVE */}

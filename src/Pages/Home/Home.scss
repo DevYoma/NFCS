@@ -1,0 +1,54 @@
+.home__input{
+    margin-bottom: 25px;
+    // border: 1px solid red;
+    width: 70%;
+    height: 30px;
+    border-radius: 20px;
+    padding: 0 20px;
+}
+
+.home__lists{
+    // border: 1px solid red;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    // gap: 10px;
+
+    .home__list{
+        // background: red;
+        margin-inline: auto;
+        border-radius: 20px;
+        margin-bottom: 20px;
+        max-width: 600px;
+        width: 33%;
+        @media screen and (max-width: 768px) {
+            width: 85%;
+        }
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        p{
+            font-size: 1rem;
+        }
+    }
+    .jericho{
+        background-color: red;
+    }
+    .jordan{
+        background: orange;
+    }
+    .bethany{
+        background: lightgreen;
+    }
+    .nile{
+        background: lightblue;
+    }
+    .capernaum{
+        background: lightgray;
+    }
+    .galilee{
+        background: yellow;
+    }
+}
+
