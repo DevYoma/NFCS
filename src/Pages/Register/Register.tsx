@@ -10,7 +10,10 @@ import { auth, db, storage } from '../../Firebase/Firebase';
 import { createUserWithEmailAndPassword, sendEmailVerification } from '@firebase/auth';
 import { doc, serverTimestamp, setDoc } from '@firebase/firestore';
 import { ref, uploadBytesResumable, getDownloadURL } from '@firebase/storage';
-// import { storage } from '../../Firebase/Firebase';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Logo from '../../Atoms/Logo/Logo';
+
 
 const Register = () => {
 
@@ -29,6 +32,11 @@ const Register = () => {
         password: "", 
         teampass: ""
     })
+
+    // TOASTIFY function
+    function notify(message: string){
+        toast.error(message);
+    }
     
     // user boolean status
     const user = useSelector((state: RootState) => state.user.user)
@@ -42,6 +50,7 @@ const Register = () => {
     const navigate = useNavigate()
     const [showPassword, setShowPassword] = useState(false)
 
+    // LEVELS.
     const options = [
         {
             label: "Prefer not to say",
@@ -69,6 +78,7 @@ const Register = () => {
           },
       ];
 
+      // NFCS TEAMS
     const teams = [
         {
             label: "Bethany",
@@ -96,7 +106,7 @@ const Register = () => {
         },
     ]
 
-
+    // HANDLE CHANGE IN THE INPUT ELEMENTS
     const handleChange = (e: any) => {
         const value = e.target.value;
         const name = e.target.name;
@@ -111,51 +121,61 @@ const Register = () => {
     useEffect(() => {
         const uploadFile = () => {
           const name = new Date().getTime() + file.name; // date milliseconds is appended(prefixed) to image name
-          // console.log(name)
-          const storageRef = ref(storage, file.name); // if file has same name, it will override
-    
-          const uploadTask = uploadBytesResumable(storageRef, file);
-    
-        // Register three observers:
-        // 1. 'state_changed' observer, called any time the state changes
-        // 2. Error observer, called on failure
-        // 3. Completion observer, called on successful completion
-        uploadTask.on('state_changed', 
-          (snapshot) => {
-            // Observe state change events such as progress, pause, and resume
-            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log('Upload is ' + progress + '% done');
-            setPercentage(progress)
-            switch (snapshot.state) {
-              case 'paused':
-                console.log('Upload is paused');
-                break;
-              case 'running':
-                console.log('Upload is running');
-                break;
-                default: 
-                  break;
+          console.log(name)
+          const nameLength = name.length;
+        //   console.log(typeof(name))
+        const imageFormat = name.substr(nameLength - 3);
+        console.log(imageFormat);
+        // jpg, png, jpeg
+            const acceptedFormats = ['png', 'jpg', 'jpeg']
+            // if(imageFormat === 'mp4' || imageFormat === 'mp3' || imageFormat === 'psx'){
+            if(imageFormat === 'mp4' || imageFormat === 'mp3' || imageFormat === 'psx' || imageFormat === 'ptx'){
+
+                notify("Please enter a valid Image Format")
+                return;
             }
-          }, 
-          (error) => {
-            // Handle unsuccessful uploads
-            console.log(error)
-          }, 
-      () => {
-        // Handle successful uploads on complete
-        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          console.log('File available at', downloadURL);
-          setFormData((prev) => ({
-            ...prev,
-            img: downloadURL
-          }))
-        });
-      }
-    );
-        }
-    
+            else{
+                const storageRef = ref(storage, file.name); // if file has same name, it will override
+          
+                const uploadTask = uploadBytesResumable(storageRef, file);
+        
+              uploadTask.on('state_changed', 
+                (snapshot) => {
+                  // Observe state change events such as progress, pause, and resume
+                  // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                  const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                  console.log('Upload is ' + progress + '% done');
+                  setPercentage(progress)
+                  switch (snapshot.state) {
+                    case 'paused':
+                      console.log('Upload is paused');
+                      break;
+                    case 'running':
+                      console.log('Upload is running');
+                      break;
+                      default: 
+                        break;
+                  }
+                }, 
+                      (error) => {
+                          // Handle unsuccessful uploads
+                          console.log(error)
+                      }, 
+                  () => {
+                  // Handle successful uploads on complete
+                  // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+                      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                      console.log('File available at', downloadURL);
+                      setFormData((prev) => ({
+                          ...prev,
+                          img: downloadURL
+                      }))
+                      });
+                  }
+                  );
+                }
+            
+            }
         file && uploadFile();
       }, [file])
     
@@ -166,19 +186,24 @@ const Register = () => {
         
         // TEAMPASS  CHECK
         if(!pass.includes(formData.teampass)){
-            alert("Please enter a valid team pass")
+            // alert("Please enter a valid team pass")
+            // toast.error("Please enter a valid team pass")
+            notify("Please enter a valid team pass")
             return;
         }
 
         // TEAMPASS X TEAM CHECK
         if(!formData.teampass.includes(formData.team)){
-            alert("Your team pass does not match your team")
+            // alert("Your team pass does not match your team")
+            // toast.error("Your team pass does not match your team")
+            notify("Your team pass does not match your team")
             return;
         }
 
         // EMAIL CHECK
         if(!formData.email.includes('student.oauife.edu.ng')){
-            alert("This is not a valid email address")
+            // alert("This is not a valid email address")
+            notify("This is not a valid email address")
             return;
         }
 
@@ -192,7 +217,9 @@ const Register = () => {
         //    formData.image === "" ||
            formData.teampass === "" )
            {
-            alert("Please Check the form again and enter your details correctly.")
+            // alert("Please Check the form again and enter your details correctly.")
+            // toast.error("Please check the form again and enter your details correctly")
+            notify("Please check the form again and enter your details correctly")
             return;
         }
         else{
@@ -212,9 +239,6 @@ const Register = () => {
                 level: formData.level,
             }))
 
-
-            // dispatch(firebaseLogin())
-            // navigate('/home')
         }
 
         
@@ -234,7 +258,8 @@ const Register = () => {
                 timeStamp: serverTimestamp()
             });
         } catch(error: any){
-            alert(error)
+            notify(error.message);
+            // alert(error)
             // navigate(-1);
         }
         
@@ -244,125 +269,179 @@ const Register = () => {
 
     // console.log(formData)
   return (
-        <React.Fragment>
-
-        <div>Register</div>
-
-        <form  onSubmit={handleSubmit}>
+    <div id="register">
+        <div className="register__left">
             <div>
-                <label>Name</label>
-                <input 
-                    type="text" 
-                    required
-                    value={formData.name}
-                    onChange={handleChange}
-                    name="name"
-                />
-            </div>
-            <div>
-                <label>Department</label>
-                <input 
-                    type="text" 
-                    required
-                    value={formData.department}
-                    onChange={handleChange}
-                    name="department"
-                />
-            </div>
-            <div>
-                <label>Level</label>
-                <select 
-                    value={formData.level}   
-                    // required
-                    onChange={handleChange}
-                    name="level"
-                >
-                {options.map(option => (
-                        <option key={option.value} value={option.value}>{option.label}</option>
-                ))}
-                </select>
-            </div>
+                <h3>Welcome To <Logo logoStyle={{ display: "inline", marginTop: "15px", marginLeft: "10px"}}/></h3>
 
-            <div>
-                <label>Team</label>
-                <select 
-                    value={formData.team}   
-                    required
-                    onChange={handleChange}
-                    name="team"
-                >
-                {teams.map(team => (
-                        <option key={team.value} value={team.value}>{team.label}</option>
-                ))}
-                </select>
+                <p className="register__leftText">
+                    <div>A few clicks from making your</div>
+                    <div>day Fun and Memorable 🎂</div>
+                </p>
             </div>
+        </div>
 
-            <div>
-                <label>Birthday</label>
-                <input 
-                    type="date" 
-                    required
-                    value={formData.birthday}
-                    onChange={handleChange}
-                    name="birthday"
-                />
-            </div>
+        <div className="register__right">
+            <h1>Let's Get Started</h1>
 
-            <div>
-                <label>Image</label>
-                <input 
-                    type="file" 
-                    required
-                    // value={formData.image}
-                    onChange={(e: any) => setFile(e.target.files[0])}
-                    name="image"
-                />
-            </div>
+            <form  onSubmit={handleSubmit} className="register__rightForm">
+                <div className="register__row">
+                    <div>
+                        <div className='register__rightFormLabel'>
+                            <label>Name</label>
+                        </div>
+                        <input 
+                            type="text" 
+                            required
+                            value={formData.name}
+                            onChange={handleChange}
+                            placeholder="Full Name"
+                            name="name"
+                        />
+                    </div>
+                    <div>
+                        <div className='register__rightFormLabel'>
+                            <label>Department</label></div>
+                        <input 
+                            type="text" 
+                            required
+                            value={formData.department}
+                            onChange={handleChange}
+                            placeholder="Department"
+                            name="department"
+                        />
+                    </div>
 
-            <div>
-                <label>Email</label>
-                <input 
-                    type="email" 
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                    name="email"
-                />
-            </div>
+                </div>
 
-            <div>
-                <label>Password</label>
-                <input 
-                    type={showPassword ? "text" : "password"}
-                    required
-                    value={formData.password}
-                    onChange={handleChange}
-                    name="password"
-                />
-            </div>
+                <div className="register__row">
+                    <div>
+                        <div className='register__rightFormLabel'>
+                            <label>Level</label></div>
+                        <select 
+                            value={formData.level}   
+                            // required
+                            onChange={handleChange}
+                            name="level"
+                        >
+                        {options.map(option => (
+                                <option key={option.value} value={option.value}>{option.label}</option>
+                        ))}
+                        </select>
+                    </div>
 
-            <div>
-                <label>Team Pass</label>
-                <input 
-                    type="text"
-                    required
-                    value={formData.teampass}
-                    onChange={handleChange}
-                    name="teampass"
-                />
-            </div>
+                    <div>
+                        <div className='register__rightFormLabel'>
+                            <label>Team</label>
+                        </div>
+                        <select 
+                            value={formData.team}   
+                            required
+                            onChange={handleChange}
+                            name="team"
+                        >
+                        {teams.map(team => (
+                                <option key={team.value} value={team.value}>{team.label}</option>
+                        ))}
+                        </select>
+                    </div>
 
-            <button 
-                type="submit"
-                disabled={percentage !== null && percentage < 100} 
-            >
-                    Submit
-            </button>
-        </form>    
+                </div>
 
-        <p style={{ fontSize: "14px" }}>Have an account already? <Link to={'/login'}>Login</Link></p>
-    </React.Fragment>
+                <div className="register__row">
+                    <div>
+                        <div className='register__rightFormLabel'>
+                            <label>Birthday</label>
+                        </div>
+                        <input 
+                            type="date" 
+                            required
+                            value={formData.birthday}
+                            onChange={handleChange}
+                            name="birthday"
+                        />
+                    </div>
+
+                    <div>
+                        <div className='register__rightFormLabel'>
+                            <label>Image</label>
+                        </div>
+                        <input 
+                            type="file" 
+                            required
+                            // value={formData.image}
+                            onChange={(e: any) => setFile(e.target.files[0])}
+                            name="image"
+                        />
+                    </div>
+                </div>
+
+                <div className="register__row">
+                    <div>
+                        <div className='register__rightFormLabel'>
+                            <label>Email</label>
+                        </div>
+                        <input 
+                            type="email" 
+                            required
+                            value={formData.email}
+                            placeholder="student-Mail@student.oauife.edu.ng"
+                            onChange={handleChange}
+                            name="email"
+                        />
+                    </div>
+
+                </div>
+
+                <div className="register__row">
+                    <div>
+                        <div className='register__rightFormLabel'>
+                            <label>Password</label>
+                        </div>
+                        <input 
+                            type={showPassword ? "text" : "password"}
+                            required
+                            value={formData.password}
+                            placeholder="password"
+                            onChange={handleChange}
+                            name="password"
+                        />
+                    </div>
+
+                    <div>
+                        <div className='register__rightFormLabel'>
+                            <label>Team Pass</label>
+                        </div>
+                        <input 
+                            type="text"
+                            required
+                            value={formData.teampass}
+                            onChange={handleChange}
+                            name="teampass"
+                            placeholder='teampass'
+                        />
+                    </div>
+                </div>
+
+                <div className={`register__row register__rowLast`} >
+                    <button 
+                        type="submit"
+                        disabled={percentage !== null && percentage < 100} 
+                        className="register__formButton"
+                    >
+                            Register
+                    </button>
+                    <p className='register__formQuestion'>Have an account already? <Link to={'/login'}>Login</Link></p>
+
+                </div>
+            </form>    
+
+            <ToastContainer style={{ fontSize: "1rem" }}/>
+        </div>
+    </div>
   )
 }
 
 export default Register
+
+

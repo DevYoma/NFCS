@@ -14,14 +14,14 @@ const LandingPage = () => {
         navigate('/register')
     }
 
-    console.log(user);
+    // console.log(user);
 
     const login = () => {
         navigate('/login')
     }
 
   return (
-    <>
+    <div>
         <div>LandingPage</div>
 
         {user && (<p>Working</p>)}
@@ -30,7 +30,7 @@ const LandingPage = () => {
 
         {/* <button onClick={() => dispatch(logout())}>Login</button> */}
         <button onClick={login}>Login</button>
-    </>
+    </div>
   )
 }
 

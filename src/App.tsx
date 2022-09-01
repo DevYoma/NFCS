@@ -1,3 +1,4 @@
+// import './firebase-messaging-sw'
 import React, { useEffect, lazy, Suspense } from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom'
@@ -13,12 +14,13 @@ import { registeruser, logout } from './Features/user/userSlice'
 import { RootState } from './Features/store';
 import Test from './Components/Test';
 
+
 function App() {
   
   const user = useSelector((state: RootState) => state.user.user)
   const dispatch = useDispatch()
 
-  console.log(user)
+  // console.log(user)
 
   useEffect(() => {
     if(user){

@@ -1,4 +1,15 @@
 .App{
-  font-size: 24px;
-  text-align: center;
+  /* font-size: 24px; */
+  /* text-align: center; */
+}
+
+
+*{
+  /* overflow: hidden; */
+}
+
+.App{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }

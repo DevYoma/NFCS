@@ -10,6 +10,8 @@ import { auth, db } from '../../Firebase/Firebase';
 import Login from '../Login';
 import SkeletonElement from '../../Components/Skeletons/SkeletonElement';
 import SkeletonUserLoading from '../../Components/Skeletons/SkeletonUserLoading';
+import {LazyLoadImage}  from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
     
 type FbDataType = {
   id: string | number;
@@ -39,10 +41,12 @@ const Home = () => {
     // console.log(userInfo);
 
     const handleLogout = () => {
-        dispatch(logout());
-        dispatch(loggedOut)
+        auth.signOut().then(() => {
+          dispatch(logout());
+          dispatch(loggedOut)
 
-        navigate('/')
+          navigate('/')
+        })
     }
 
     const goBackToPreviousPage = () => {
@@ -91,7 +95,7 @@ const Home = () => {
       dispatch(registeruser());
 
       auth.onAuthStateChanged(authState => {
-        console.log(authState?.uid);
+        console.log("User Id: " + authState?.uid);
         if(authState){
           getDataFromId(authState?.uid);
         }
@@ -156,7 +160,16 @@ const Home = () => {
                   }
                 }).map((datum: any) => (
                   <div key={datum.id} className={`home__list ${datum.team}`} >
-                    {datum?.img && <img  loading='lazy' alt={`name${datum.name}`} style={{ width: "100px", height: "100px", objectFit: "cover", clipPath: "circle()" }} src={datum?.img}  />}
+                    {datum?.img && <LazyLoadImage 
+                                      effect='blur' 
+                                      loading='lazy' 
+                                      alt={`name${datum.name}`} 
+                                      style={{ width: "100px", 
+                                        height: "100px", 
+                                        objectFit: "cover", 
+                                        clipPath: "circle()"
+                                      }} 
+                                      src={datum?.img}  />}
                     <div>
                       <p>{datum?.name}</p>
                       <p>{datum?.department}</p>

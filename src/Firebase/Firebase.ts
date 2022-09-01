@@ -4,6 +4,7 @@ import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore"
 import { getStorage } from "firebase/storage"
+import { getMessaging, getToken } from "firebase/messaging";
 
 const firebaseConfig = {
   apiKey: `${process.env.REACT_APP_APIKEY}`,
@@ -19,10 +20,8 @@ const firebaseConfig = {
 // console.log(process.env.REACT_APP_MEASUREMENTID);
 // console.log(process.env.REACT_APP_APIKEY);
 
-
-
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 // Initializing auth
 export const auth = getAuth();
@@ -30,5 +29,3 @@ export const auth = getAuth();
 export const db = getFirestore(app);
 // Initializing Storage
 export const storage = getStorage(app);
-
-// hoping the error goes away. 

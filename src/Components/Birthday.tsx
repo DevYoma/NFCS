@@ -67,7 +67,7 @@ const Birthday = () => {
                 // console.log(doc.id, " => ", doc.data());
     
                 setData(list)
-                console.log(list)
+                // console.log(list)
               });
             }catch(error) {
               console.log(error);
@@ -121,7 +121,10 @@ const Birthday = () => {
                 return value;
               }
             }).map((data: any) => (
-                <p key={data.id}>{data.name} === {data.birthday}</p>
+                <div key={data.id}>
+                  <p>{data.name} === {data.birthday}</p>
+                  <img src={data.img} alt="userImg" />
+                </div>
             ))}
             </>
           ) : (
@@ -131,7 +134,7 @@ const Birthday = () => {
 
 
         {
-          filterByDate.length === 0 && <p>No Birthday today o</p>
+          filterByDate.length === 0 && <p>No Birthday today</p>
         }
 
         {/* previous code */}

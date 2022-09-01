@@ -1,3 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+
+#register{
+    // border: 1px solid red;
+    height: 100vh;
+    background: #D8E5E9;
+    display: flex;  
+    font-family: 'Inter', sans-serif;
+
+    .register__left{
+        flex: 0.3;
+        background: #D8E5E9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        @media screen and (max-width: 1200px){
+            display: none;
+        }
+
+        div{
+            // margin: auto;
+            h3{
+                // font-family: 'Inter';
+                font-weight: 700;
+                font-size: 36px;
+                line-height: 150%;
+                display: flex;
+                align-items: center;
+                // border: 1px solid red;
+            }
+
+            p{
+                margin-top: 30px;
+                text-transform: capitalize;
+                font-weight: 400;
+                font-size: 20px;
+                line-height: 194.5%;
+            
+                div{
+                    margin: 2px 0;
+                }
+            }
+        }
+    }
+
+    .register__right{
+        // border: 1px solid red;
+        flex: 0.7;
+        border-radius: 80px 0px 0px 80px;
+        background: white;
+
+        @media screen and (max-width: 1200px){
+            flex: 1;
+            border-radius: 0px;
+        }
+
+        h1{
+            // margin: 0 auto;
+            text-align: center;
+            margin: 35px 0px 30px;
+        }
+
+        .register__rightForm{
+            // display: flex;
+            // border: 1px solid red;
+            // flex-wrap: wrap;
+            width: 50%;
+            margin-inline: auto;
+            // max-width: 500px;
+
+            @media screen and (max-width: 1200px){
+                width: 75%;
+            }
+
+            @media screen and (max-width: 900px){
+                width: 85%;
+            }
+
+            @media screen and (max-width: 768px){
+                width: 90%;
+            }
+
+            .register__row{
+                display: flex;
+                justify-content: space-between;
+                // border: 1px solid red;
+                
+                gap: 10px;
+                margin-bottom: 20px;
+                
+                & > *{
+                    width: 100%;
+                }
+
+                @media screen and (max-width: 500px){
+                    flex-direction: column;
+                }
+            }
+
+            .register__rowLast{
+                align-items: center;
+                // border: 1px solid red;
+            }
+
+            div{
+               
+                .register__rightFormLabel{
+                    margin-bottom: 5px;
+                    // color: red;
+                    color: #555556;
+                    // display: none;
+                }
+
+                select{
+                    width: 95%;
+                    border-radius: 8px;
+                    padding: 10px 0 10px 10px;
+                    // padding: 10px 0;
+                    background: #EDEEFF;
+                    border: none;
+                    // outline: none;
+                }
+
+                input{
+                    width: 95%;
+                    background: #EDEEFF;
+                    border-radius: 8px;
+                    border: none;
+                    // height: 70px;
+                    padding: 10px 0 10px 10px;
+                    // padding: 10px 0;
+                    // outline: none;
+                }
+            }
+
+            .register__formButton{
+                width: 100%;
+                background: #3861FB;
+                border-radius: 5px;
+                padding: 10px 0;
+                border: none;
+                cursor: pointer;
+                color: #FFFFFF;
+                font-weight: 400;
+                font-size: 18px;
+                text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
+
+                
+            }
+            .register__formButton:disabled{
+                background: gray;
+                cursor: not-allowed;
+            }
+
+            .register__formQuestion{
+                font-weight: 300;
+                font-size: 14px;
+                line-height: 150%;
+                letter-spacing: 0.05em;
+                text-transform: capitalize;
+                color: #555556;
+            }
+        }
+    }
+}
+
 form > div{
     margin-bottom: 15px;
 }

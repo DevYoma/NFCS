@@ -7,9 +7,19 @@ import { RootState } from '../Features/store'
 import { loggedIn } from '../Features/userInfo/userinfoSlice';
 import { auth } from '../Firebase/Firebase';
 import { signInWithEmailAndPassword } from '@firebase/auth';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Logo from '../Atoms/Logo/Logo';
+import BackgroundImg from '../assets/loginBackground.png';
+import Button from '../Atoms/Button/Button';
 
 const Login = () => {
   const [error, setError] = useState("")
+
+  // TOASTIFY ERROR MESSAGE
+  function notify(message: string){
+    toast.error(message);
+  }
 
   // const user = useSelector((state: RootState) => state.user.user)
   const dispatch = useDispatch()
@@ -29,14 +39,16 @@ const Login = () => {
 
     e.preventDefault();
     
-    if(!loginData.email.includes('student.oauife.edu.ng')){
-      alert("This is not a valid email address")
+    if(loginData.email === "" || loginData.password === ""){
+      // alert("This is not a valid email address")
+      notify("Please enter valid details")
       return;
     }
 
-    if(loginData.email === "" || loginData.password === ""){
+    if(!loginData.email.includes('student.oauife.edu.ng')){
       // console.log(loginData)
-      alert("Please enter valid details");
+      // alert("Please enter valid details");
+      notify("This is not a valid email address")
     }else{
       dispatch(registeruser());
       dispatch(loggedIn({
@@ -54,7 +66,9 @@ const Login = () => {
         console.log(loginUserFB)
         navigate('/home')
       }catch(error: any){
-        alert(error);
+        // alert(error);
+        console.log(error);
+        notify(error.message)
         navigate('/login');
       }
 
@@ -73,35 +87,65 @@ const Login = () => {
   }
 
   return (
-    <>
-      <div>Login</div>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Email</label>
-          <input 
-            type="email" 
-            value={loginData.email}
-            name="email"
-            onChange={handleOnChange}
-          />
+    <section id="login">
+      <div className="login__left">
+        {/* <div className="login__leftHeader">
+          <Logo />
+        </div> */}
+
+        <div className="login__leftHeaderFormContainer">
+          <form onSubmit={handleLogin} className="login__leftForm">
+            <h1 className='login__formWelcome'>Welcome Back</h1>
+            <p className="login__formText">Welcome back! Please enter your details</p>
+
+            <div className="login__formDiv">
+              <div className='login__formLabelDiv'>
+                <label>Email</label>
+              </div>
+              <input 
+                type="email" 
+                value={loginData.email}
+                name="email"
+                placeholder='student Email'
+                onChange={handleOnChange}
+              />
+            </div>
+
+            <div className="login__formDiv">
+              <div  className='login__formLabelDiv'>
+                <label>Password</label>
+              </div>
+              <input 
+                type="password" 
+                value={loginData.password}
+                name="password"
+                placeholder='xxxxxxx'
+                onChange={handleOnChange}
+              />
+            </div>
+
+            {/*  */}
+            {/* <button type="submit" className='login__formButton'>Login</button> */}
+            <Button 
+              buttonType='submit'
+              buttonStyle={{ marginTop: '30px' }}
+            >
+              Login
+            </Button>
+          </form>
+
+          <p className='login__RegisterLink'>
+            Don't have an Account?<Link to={'/register'}> Sign Up</Link>
+          </p>
+
+          <ToastContainer style={{ fontSize: "1rem" }}/>
         </div>
+    </div>
 
-        <div>
-          <label>Password</label>
-          <input 
-            type="password" 
-            value={loginData.password}
-            name="password"
-            onChange={handleOnChange}
-          />
-        </div>
-
-        <button type="submit">Submit</button>
-      </form>
-
-      <p style={{ fontSize: "14px" }}>Don't have an Account?<Link to={'/register'}>Register</Link></p>
-
-    </>
+      <div className="login__right">
+        {/* <img src={BackgroundImg} alt="backgroundImg" /> */}
+      </div>
+    </section>
   )
 }
 
