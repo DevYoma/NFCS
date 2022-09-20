@@ -2,7 +2,7 @@
 import React, { useEffect, lazy, Suspense } from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom'
-import Birthday from './Components/Birthday';
+import Birthday from './Pages/BirthdayPage/Birthday';
 import LandingPage from './Pages/LandingPage';
 import Register from './Pages/Register/Register';
 import TeamPass from './Pages/TeamPass/TeamPass';
@@ -34,7 +34,7 @@ function App() {
         <Route path='/' element={<LandingPage />} />
         
         {/* testing birthday form */}
-        <Route path="/birthday" element={<Birthday />}/>
+        <Route path="/birthday" element={<Birthday />} />
 
         <Route path='/register' element={ <Register />} />
 
@@ -44,7 +44,7 @@ function App() {
         <Route path="/test" element={<Test />}/>
 
         {/* <Route path='/home' element={<RequireAuth><Home /></RequireAuth> } /> */}
-        <Route path='/home' element={<React.Suspense><Home /></React.Suspense> } />
+        <Route path='/app' element={<React.Suspense><Home /></React.Suspense> } />
 
         <Route path="*" element={(<h1>404 page</h1>)}/>
       </Routes>

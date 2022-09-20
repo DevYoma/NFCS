@@ -1,11 +1,10 @@
 .App{
-  /* font-size: 24px; */
-  /* text-align: center; */
 }
 
-
-*{
-  /* overflow: hidden; */
+.container{
+  width: 95%;
+  max-width: 1600px;
+  margin-inline: auto;
 }
 
 .App{

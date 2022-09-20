@@ -1,5 +1,7 @@
 import React from 'react'
-import LogoImg from '../../assets/NFCS.png'
+import './Logo.scss';
+import LogoTextImg from '../../assets/NFCS.png'
+import LogoImg from '../../assets/NfcsLogo.svg';
 
 type logoProp = {
   logoStyle?: React.CSSProperties;
@@ -8,7 +10,14 @@ type logoProp = {
 const Logo = ({ logoStyle }: logoProp) => {
   return (
     <section style={logoStyle} id="logo">
-        <img src={LogoImg} alt="Logo" />
+        <img src={LogoImg} alt="imgLogo" className="logo__firstImg" />
+        <div>
+          <img src={LogoTextImg} alt="Logo" />
+          <span>
+            <p>Our Lady Of Perpetual</p>
+            <p>Light Chapel OAU</p>
+          </span>
+        </div>
     </section>
   )
 }

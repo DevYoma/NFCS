@@ -1,0 +1,17 @@
+#logo{
+    // border: 1px solid red;
+    display: flex;
+
+    .logo__firstImg{
+        // border: 3px solid green;
+        margin-right: 12px;
+    }
+
+    div > span > p{
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 15px;
+    }
+}

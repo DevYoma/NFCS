@@ -1,0 +1,30 @@
+#birthdayCelebrants{
+    margin-top: 90px;
+    width: 100%;
+    // text-align: center;
+
+    h3{
+        font-family: 'Inter';
+        font-weight: 700;
+        font-size: 56px;
+        line-height: 68px;
+        text-align: center;
+        color: #060028;
+        // margin-bottom: 55px;
+    }
+
+    .birthdayCelebrants__container{
+        display: flex;
+        overflow-x: scroll;
+        margin-top: 55px;
+        // border: 1px solid red;
+
+        & > img:first-child{
+            margin-left: 20px;
+        }
+
+        & > img{
+            margin-right: 30px;
+        }
+    }
+}

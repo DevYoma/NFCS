@@ -1,0 +1,20 @@
+#footer{
+    // margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // border: 1px solid red;
+    margin-inline: auto;
+    padding:  22.5px 30px;
+    width: 100%;
+
+    .footer__icons > *{
+        margin-right: 24px;
+    }
+
+    .footer__links{
+        display: flex;
+        flex: 0.4;
+        justify-content: space-between;
+    }
+}

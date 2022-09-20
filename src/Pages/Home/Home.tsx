@@ -12,6 +12,7 @@ import SkeletonElement from '../../Components/Skeletons/SkeletonElement';
 import SkeletonUserLoading from '../../Components/Skeletons/SkeletonUserLoading';
 import {LazyLoadImage}  from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import AppNav from '../../Components/AppNav/AppNav';
     
 type FbDataType = {
   id: string | number;
@@ -40,6 +41,7 @@ const Home = () => {
 
     // console.log(userInfo);
 
+    // logging out users
     const handleLogout = () => {
         auth.signOut().then(() => {
           dispatch(logout());
@@ -49,6 +51,7 @@ const Home = () => {
         })
     }
 
+    // making page go to current page on reload
     const goBackToPreviousPage = () => {
            window.addEventListener("load", e => {
           navigate(-1);
@@ -126,20 +129,18 @@ const Home = () => {
     <>
         {user && (
           <>
-            {/* <p style={{ fontSize: "14px" }}>Go to test page <Link to={'/test'}>Test Page</Link></p> */}
-            <p style={{ fontSize: "14px" }}>Go to birthday page <Link to={'/birthday'}>Birthday Page</Link></p>
+            <AppNav username={apiResponse?.name} image={apiResponse?.img}/>
             <React.Fragment>
-              <div>Home</div>
               <button onClick={handleLogout}>Logout</button> <br />
 
-              <p>Total Number of Registered users {data?.length}</p>
+              {/* <p>Total Number of Registered users {data?.length}</p> */}
 
               <p>{userInfo?.email ? userInfo.email : apiResponse?.email}</p>
               <p>{userInfo?.name ? userInfo.name : apiResponse?.name}</p>
               <p>{userInfo?.birthday ? userInfo.birthday : apiResponse?.birthday }</p>
               <p>{userInfo?.team ? userInfo.team : apiResponse?.team}</p>
               <p>{userInfo?.level ? userInfo.level : apiResponse?.level}</p>
-
+              
 
               <input 
                 className="home__input"
@@ -154,7 +155,8 @@ const Home = () => {
                 <div className='home__lists'>
                 {data.filter((value: any) => {
                   if(searchTitle === ""){
-                    return value;
+                    // return value;
+                    return null;
                   } else if(value.name.toLowerCase().includes(searchTitle.toLocaleLowerCase())){
                     return value;
                   }
@@ -198,3 +200,7 @@ const Home = () => {
 }
 
 export default Home
+
+{/* <div>
+                <img src={apiResponse?.img} alt="resImg" />
+              </div> */}

@@ -9,7 +9,9 @@ function SkeletonElement({ type }: SkeletonElementProp) {
   const classes = `skeleton ${type}`;
 
   return (
-    <div className={classes}></div>
+    // <section id="skeletonContainer">
+      <div className={classes}></div>
+    // </section>
   )
 }
 

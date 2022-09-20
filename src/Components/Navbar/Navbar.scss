@@ -1,0 +1,33 @@
+#navbar{
+    // border: 1px solid red;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .navbar__links{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex: 0.4;
+        // border: 1px solid green;
+
+        .navbar__loginBtn{
+            background: #3861FB;
+            border-radius: 8px;
+            color: white;
+            padding: 10px 30px;
+            font-family: 'Inter';
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 29px;
+            border: none;
+            cursor: pointer;         
+            
+            &:hover{
+                background: #274bcd;
+                opacity: 0.95;
+            }
+        }
+    }
+}

@@ -4,6 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import {  logout } from '../Features/user/userSlice'
 import { RootState } from '../Features/store';
+import Navbar from '../Components/Navbar/Navbar';
+import NavHero from '../Components/NavHero/NavHero';
+import BirthdayCelebrants from '../Components/BirthdayCelebrants/BirthdayCelebrants';
+import Footer from '../Components/Footer/Footer';
 
 const LandingPage = () => {
     const navigate = useNavigate();
@@ -21,16 +25,14 @@ const LandingPage = () => {
     }
 
   return (
-    <div>
-        <div>LandingPage</div>
-
-        {user && (<p>Working</p>)}
-        {/* <button onClick={() => dispatch(loginUser())}>Get Started</button> */}
-        <button onClick={register} >Register</button>
-
-        {/* <button onClick={() => dispatch(logout())}>Login</button> */}
-        <button onClick={login}>Login</button>
-    </div>
+    <section id='landingPage'>
+        <Navbar />
+        <NavHero />
+        <BirthdayCelebrants header='Birthday Celebrants 🎂'/>
+        <BirthdayCelebrants header='Past Birthday Celebrants 🎂'/>
+        {/* team leaders talk component */}
+        <Footer />
+    </section>
   )
 }
 

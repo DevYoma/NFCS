@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Register.scss'
-import {  Link, Navigate, useNavigate } from 'react-router-dom';
+import {  Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { registeruser } from '../../Features/user/userSlice'
 import { loggedIn } from '../../Features/userInfo/userinfoSlice';
@@ -12,20 +12,28 @@ import { doc, serverTimestamp, setDoc } from '@firebase/firestore';
 import { ref, uploadBytesResumable, getDownloadURL } from '@firebase/storage';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Logo from '../../Atoms/Logo/Logo';
+import emailjs from '@emailjs/browser';
+import { teams, departments } from '../../utils/helper';
+import NfcsLogo2 from '../../assets/nfcsLogo2.svg'; 
+import { InputAdornment, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import ImageIcon from '@mui/icons-material/Image';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { emailApi, emailServiceId, emailTemplateId } from '../../Email/Email';
 
 
 const Register = () => {
 
     const [percentage, setPercentage] = useState<null | number>(null)
+
+    const [showpassword, setShowpassword] = useState(false);
     
     const [file, setFile] = useState<any>(null)
 
     const [formData, setFormData] = useState({
         name: "",
         department: "",
-        level: "none",
-        team: "select team",
+        // level: "none",
+        team: "",
         birthday: "",
         // image: "",
         email: "",
@@ -39,72 +47,17 @@ const Register = () => {
     }
     
     // user boolean status
-    const user = useSelector((state: RootState) => state.user.user)
+    // const user = useSelector((state: RootState) => state.user.user)
     const dispatch = useDispatch()
 
     // getting user info
-    const userInfo = useSelector((state: RootState) => state.userInfo.userInfo)
+    // const userInfo = useSelector((state: RootState) => state.userInfo.userInfo)
 
     // console.log(userInfo);
 
     const navigate = useNavigate()
     const [showPassword, setShowPassword] = useState(false)
 
-    // LEVELS.
-    const options = [
-        {
-            label: "Prefer not to say",
-            value: "none"
-        },
-        {
-          label: "100 Level",
-          value: "part1",
-        },
-        {
-          label: "200 Level",
-          value: "part2",
-        },
-        {
-          label: "300 Level",
-          value: "part3",
-        },
-        {
-          label: "400 Level",
-          value: "part4",
-        },
-        {
-            label: "500 Level",
-            value: "part5",
-          },
-      ];
-
-      // NFCS TEAMS
-    const teams = [
-        {
-            label: "Bethany",
-            value: "bethany",
-        },
-        {
-            label: "Capernaum", 
-            value: "capernaum",
-        },
-        {
-            label: "Galilee",
-            value: "galilee"
-        },
-        {
-            label: "Jericho",
-            value: "jericho"
-        },
-        {
-            label: "Jordan",
-            value: "jordan"
-        },
-        {
-            label: "Nile",
-            value: "nile"
-        },
-    ]
 
     // HANDLE CHANGE IN THE INPUT ELEMENTS
     const handleChange = (e: any) => {
@@ -123,10 +76,10 @@ const Register = () => {
           const name = new Date().getTime() + file.name; // date milliseconds is appended(prefixed) to image name
           console.log(name)
           const nameLength = name.length;
-        //   console.log(typeof(name))
-        const imageFormat = name.substr(nameLength - 3);
-        console.log(imageFormat);
-        // jpg, png, jpeg
+            //   console.log(typeof(name))
+            const imageFormat = name.substr(nameLength - 3);
+            console.log(imageFormat);
+            // jpg, png, jpeg
             const acceptedFormats = ['png', 'jpg', 'jpeg']
             // if(imageFormat === 'mp4' || imageFormat === 'mp3' || imageFormat === 'psx'){
             if(imageFormat === 'mp4' || imageFormat === 'mp3' || imageFormat === 'psx' || imageFormat === 'ptx'){
@@ -175,9 +128,10 @@ const Register = () => {
                   );
                 }
             
-            }
+        }
         file && uploadFile();
-      }, [file])
+    }, [file])
+
     
 
       // HANDLING FORM SUBMIT
@@ -214,7 +168,6 @@ const Register = () => {
            formData.password === "" || 
            formData.team === "" || 
            formData.name === "" || 
-        //    formData.image === "" ||
            formData.teampass === "" )
            {
             // alert("Please Check the form again and enter your details correctly.")
@@ -236,11 +189,10 @@ const Register = () => {
                 email: formData.email,
                 // image: formData.image, 
                 team: formData.team,
-                level: formData.level,
+                // level: formData.level,
             }))
 
         }
-
         
         // FIREBASE OPERATIONS
 
@@ -250,13 +202,39 @@ const Register = () => {
             const registerUserFB = await createUserWithEmailAndPassword(auth, formData.email, formData.password)
             console.log(registerUserFB)
 
-            navigate('/home')
+            // Sending Emails to users
+            let message = `
+            Hi SuperStar 😉
+            ${formData.name}, 
+            thank you for registering on this app. Do have a pleasant experience.
+            `;
+
+          // details for EmailJS
+          let toSend = {
+              name: formData.name,
+              email: formData.email,
+              message: message
+          }
+
+          // sending emails to users
+        emailjs.send(emailServiceId, emailTemplateId, toSend, emailApi)
+          .then((result) => {
+            console.log(result.text)
+          }, (error) => {
+            console.log(error.text);
+            return
+          })
+          
     
             // ADDING REGISTERED USER TO COLLECTION
             await setDoc(doc(db, "users", registerUserFB.user.uid ), { // cities => collection. // LA => Document Id
                 ...formData,
                 timeStamp: serverTimestamp()
             });
+
+            navigate('/app');
+
+            await sendEmailVerification(registerUserFB.user) // verifying email
         } catch(error: any){
             notify(error.message);
             // alert(error)
@@ -271,94 +249,83 @@ const Register = () => {
   return (
     <div id="register">
         <div className="register__left">
-            <div>
-                <h3>Welcome To <Logo logoStyle={{ display: "inline", marginTop: "15px", marginLeft: "10px"}}/></h3>
-
-                <p className="register__leftText">
-                    <div>A few clicks from making your</div>
-                    <div>day Fun and Memorable 🎂</div>
-                </p>
-            </div>
         </div>
 
         <div className="register__right">
-            <h1>Let's Get Started</h1>
+            {/* <h1>Let's Get Started</h1> */}
+            <div className="register__rightHeader">
+                <img src={NfcsLogo2} alt="logo2" />
+                <h3>NFCS OAU BIRTHDAY PLATFORM</h3>
+            </div>
+
+            <div className="register__createAccount">
+                <h3>Create An Account</h3>
+                <p>A Few Clicks From Making Your Day Fun And Memorable 🎂</p>
+            </div>
 
             <form  onSubmit={handleSubmit} className="register__rightForm">
-                <div className="register__row">
                     <div>
-                        <div className='register__rightFormLabel'>
-                            <label>Name</label>
-                        </div>
-                        <input 
-                            type="text" 
+                        <TextField 
+                            className="register__input"
+                            type="text"
+                            label='Full name'
+                            variant="outlined" 
+                            name="name"
+                            placeholder='Emore Ogheneyoma Lawrence'
                             required
                             value={formData.name}
-                            onChange={handleChange}
-                            placeholder="Full Name"
-                            name="name"
+                            onChange={handleChange}    
                         />
                     </div>
+
                     <div>
-                        <div className='register__rightFormLabel'>
-                            <label>Department</label></div>
-                        <input 
-                            type="text" 
-                            required
+                    <InputLabel id="department-id">Department</InputLabel>
+                        <Select
+                            className='register__select'
+                            labelId="department-id"
                             value={formData.department}
+                            label="Department"
                             onChange={handleChange}
-                            placeholder="Department"
                             name="department"
-                        />
-                    </div>
-
-                </div>
-
-                <div className="register__row">
-                    <div>
-                        <div className='register__rightFormLabel'>
-                            <label>Level</label></div>
-                        <select 
-                            value={formData.level}   
-                            // required
-                            onChange={handleChange}
-                            name="level"
-                        >
-                        {options.map(option => (
-                                <option key={option.value} value={option.value}>{option.label}</option>
-                        ))}
-                        </select>
-                    </div>
-
-                    <div>
-                        <div className='register__rightFormLabel'>
-                            <label>Team</label>
-                        </div>
-                        <select 
-                            value={formData.team}   
                             required
+                            placeholder="Department"
+                        >
+                            {departments.map(depart => (
+                                <MenuItem key={depart.value} value={depart.value}>{depart.label}</MenuItem>
+                            ))}
+                             
+                        </Select>
+                    </div>
+
+                    <div>
+                    <InputLabel id="team-id">Team</InputLabel>
+                        <Select
+                            className='register__select'
+                            labelId="team-id"
+                            value={formData.team}
+                            label="Team"
                             onChange={handleChange}
                             name="team"
+                            required
                         >
-                        {teams.map(team => (
-                                <option key={team.value} value={team.value}>{team.label}</option>
-                        ))}
-                        </select>
+                            {teams.map(team => (
+                                <MenuItem key={team.value} value={team.value}>{team.label}</MenuItem>
+                            ))}
+                             
+                        </Select>
                     </div>
 
-                </div>
 
-                <div className="register__row">
                     <div>
-                        <div className='register__rightFormLabel'>
-                            <label>Birthday</label>
-                        </div>
-                        <input 
-                            type="date" 
+                        <InputLabel>Birthday Date 📆</InputLabel>
+                        <TextField 
+                            className="register__input"
+                            type="date"
+                            variant="outlined" 
+                            name="birthday"
                             required
                             value={formData.birthday}
                             onChange={handleChange}
-                            name="birthday"
                         />
                     </div>
 
@@ -366,74 +333,88 @@ const Register = () => {
                         <div className='register__rightFormLabel'>
                             <label>Image</label>
                         </div>
-                        <input 
-                            type="file" 
-                            required
-                            // value={formData.image}
-                            onChange={(e: any) => setFile(e.target.files[0])}
+                       
+                        <TextField 
+                            className="register__input"
+                            type="file"
+                            variant="outlined" 
                             name="image"
+                            required
+                            onChange={(e: any) => setFile(e.target.files[0])}
+                            InputProps={{
+                                endAdornment: (
+                                  <InputAdornment position="end">
+                                    <ImageIcon />
+                                  </InputAdornment>
+                                ),
+                            }}
                         />
                     </div>
-                </div>
 
-                <div className="register__row">
                     <div>
-                        <div className='register__rightFormLabel'>
-                            <label>Email</label>
-                        </div>
-                        <input 
-                            type="email" 
+                        <TextField 
+                            className="register__input"
+                            type="text"
+                            label='Student Email'
+                            variant="outlined" 
+                            name="email"
+                            placeholder='olemore@student.oauife.edu.ng'
                             required
                             value={formData.email}
-                            placeholder="student-Mail@student.oauife.edu.ng"
                             onChange={handleChange}
-                            name="email"
                         />
                     </div>
 
-                </div>
-
-                <div className="register__row">
                     <div>
-                        <div className='register__rightFormLabel'>
-                            <label>Password</label>
-                        </div>
-                        <input 
+                        <TextField 
+                            className="register__input"
                             type={showPassword ? "text" : "password"}
+                            label='Password'
+                            variant="outlined" 
+                            name="password"
+                            placeholder='password'
                             required
                             value={formData.password}
-                            placeholder="password"
                             onChange={handleChange}
-                            name="password"
+                            InputProps={{
+                                endAdornment: (
+                                  <InputAdornment 
+                                    position="end" 
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    style={{
+                                        cursor: "pointer"
+                                    }}
+                                >
+                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                  </InputAdornment>
+                                ),
+                            }}
                         />
                     </div>
 
                     <div>
-                        <div className='register__rightFormLabel'>
-                            <label>Team Pass</label>
-                        </div>
-                        <input 
+                        <TextField 
+                            className="register__input"
                             type="text"
+                            label='Team Pass'
+                            variant="outlined" 
+                            name="teampass"
+                            placeholder='Team Pass'
                             required
                             value={formData.teampass}
                             onChange={handleChange}
-                            name="teampass"
-                            placeholder='teampass'
                         />
                     </div>
-                </div>
 
-                <div className={`register__row register__rowLast`} >
                     <button 
                         type="submit"
                         disabled={percentage !== null && percentage < 100} 
                         className="register__formButton"
                     >
-                            Register
+                            Sign Up
                     </button>
                     <p className='register__formQuestion'>Have an account already? <Link to={'/login'}>Login</Link></p>
 
-                </div>
             </form>    
 
             <ToastContainer style={{ fontSize: "1rem" }}/>
