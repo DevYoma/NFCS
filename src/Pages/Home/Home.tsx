@@ -124,7 +124,7 @@ const Home = () => {
       const apiResponse = fbUser?.userDataResult;
 
   return (
-    <>
+      <>
         {user && (
           <>
             <AppNav 
@@ -193,7 +193,7 @@ const Home = () => {
 
         {/* {!user && <Navigate to={'/login'} />} */}
         {!user && goBackToPreviousPage() }
-    </>
+      </>
   )
 }
 

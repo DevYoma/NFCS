@@ -8,6 +8,9 @@ import BirthdayLogo from '../../assets/birthday.png'
 import { ordinal } from '../../utils/helper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import PuffLoader from "react-spinners/PuffLoader";
+import { useSelector } from 'react-redux';
+import { RootState } from '../../Features/store';
+import { useNavigate } from 'react-router-dom'
 
 
 type FbDataType = {
@@ -54,6 +57,10 @@ const Birthday = () => {
           value: "nile"
       },
   ]
+
+  const user = useSelector((state: RootState) => state.user.user)
+  console.log(user);
+  const navigate = useNavigate();
 
     const today = new Date();
     
@@ -102,6 +109,16 @@ const Birthday = () => {
         // borderColor: "red",
       };
 
+      const goBackToPreviousPage = () => {
+        window.addEventListener("load", e => {
+       navigate(-1);
+     })
+ }
+
+ if(!user){
+  goBackToPreviousPage();
+ }
+
   return (
     <section id='birthdayPage'>
         <AppNav />
@@ -124,7 +141,7 @@ const Birthday = () => {
             ))}
           </select>
 
-          <p className="birthdayPage__today">Today's Birthdays</p>
+          {filterByDate.length === 0 ? <p className='birthdayPage__today'>We Don't have any Birthday Celebrants today</p> :<p className="birthdayPage__today">We have {filterByDate.length} Birthday Celebrants 🎂</p>}
 
           {
             data.length !== 0 ? (
@@ -165,12 +182,12 @@ const Birthday = () => {
           }
 
 
-          {
+          {/* {
             filterByDate.length === 0 && <p>No Birthday today</p>
-          }
-        </div>
+          } */}
 
-        
+
+        </div>          
     </section>
   )
 }

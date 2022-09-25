@@ -2,12 +2,28 @@ import { Menu } from '@mui/icons-material';
 import { Drawer, Typography, IconButton } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './NavDrawer.scss';
 import CloseIcon from '@mui/icons-material/Close';
+import { auth } from '../../Firebase/Firebase';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../Features/user/userSlice';
+import { loggedOut } from '../../Features/userInfo/userinfoSlice';
 
 const NavDrawer = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+     // logging out users
+     const handleLogout = () => {
+        auth.signOut().then(() => {
+          dispatch(logout());
+          dispatch(loggedOut)
+
+          navigate('/')
+        })
+    }
 
   return (
     <div>
@@ -34,9 +50,16 @@ const NavDrawer = () => {
 
                 <hr />
 
-                <Link to={'#'} style={{ textDecoration: "none"}}>
-                    <Typography variant='h6' component='div' className='navDrawer__text navDrawer__logout'>Logout</Typography>
-                </Link>
+                {/* <Link to={'#'} style={{ textDecoration: "none"}}> */}
+                    <Typography 
+                        variant='h6' 
+                        component='div' 
+                        className='navDrawer__text navDrawer__logout'
+                        onClick={handleLogout}
+                    >
+                        Logout
+                    </Typography>
+                {/* </Link> */}
             </Box>
         </Drawer>
     </div>
