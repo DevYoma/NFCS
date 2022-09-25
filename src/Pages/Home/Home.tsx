@@ -3,12 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import {  logout, registeruser } from '../../Features/user/userSlice'
 import { RootState } from '../../Features/store';
 import React, { useEffect, useState } from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
-import { loggedIn, loggedOut } from '../../Features/userInfo/userinfoSlice';
+import { Link, useNavigate } from 'react-router-dom';
+import { loggedOut } from '../../Features/userInfo/userinfoSlice';
 import { collection, getDoc, getDocs, doc } from "firebase/firestore";
 import { auth, db } from '../../Firebase/Firebase';
-import Login from '../Login';
-import SkeletonElement from '../../Components/Skeletons/SkeletonElement';
 import SkeletonUserLoading from '../../Components/Skeletons/SkeletonUserLoading';
 import {LazyLoadImage}  from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -91,7 +89,7 @@ const Home = () => {
           return () => {
             fetchData();
           }
-    }, []);
+    }, [dispatch, navigate]);
 
     // USEEFEECT FOR PERSISTING USER AND USER DATA
     useEffect(() => {
@@ -103,7 +101,7 @@ const Home = () => {
           getDataFromId(authState?.uid);
         }
       })
-    }, [])
+    }, [dispatch])
 
     // GETTING LOGGED IN USER DETAILS.
       const getDataFromId = async (id: number | string | any) => {
@@ -129,9 +127,13 @@ const Home = () => {
     <>
         {user && (
           <>
-            <AppNav username={apiResponse?.name} image={apiResponse?.img}/>
+            <AppNav 
+              // username={apiResponse?.name} 
+              // image={apiResponse?.img}
+            />
             <React.Fragment>
               <button onClick={handleLogout}>Logout</button> <br />
+              <Link to='/birthday'>Birthday</Link>
 
               {/* <p>Total Number of Registered users {data?.length}</p> */}
 
@@ -177,10 +179,6 @@ const Home = () => {
                       <p>{datum?.department}</p>
                       <p>{datum?.birthday}</p>
                     </div>
-                    {/* {datum?.birthday} <br />
-                    {datum?.team} <br />
-                    {datum?.level} <br />
-                    {datum?.email} <br /> */}
                   </div>
                 ))}
                 </div>
@@ -200,7 +198,3 @@ const Home = () => {
 }
 
 export default Home
-
-{/* <div>
-                <img src={apiResponse?.img} alt="resImg" />
-              </div> */}

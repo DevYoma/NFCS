@@ -1,18 +1,12 @@
-import { collection, getDocs, getDoc, doc } from '@firebase/firestore';
+import { collection, getDocs } from '@firebase/firestore';
 import { CSSProperties, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
-import { auth, db } from '../../Firebase/Firebase';
+import { db } from '../../Firebase/Firebase';
 import AppNav from '../../Components/AppNav/AppNav';
-import SkeletonElement from '../../Components/Skeletons/SkeletonElement';
 import './Birthday.scss';
 import BirthdayLogo from '../../assets/birthday.png'
-import { list } from 'firebase/storage';
-import { useDispatch, useSelector } from 'react-redux';
-import { registeruser } from '../../Features/user/userSlice';
-import { RootState } from '../../Features/store';
+// import { useDispatch } from 'react-redux';
 import { ordinal } from '../../utils/helper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-// import ClipLoader from "react-spinners/ClipLoader";
 import PuffLoader from "react-spinners/PuffLoader";
 
 
@@ -28,10 +22,6 @@ type FbDataType = {
 
 const Birthday = () => {
     const [data, setData] = useState<FbDataType>([])
-
-    // for getting user info
-    const [fbUser, setFbUser] = useState<any>(null);
-
  
     const [selectedTeam, setSelectedTeam] = useState('')
     const teams = [
@@ -66,10 +56,8 @@ const Birthday = () => {
   ]
 
     const today = new Date();
-    const dispatch = useDispatch()
-
     
-    const stringifiedToday = today.getMonth();
+    // const stringifiedToday = today.getMonth();
     // console.log(stringifiedToday);
 
     // USEEFFECT FOR GETTING ALL USER DATA FROM FB
@@ -107,39 +95,6 @@ const Birthday = () => {
     // BIRTHDAY FOR THE DAY
     // console.log(filterByDate);
 
-    
-    // USEEFEECT FOR PERSISTING USER AND USER DATA
-    useEffect(() => {
-      dispatch(registeruser());
-
-      auth.onAuthStateChanged(authState => {
-        console.log("User Id: " + authState?.uid);
-        if(authState){
-          getDataFromId(authState?.uid);
-        }
-      })
-    }, [])
-
-    // GETTING LOGGED IN USER DETAILS.
-      const getDataFromId = async (id: number | string | any) => {
-        // const docRef = doc(db, "users", "SF");
-        const docRef = doc(db, "users", id)
-        const docSnap = await getDoc(docRef);
-
-        const userDataResult: any = await (docSnap.data())
-        
-        console.log(userDataResult)
-        setFbUser({
-          ...fbUser,
-          userDataResult
-        })
-        
-        return userDataResult;
-      }
-
-      // assigning the returned value from the function to apiResponse.
-      const apiResponse = fbUser?.userDataResult;
-
       // SPINNER
       const override: CSSProperties = {
         display: "block",
@@ -149,10 +104,7 @@ const Birthday = () => {
 
   return (
     <section id='birthdayPage'>
-        <AppNav 
-          username={apiResponse?.name}
-          image={apiResponse?.img}
-        />
+        <AppNav />
         <div className="birthdayPage__main">
 
           <h3 className='birthdayPage__teams'>Teams</h3>
@@ -224,9 +176,3 @@ const Birthday = () => {
 }
 
 export default Birthday
-{/* previous code */}
-{/* {
-    filterByDate.map((data: any) => (
-        <p key={data.id}>{data.name} === {data.birthday}</p>
-    ))
-} */}

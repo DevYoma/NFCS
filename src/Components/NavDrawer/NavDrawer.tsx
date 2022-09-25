@@ -10,33 +10,36 @@ const NavDrawer = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
 
   return (
-    <React.Fragment>
+    <div>
         <IconButton 
             edge="end" 
             sx={{ width: "54px", height: "54px"}} 
             aria-label="logo" 
             onClick={() => setIsDrawerOpen(!isDrawerOpen)} 
-            className={true ? "iconWhite" : "iconGreen"}
         >
             {isDrawerOpen ? <CloseIcon fontSize='large'/> : <Menu fontSize='large' /> }
         </IconButton>
-        <Drawer anchor='right' open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
-            <Box p={2} width={'100vw'} textAlign='left' role='presentation' sx={{ paddingTop: "150px", height: "100vh"}} className='nav__drawerLists'>
-                <Link to={'/'} style={{ textDecoration: "none"}}>
-                    <Typography variant='h6' component='div' className='nav__drawerText'>Home</Typography>
+        <Drawer anchor='right' open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} className="navDrawer__container">
+            <Box p={2} width={'70vw'} textAlign='left' role='presentation' className='navDrawer'>
+                {/* {isDrawerOpen && (<CloseIcon fontSize='large' onClick={() => alert("working 🚀")}/>)} */}
+                <Link to={'/app'} style={{ textDecoration: "none"}}>
+                    <Typography variant='h6' component='div' className='navDrawer__text navDrawer__app'>Home</Typography>
                 </Link>
-                <Link to={'/about'} style={{ textDecoration: "none"}}>
-                    <Typography variant='h6' component='div' className='nav__drawerText'>About Us</Typography>
+                <Link to={'/birthday'} style={{ textDecoration: "none"}}>
+                    <Typography variant='h6' component='div' className='navDrawer__text navDrawer__birthday'>Birthday</Typography>
                 </Link>
-                <Link to={'/blog'} style={{ textDecoration: "none"}}>
-                    <Typography variant='h6' component='div' className='nav__drawerText'>Blog</Typography>
+                <Link to={'#'} style={{ textDecoration: "none"}}>
+                    <Typography variant='h6' component='div' className='navDrawer__text navDrawer__profile'>Profile</Typography>
                 </Link>
-                <Link to={'/contact'} style={{ textDecoration: "none"}}>
-                    <Typography variant='h6' component='div' className='nav__drawerText'>Contact Us</Typography>
+
+                <hr />
+
+                <Link to={'#'} style={{ textDecoration: "none"}}>
+                    <Typography variant='h6' component='div' className='navDrawer__text navDrawer__logout'>Logout</Typography>
                 </Link>
             </Box>
         </Drawer>
-    </React.Fragment>
+    </div>
   )
 }
 
