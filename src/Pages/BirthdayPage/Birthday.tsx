@@ -115,7 +115,8 @@ const Birthday = () => {
      })
  }
 
- if(!user){
+ if(!user){ 
+  // user by default is false
   goBackToPreviousPage();
  }
 

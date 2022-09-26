@@ -96,6 +96,7 @@ const AppNav = ({ username='user', image=Avatar }) => {
               </Link>
             </li>
           ))}
+          <button>Logout</button>
         </ul>
       </div>
 
