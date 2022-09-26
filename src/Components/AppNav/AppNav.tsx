@@ -3,10 +3,13 @@ import './AppNav.scss'
 import Avatar from '../../assets/avatar.png';
 import { Link } from 'react-router-dom';
 import NavDrawer from '../NavDrawer/NavDrawer';
-import { registeruser } from '../../Features/user/userSlice';
+import { logout, registeruser } from '../../Features/user/userSlice';
 import { useDispatch } from 'react-redux'
 import { auth, db } from '../../Firebase/Firebase';
 import { doc, getDoc } from 'firebase/firestore';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { loggedOut } from '../../Features/userInfo/userinfoSlice';
+import { useNavigate } from 'react-router-dom';
 
 // type AppNavProp = {
 //   username: string | any;
@@ -41,6 +44,8 @@ const AppNav = ({ username='user', image=Avatar }) => {
 
   const dispatch = useDispatch()
 
+  const navigate = useNavigate();
+
    // USEEFEECT FOR PERSISTING USER AND USER DATA
  useEffect(() => {
   dispatch(registeruser());
@@ -73,6 +78,18 @@ const AppNav = ({ username='user', image=Avatar }) => {
   // assigning the returned value from the function to apiResponse.
   const apiResponse = fbUser?.userDataResult;
 
+  // HANDLING LOGOUT
+  const handleLogout = () => {
+    if (window.confirm("Are you sure you want to logout")){
+      auth.signOut().then(() => {
+        dispatch(logout());
+        dispatch(loggedOut)
+  
+        navigate('/')
+      })
+    };
+}
+
   return (
     <section id='appNav'>
       <img src={apiResponse?.img ? apiResponse?.img : image} alt="user" className='appNav__image'/>
@@ -96,11 +113,13 @@ const AppNav = ({ username='user', image=Avatar }) => {
               </Link>
             </li>
           ))}
-          <button>Logout</button>
+          {/* <button>Logout</button> */}
+          {/* <p className='navList__logout'>Logout</p> */}
+          <LogoutIcon className='navList__logout' onClick={handleLogout}/>
         </ul>
       </div>
 
-      <div className="appNav__drawer">
+    <div className="appNav__drawer">
         <NavDrawer />
       </div>
     </section>

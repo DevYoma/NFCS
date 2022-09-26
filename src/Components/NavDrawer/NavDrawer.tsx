@@ -37,7 +37,6 @@ const NavDrawer = () => {
         </IconButton>
         <Drawer anchor='right' open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} className="navDrawer__container">
             <Box p={2} width={'70vw'} textAlign='left' role='presentation' className='navDrawer'>
-                {/* {isDrawerOpen && (<CloseIcon fontSize='large' onClick={() => alert("working 🚀")}/>)} */}
                 <Link to={'/app'} style={{ textDecoration: "none"}}>
                     <Typography variant='h6' component='div' className='navDrawer__text navDrawer__app'>Home</Typography>
                 </Link>
@@ -50,16 +49,14 @@ const NavDrawer = () => {
 
                 <hr />
 
-                {/* <Link to={'#'} style={{ textDecoration: "none"}}> */}
-                    <Typography 
-                        variant='h6' 
-                        component='div' 
-                        className='navDrawer__text navDrawer__logout'
-                        onClick={handleLogout}
-                    >
-                        Logout
-                    </Typography>
-                {/* </Link> */}
+                <Typography 
+                    variant='h6' 
+                    component='div' 
+                    className='navDrawer__text navDrawer__logout'
+                    onClick={handleLogout}
+                >
+                    Logout
+                </Typography>
             </Box>
         </Drawer>
     </div>

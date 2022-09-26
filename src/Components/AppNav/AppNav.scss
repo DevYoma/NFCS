@@ -27,6 +27,7 @@
 
     .appNav__lists{
         margin-left: auto;
+        font-size: 1.1rem;
        ul{
         display: flex;
         list-style: none;
@@ -42,6 +43,11 @@
             color: red;
             margin-right: 10px;
             text-decoration: none;
+        }
+        
+        .navList__logout{
+            color: #F9065A;
+            cursor: pointer;
         }
        }
 

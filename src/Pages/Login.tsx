@@ -10,8 +10,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import TextField from '@mui/material/TextField';
 import Logo from '../assets/nfcsLogonew.svg'
+import { InputAdornment } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 const Login = () => {
+  const [showPassword, setShowPassword] = useState(false)
 
   // TOASTIFY ERROR MESSAGE
   function notify(message: string){
@@ -115,10 +118,24 @@ const Login = () => {
                   label='password'
                   variant="outlined" 
                   name="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   value={loginData.password}
                   required
                   onChange={handleOnChange}
+
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment 
+                        position="end" 
+                        onClick={() => setShowPassword(!showPassword)}
+                        style={{
+                            cursor: "pointer"
+                        }}
+                    >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </InputAdornment>
+                    ),
+                }}
                 />
             </div>
 
