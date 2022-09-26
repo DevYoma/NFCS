@@ -11,6 +11,8 @@ import SkeletonUserLoading from '../../Components/Skeletons/SkeletonUserLoading'
 import {LazyLoadImage}  from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import AppNav from '../../Components/AppNav/AppNav';
+import { InputAdornment, TextField } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
     
 type FbDataType = {
   id: string | number;
@@ -38,16 +40,6 @@ const Home = () => {
     const userInfo: any = useSelector((state: RootState) => state.userInfo.userInfo)
 
     // console.log(userInfo);
-
-    // logging out users
-    const handleLogout = () => {
-        auth.signOut().then(() => {
-          dispatch(logout());
-          dispatch(loggedOut)
-
-          navigate('/')
-        })
-    }
 
     // making page go to current page on reload
     const goBackToPreviousPage = () => {
@@ -126,18 +118,7 @@ const Home = () => {
         {user && (
           <>
             <AppNav />
-            <React.Fragment>
-              <button onClick={handleLogout}>Logout</button> <br />
-              <Link to='/birthday'>Birthday</Link>
-
-              {/* <p>Total Number of Registered users {data?.length}</p> */}
-
-              <p>{userInfo?.email ? userInfo.email : apiResponse?.email}</p>
-              <p>{userInfo?.name ? userInfo.name : apiResponse?.name}</p>
-              <p>{userInfo?.birthday ? userInfo.birthday : apiResponse?.birthday }</p>
-              <p>{userInfo?.team ? userInfo.team : apiResponse?.team}</p>
-              <p>{userInfo?.level ? userInfo.level : apiResponse?.level}</p>
-              
+            <div>
 
               <input 
                 className="home__input"
@@ -146,9 +127,8 @@ const Home = () => {
                 onChange={(e: any) => setSearchTitle(e.target.value)}
               />
 
-            
               {/* Data from FB */}
-              {data ? (
+              {data && (
                 <div className='home__lists'>
                 {data.filter((value: any) => {
                   if(searchTitle === ""){
@@ -177,10 +157,10 @@ const Home = () => {
                   </div>
                 ))}
                 </div>
-              ) : ([1,2,3,4,5].map((n) => <SkeletonUserLoading key={n}/>))}
+              ) }
+              {/* : ([1,2,3,4,5].map((n) => <SkeletonUserLoading key={n}/>))} */}
              
-             {/* ADD THE LOADING SKELETON ABOVE */}
-            </React.Fragment>
+            </div>
           
           </>
 
@@ -192,3 +172,14 @@ const Home = () => {
 }
 
 export default Home
+
+{/* <button onClick={handleLogout}>Logout</button> <br />
+              <Link to='/birthday'>Birthday</Link> */}
+
+              {/* <p>Total Number of Registered users {data?.length}</p> */}
+
+              {/* <p>{userInfo?.email ? userInfo.email : apiResponse?.email}</p>
+              <p>{userInfo?.name ? userInfo.name : apiResponse?.name}</p>
+              <p>{userInfo?.birthday ? userInfo.birthday : apiResponse?.birthday }</p>
+              <p>{userInfo?.team ? userInfo.team : apiResponse?.team}</p>
+              <p>{userInfo?.level ? userInfo.level : apiResponse?.level}</p> */}
