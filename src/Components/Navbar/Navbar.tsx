@@ -35,7 +35,7 @@ const Navbar = () => {
 
         <div className="navbar__links">
             {links.map(link => (
-                <div>
+                <div key={link.id}>
                     <Link 
                         style={{
                             fontFamily: 'Inter', 

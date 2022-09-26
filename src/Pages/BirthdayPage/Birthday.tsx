@@ -8,9 +8,11 @@ import BirthdayLogo from '../../assets/birthday.png'
 import { ordinal } from '../../utils/helper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import PuffLoader from "react-spinners/PuffLoader";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../Features/store';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Navigate } from 'react-router-dom'
+import BirthdayCard from '../../Components/BirthdayCard/BirthdayCard';
+import { registeruser } from '../../Features/user/userSlice';
 
 
 type FbDataType = {
@@ -60,8 +62,9 @@ const Birthday = () => {
 
   const user = useSelector((state: RootState) => state.user.user)
   console.log(user);
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
+    const dispatch = useDispatch();
     const today = new Date();
     
     // const stringifiedToday = today.getMonth();
@@ -69,7 +72,7 @@ const Birthday = () => {
 
     // USEEFFECT FOR GETTING ALL USER DATA FROM FB
     useEffect(() => {
-
+        dispatch(registeruser())
         const fetchData = async () => {
             let list: any = [];
             try{
@@ -109,16 +112,19 @@ const Birthday = () => {
         // borderColor: "red",
       };
 
+ 
       const goBackToPreviousPage = () => {
         window.addEventListener("load", e => {
-       navigate(-1);
+          if(user){
+            navigate(-1);
+          }
      })
  }
 
- if(!user){ 
-  // user by default is false
-  goBackToPreviousPage();
- }
+    //  if(user){
+    //   goBackToPreviousPage();
+    //  }
+    setTimeout(goBackToPreviousPage, 1000)
 
   return (
     <section id='birthdayPage'>
@@ -164,14 +170,13 @@ const Birthday = () => {
                         </p>
                       </div>
 
-                        {/* <p>{data.birthday}</p>
-                        <p>{data.team}</p> */}
                       <div className="birthdayCard__body">
                         <p className='birthdayCard__bodyName'>{data.name}</p>
                         <p className='birthdayCard__bodyDate'>{ordinal(Number(data.birthday.slice(8, 10)))} of {today.toLocaleString('default', {month: 'long'})}</p>
                         <KeyboardArrowDownIcon fontWeight="400" className='birthdayCard__bodyIcon'/>
                       </div>
                     </div>
+                    // <BirthdayCard data={data}/>
                 ))}
               </section>
             ) : (
@@ -179,15 +184,13 @@ const Birthday = () => {
               // )
               // <p>Loading...</p>
               <PuffLoader color="#0A55E4" loading={true} cssOverride={override} size={100} />
-            )
+              )
+
           }
 
-
           {/* {
-            filterByDate.length === 0 && <p>No Birthday today</p>
+            !user && goBackToPreviousPage()
           } */}
-
-
         </div>          
     </section>
   )

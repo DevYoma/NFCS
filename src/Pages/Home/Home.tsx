@@ -61,34 +61,32 @@ const Home = () => {
 
       dispatch(registeruser());
 
-        window.addEventListener("popstate", e => {
-          navigate(1);
-        })
+      window.addEventListener("popstate", e => {
+        navigate(1);
+      })
 
-   
-
-        const fetchData = async () => {
-            let list: any = [];
-            try{
-              const querySnapshot = await getDocs(collection(db, "users"));
-              querySnapshot.forEach((doc) => {
-                list.push({id: doc.id, ...doc.data()}) // spreading the data object in the list object.
-                // doc.data() is never undefined for query doc snapshots
-                // console.log(doc.id, " => ", doc.data());
-    
-                setData(list)
-                // console.log(list)
-              });
-            }catch(error) {
-              console.log(error);
-            }
+      const fetchData = async () => {
+          let list: any = [];
+          try{
+            const querySnapshot = await getDocs(collection(db, "users"));
+            querySnapshot.forEach((doc) => {
+              list.push({id: doc.id, ...doc.data()}) // spreading the data object in the list object.
+              // doc.data() is never undefined for query doc snapshots
+              // console.log(doc.id, " => ", doc.data());
+  
+              setData(list)
+              // console.log(list)
+            });
+          }catch(error) {
+            console.log(error);
           }
+        }
 
+        fetchData();
+  
+        return () => {
           fetchData();
-    
-          return () => {
-            fetchData();
-          }
+        }
     }, [dispatch, navigate]);
 
     // USEEFEECT FOR PERSISTING USER AND USER DATA
@@ -127,10 +125,7 @@ const Home = () => {
       <>
         {user && (
           <>
-            <AppNav 
-              // username={apiResponse?.name} 
-              // image={apiResponse?.img}
-            />
+            <AppNav />
             <React.Fragment>
               <button onClick={handleLogout}>Logout</button> <br />
               <Link to='/birthday'>Birthday</Link>
@@ -191,7 +186,6 @@ const Home = () => {
 
         )}
 
-        {/* {!user && <Navigate to={'/login'} />} */}
         {!user && goBackToPreviousPage() }
       </>
   )

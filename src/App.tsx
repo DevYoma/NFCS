@@ -1,7 +1,7 @@
 // import './firebase-messaging-sw'
 import React, { useEffect, lazy, Suspense } from 'react';
 import './App.css';
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import Birthday from './Pages/BirthdayPage/Birthday';
 import LandingPage from './Pages/LandingPage';
 import Register from './Pages/Register/Register';
