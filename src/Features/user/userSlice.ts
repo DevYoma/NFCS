@@ -3,7 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface UserState {
 //   value: number
-    user: boolean 
+    user: boolean
 }
 
 const initialState: UserState = {

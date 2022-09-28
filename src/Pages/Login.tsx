@@ -132,7 +132,7 @@ const Login = () => {
                             cursor: "pointer"
                         }}
                     >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                        {showPassword ? <Visibility /> : <VisibilityOff />}
                       </InputAdornment>
                     ),
                 }}

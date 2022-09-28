@@ -60,29 +60,17 @@ const Birthday = () => {
       },
   ]
 
-  const user = useSelector((state: RootState) => state.user.user)
+  const user: boolean = useSelector((state: RootState) => state.user.user)
   console.log(user);
 
-  const navigate = useNavigate();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const today = new Date();
-    
-    // const stringifiedToday = today.getMonth();
-    // console.log(stringifiedToday);
-
-    // USEEFFECT FOR USER BOOLEAN DATA
-    useEffect(() => {
-      if(user){
-        dispatch(registeruser())
-      }else{
-        dispatch(logout())
-        navigate('/')
-      }
-    }, [])
+  
 
     // USEEFFECT FOR GETTING ALL USER DATA FROM FB
     useEffect(() => {
-        // dispatch(registeruser())
+        dispatch(registeruser())
         const fetchData = async () => {
             let list: any = [];
             try{
@@ -105,7 +93,11 @@ const Birthday = () => {
           return () => {
             fetchData();
           }
-    }, []);
+    }, [dispatch]);
+
+    // useEffect(() => {
+    //   dispatch(registeruser())
+    // }, [dispatch])
 
     // BIRTHDAY FILTER LOGIC
     const filterByDate = data.filter(list => {
@@ -122,84 +114,87 @@ const Birthday = () => {
         // borderColor: "red",
       };
 
- 
-  //     const goBackToPreviousPage = () => {
-  //       window.addEventListener("load", e => {
-  //             if(user===false){
-  //               navigate('/');
-  //             }
-  //       })
-  //     }
-
-  //  goBackToPreviousPage();
+        // making page go to current page on reload
+          const goBackToPreviousPage = () => {
+            window.addEventListener("load", e => {
+          navigate(-1);
+        })
+}
 
   return (
-    <section id='birthdayPage'>
-        <AppNav />
-        <div className="birthdayPage__main">
+    <>
+      {/* {!user && <Navigate to={'/'}/>} */}
 
-          <h3 className='birthdayPage__teams'>Teams</h3>
-          
-            <select 
-              className='birthdayPage__select'
-              style={{
-                padding: "3px"
-              }}
-              value={selectedTeam}
-              required
-              onChange={(e: any) => setSelectedTeam(e.target.value)}
-              name="team"
-            >            
-            {teams.map(team => (
-                    <option key={team.value} value={team.value}>{team.label}</option>
-            ))}
-          </select>
+      {user && (
+        <>
+        <section id='birthdayPage'>
+          <AppNav />
+          <div className="birthdayPage__main">
 
-          {filterByDate.length === 0 ? <p className='birthdayPage__today'>We Don't have any Birthday Celebrants today</p> :<p className="birthdayPage__today">We have {filterByDate.length} Birthday Celebrants 🎂</p>}
+            <h3 className='birthdayPage__teams'>Teams</h3>
+            
+              <select 
+                className='birthdayPage__select'
+                style={{
+                  padding: "3px"
+                }}
+                value={selectedTeam}
+                required
+                onChange={(e: any) => setSelectedTeam(e.target.value)}
+                name="team"
+              >            
+              {teams.map(team => (
+                      <option key={team.value} value={team.value}>{team.label}</option>
+              ))}
+            </select>
 
-          {
-            data.length !== 0 ? (
-              <section className='birthdayCard__container'>
-                { filterByDate.filter((value: any) => {
-                  if(selectedTeam === ""){
-                    return value
-                  }else if(value?.team === selectedTeam){
-                    console.log(value);
-                    return value;
-                  }
-                }).map((data: any) => (
-                    <div className="birthdayCard" key={data.id}>
-                      <div className="birthdayCard__header">
-                        <img src={data.img} alt="userImg" className='birthdaycard__userImage' />
-                        <p className='birthday__paragraph'>
-                          Happy Birthday  
-                          <img src={BirthdayLogo} alt="birthdayIcon" className='birthday__icon' /> 
-                        </p>
+            {filterByDate.length === 0 ? <p className='birthdayPage__today'>We Don't have any Birthday Celebrants today</p> :<p className="birthdayPage__today">We have {filterByDate.length} Birthday Celebrants 🎂</p>}
+
+            {
+              data.length !== 0 ? (
+                <section className='birthdayCard__container'>
+                  { filterByDate.filter((value: any) => {
+                    if(selectedTeam === ""){
+                      return value
+                    }else if(value?.team === selectedTeam){
+                      console.log(value);
+                      return value;
+                    }
+                  }).map((data: any) => (
+                      <div className="birthdayCard" key={data.id}>
+                        <div className="birthdayCard__header">
+                          <img src={data.img} alt="userImg" className='birthdaycard__userImage' />
+                          <p className='birthday__paragraph'>
+                            Happy Birthday  
+                            <img src={BirthdayLogo} alt="birthdayIcon" className='birthday__icon' /> 
+                          </p>
+                        </div>
+
+                        <div className="birthdayCard__body">
+                          <p className='birthdayCard__bodyName'>{data.name}</p>
+                          <p className='birthdayCard__bodyDate'>{ordinal(Number(data.birthday.slice(8, 10)))} of {today.toLocaleString('default', {month: 'long'})}</p>
+                          <KeyboardArrowDownIcon fontWeight="400" className='birthdayCard__bodyIcon'/>
+                        </div>
                       </div>
+                      // <BirthdayCard data={data}/>
+                  ))}
+                </section>
+              ) : (
+                // [1,2].map((n) => <SkeletonElement key={n} type='card' />
+                // )
+                // <p>Loading...</p>
+                <PuffLoader color="#0A55E4" loading={true} cssOverride={override} size={100} />
+                )
 
-                      <div className="birthdayCard__body">
-                        <p className='birthdayCard__bodyName'>{data.name}</p>
-                        <p className='birthdayCard__bodyDate'>{ordinal(Number(data.birthday.slice(8, 10)))} of {today.toLocaleString('default', {month: 'long'})}</p>
-                        <KeyboardArrowDownIcon fontWeight="400" className='birthdayCard__bodyIcon'/>
-                      </div>
-                    </div>
-                    // <BirthdayCard data={data}/>
-                ))}
-              </section>
-            ) : (
-              // [1,2].map((n) => <SkeletonElement key={n} type='card' />
-              // )
-              // <p>Loading...</p>
-              <PuffLoader color="#0A55E4" loading={true} cssOverride={override} size={100} />
-              )
+            }
+          </div>          
+        </section>
+        </>
+      )}
 
-          }
+      {!user && goBackToPreviousPage()}
 
-          {/* {
-            !user && goBackToPreviousPage()
-          } */}
-        </div>          
-    </section>
+     </>
   )
 }
 

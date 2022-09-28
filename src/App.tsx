@@ -20,13 +20,13 @@ function App() {
   const user = useSelector((state: RootState) => state.user.user)
   const dispatch = useDispatch()
 
-  // console.log(user)
+  console.log(user)
 
-  useEffect(() => {
-    if(user){
-      dispatch(registeruser());
-    }
-  }, [])
+  // useEffect(() => {
+  //   if(user){
+  //     dispatch(registeruser());
+  //   }
+  // }, [])
 
   return (
     <div className="App">

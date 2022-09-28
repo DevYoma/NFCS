@@ -51,7 +51,7 @@ const Home = () => {
     // USEEFFECT TO FETCH DATA COLLECTION FROM FIRESTORE.
     useEffect(() => {
 
-      dispatch(registeruser());
+      // dispatch(registeruser());
 
       window.addEventListener("popstate", e => {
         navigate(1);
@@ -172,14 +172,3 @@ const Home = () => {
 }
 
 export default Home
-
-{/* <button onClick={handleLogout}>Logout</button> <br />
-              <Link to='/birthday'>Birthday</Link> */}
-
-              {/* <p>Total Number of Registered users {data?.length}</p> */}
-
-              {/* <p>{userInfo?.email ? userInfo.email : apiResponse?.email}</p>
-              <p>{userInfo?.name ? userInfo.name : apiResponse?.name}</p>
-              <p>{userInfo?.birthday ? userInfo.birthday : apiResponse?.birthday }</p>
-              <p>{userInfo?.team ? userInfo.team : apiResponse?.team}</p>
-              <p>{userInfo?.level ? userInfo.level : apiResponse?.level}</p> */}
