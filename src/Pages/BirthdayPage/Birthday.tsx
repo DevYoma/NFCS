@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../Features/store';
 import { useNavigate, Navigate } from 'react-router-dom'
 import BirthdayCard from '../../Components/BirthdayCard/BirthdayCard';
-import { registeruser } from '../../Features/user/userSlice';
+import { registeruser, logout } from '../../Features/user/userSlice';
 
 
 type FbDataType = {
@@ -70,9 +70,19 @@ const Birthday = () => {
     // const stringifiedToday = today.getMonth();
     // console.log(stringifiedToday);
 
+    // USEEFFECT FOR USER BOOLEAN DATA
+    useEffect(() => {
+      if(user){
+        dispatch(registeruser())
+      }else{
+        dispatch(logout())
+        navigate('/')
+      }
+    }, [])
+
     // USEEFFECT FOR GETTING ALL USER DATA FROM FB
     useEffect(() => {
-        dispatch(registeruser())
+        // dispatch(registeruser())
         const fetchData = async () => {
             let list: any = [];
             try{
@@ -113,18 +123,15 @@ const Birthday = () => {
       };
 
  
-      const goBackToPreviousPage = () => {
-        window.addEventListener("load", e => {
-          if(user){
-            navigate(-1);
-          }
-     })
- }
+  //     const goBackToPreviousPage = () => {
+  //       window.addEventListener("load", e => {
+  //             if(user===false){
+  //               navigate('/');
+  //             }
+  //       })
+  //     }
 
-    //  if(user){
-    //   goBackToPreviousPage();
-    //  }
-    setTimeout(goBackToPreviousPage, 1000)
+  //  goBackToPreviousPage();
 
   return (
     <section id='birthdayPage'>
