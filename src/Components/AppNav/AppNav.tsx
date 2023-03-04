@@ -31,7 +31,7 @@ const AppNav = ({ username='user', image=Avatar }) => {
     },
     {
       id: 3, 
-      linkRoute: '#',
+      linkRoute: '/profile',
       text: "Profile"
     },
     // {

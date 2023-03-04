@@ -104,6 +104,14 @@ const Birthday = () => {
         return  parseInt((list.birthday.split("-")[2])) === parseInt(today.getDate().toString()) && parseInt(list.birthday.split("-")[1]) - 1 === today.getMonth()
     })
 
+    // BIRTHDAY FILTER LOGIC FOR NEXT DAY
+    const upComingBirthday = data.filter(list => {
+      return parseInt((list.birthday.split("-")[2])) === parseInt((today.getDate() + 1).toString()) && parseInt(list.birthday.split("-")[1]) - 1 === today.getMonth()
+    })
+
+    console.log(upComingBirthday);
+    console.log(today.getDate() -1);
+
     // BIRTHDAY FOR THE DAY
     // console.log(filterByDate);
 
@@ -150,6 +158,8 @@ const Birthday = () => {
 
             {filterByDate.length === 0 ? <p className='birthdayPage__today'>We Don't have any Birthday Celebrants today</p> :<p className="birthdayPage__today">We have {filterByDate.length} Birthday Celebrants 🎂</p>}
 
+
+            {/* FILTERED BIRTHDAY CELEBRANTS */}
             {
               data.length !== 0 ? (
                 <section className='birthdayCard__container'>
@@ -187,6 +197,17 @@ const Birthday = () => {
                 )
 
             }
+          </div>
+
+          <div className="tomorrowBirthday">
+            <h2>Tomorrow's Birthdays</h2>
+            {upComingBirthday.map((upComing: any) => {
+              return( 
+                <div>
+                  {upComing.name}
+                </div>
+              )
+            })}
           </div>          
         </section>
         </>

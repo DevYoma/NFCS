@@ -43,7 +43,7 @@ const NavDrawer = () => {
                 <Link to={'/birthday'} style={{ textDecoration: "none"}}>
                     <Typography variant='h6' component='div' className='navDrawer__text navDrawer__birthday'>Birthdays</Typography>
                 </Link>
-                <Link to={'#'} style={{ textDecoration: "none"}}>
+                <Link to={'/profile'} style={{ textDecoration: "none"}}>
                     <Typography variant='h6' component='div' className='navDrawer__text navDrawer__profile'>Profile</Typography>
                 </Link>
 

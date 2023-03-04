@@ -13,6 +13,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { registeruser, logout } from './Features/user/userSlice'
 import { RootState } from './Features/store';
 import Test from './Components/Test';
+import Profile from './Pages/Profile/Profile';
+
+// "node-sass": "^7.0.1",
 
 
 function App() {
@@ -39,12 +42,14 @@ function App() {
         <Route path='/register' element={ <Register />} />
 
         <Route path='/login' element={ <Login />} />
+        
+        <Route path='/profile' element={ <Profile />} />
 
         {/* <Route path='/teampass' element={<TeamPass />} /> */}
         <Route path="/test" element={<Test />}/>
 
         {/* <Route path='/home' element={<RequireAuth><Home /></RequireAuth> } /> */}
-        <Route path='/app' element={<React.Suspense><Home /></React.Suspense> } />
+        <Route path='/app' element={<Home /> } />
 
         <Route path="*" element={(<h1>404 page</h1>)}/>
       </Routes>
