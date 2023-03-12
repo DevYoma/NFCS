@@ -14,7 +14,7 @@ const Testimonials = () => {
               <img src={Testimonial1} alt="dey play 😆" />
               <div className="testimonial__details">
                 <p>Lisa</p>
-                <small>@lisa_wade</small>
+                <small>@lisa_wades</small>
               </div>
             </div>
           </div>
