@@ -1,14 +1,30 @@
-.App{
-}
-
-.container{
-  width: 95%;
-  max-width: 1600px;
-  margin-inline: auto;
-}
-
-.App{
+*{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
+
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6{
+  padding: 0;
+  margin: 0;
+}
+
+.container{
+  /* width: 95%; */
+  max-width: 1800px;
+  /* margin-inline: auto; */
+  /* border: 2px solid red; */
+}
+
+:root{
+  /* COLORS */
+  --app-primary-color: #4318FF;
+
+  /* BACKGROUNDS */
+}
+

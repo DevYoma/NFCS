@@ -1,17 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
 #logo{
-    // border: 1px solid red;
+    // border: 1px solid green;
+    font-family: 'Poppins', sans-serif;
     display: flex;
 
     .logo__firstImg{
         // border: 3px solid green;
+        object-fit: contain;
         margin-right: 12px;
     }
 
-    div > span > p{
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 12px;
-        line-height: 15px;
+    div {
+
+        h2{
+            color: var(--app-primary-color);
+            font-size: 26px;
+        }
+
+        p{
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 15px;
+            color: var(--app-primary-color)
+        }
     }
 }

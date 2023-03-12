@@ -1,56 +1,55 @@
 import React, {  useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import Logo from '../../Atoms/Logo/Logo'
 import { useNavigate } from 'react-router-dom';
 import './Navbar.scss';
+import LPNavDrawer from '../LPNavDrawer/LPNavDrawer';
 
 const Navbar = () => {
     const [links] = useState([
         {
             id: 1,
             text: 'Home', 
+            route: '/', 
         }, 
         {
             id: 2, 
-            text: 'About',
+            text: 'How it works',
+            route: "/how-it-works",
         }, 
         {
             id: 3, 
-            text: 'Team', 
+            text: 'Events', 
+            route: "/events",
         },
-        {
-            id: 4, 
-            text: 'Gallery',
-        },
-        {
-            id: 5, 
-            isButton: true
-        }
     ])
 
     const navigate = useNavigate();
+
   return (
-    <nav id="navbar" className='container'>
+    <nav id="navbar">
         <Logo />
 
         <div className="navbar__links">
             {links.map(link => (
-                <div key={link.id}>
-                    <Link 
-                        style={{
-                            fontFamily: 'Inter', 
-                            fontWeight: "300", 
-                            fontSize: "18px", 
-                            lineHeight: "29px",
-                            textDecoration: "none"
-                        }}
-                        to={link.text === 'Home' ? `/` :`/${link.text}`}
+                <div key={link.id} className="navbar__link"> 
+                    <NavLink 
+                        to={link.route}
                     >
                         {link.text}
-                    </Link>
-                    {link.isButton && <button className="navbar__loginBtn" onClick={() => navigate('/login')}>Login</button>}
+                    </NavLink>
                 </div>
             ))}
+            <button
+                onClick={() => navigate('/login')} 
+                className="navbar__loginBtn"
+            >
+                Login
+            </button>
+        </div>
+
+        <div className="navbar__mobileLinks">
+            <LPNavDrawer />
         </div>
     </nav>
   )

@@ -1,5 +1,9 @@
 #landingPage{
     min-height: 100vh;
     background: white;
+    max-width: 2000px;
+    margin-inline: auto;
+    // margin: 0 auto;
     // border: 3px solid red;   
+    overflow-x: hidden;
 }
