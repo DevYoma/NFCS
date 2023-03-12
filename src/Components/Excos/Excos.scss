@@ -1,0 +1,37 @@
+.excos{
+    // border: 1px solid red;
+    padding: 0 115px;
+
+    .excos__header{
+        margin-top: 60px;
+    }
+
+    .excos__container{
+        display: flex;
+        gap: 40px;
+        overflow-x: scroll;
+        border: 1px solid rgba(0,0,0, 0.1);
+        margin: 41px 0px 31px;
+
+        &::-webkit-scrollbar {
+            display: none;
+          }
+
+        .exco{
+            img{
+                border: 1px solid lightgray;
+                border-radius: 24px;
+            }
+        }
+    }
+
+    .arrowRight{
+        // border: 1px solid red;
+        display: flex;
+        margin-left: auto;
+        width: fit-content;
+        background-color: var(--app-primary-color);
+        border-radius: 99px;
+        margin-bottom: 33px;
+    }
+}

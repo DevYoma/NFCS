@@ -1,0 +1,66 @@
+.LPAddress{
+    // min-height: 100vh;
+    background:#F8F5FF;
+    display: flex;
+    padding-left: 115px;
+    padding-right: 115px;
+    padding-top: 136px;
+    padding-bottom: 55px;
+
+    .LPAddress__left{
+        flex: 0.6;
+        // border: 1px solid red;
+
+        .LPAddress__leftHeader{
+            font-family: serif;
+            font-weight: 700;
+            font-size: 48px;
+            line-height: 54px;
+            letter-spacing: 0.008em;
+            color: #111111;
+            margin-bottom: 24px; // added more
+        }
+
+        .LPAddress__leftBody{
+            width: 65%;
+            font-family: sans-serif;
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 140%;
+            letter-spacing: 0.02em;
+            color: #111111;
+        }
+    }
+
+    .LPAddress__right{
+        // border: 2px solid red;
+        flex: 0.4;
+        padding-top: 48px;
+    }
+
+    .LPAddress__rightDetails{
+        background: var(--app-primary-color);
+        border-radius: 8px;
+        margin-top: 60px;
+        padding: 20px 50px;
+        width: 70%;
+        margin-inline: auto;
+        color: #FFFFFF;
+        text-align: center;
+        font-family: sans-serif;
+        letter-spacing: 0.008em;
+
+        & > .nfcsRole{
+            // font-family: 'Circular Std';
+            font-weight: 450;
+            font-size: 24px;
+            line-height: 30px;
+        }
+
+        & > .nfcsRole__name{
+            font-weight: 500;
+            font-size: 32px;
+            line-height: 40px;
+        }
+    }
+}

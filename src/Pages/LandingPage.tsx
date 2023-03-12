@@ -5,9 +5,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import {  logout } from '../Features/user/userSlice'
 import { RootState } from '../Features/store';
 import Navbar from '../Components/Navbar/Navbar';
-import NavHero from '../Components/NavHero/NavHero';
-import BirthdayCelebrants from '../Components/BirthdayCelebrants/BirthdayCelebrants';
-import Footer from '../Components/Footer/Footer';
+import LPHero from '../Components/LPHero/LPHero';
+import LPAddress from '../Components/LPAddress/LPAddress';
+import TeamLeaders from '../Components/TeamLeaders/TeamLeaders';
+import Excos from '../Components/Excos/Excos';
+import ScoreBoard from '../Components/ScoreBoard/ScoreBoard';
+import Testimonial from '../Components/Testimonials/Testimonials';
 
 const LandingPage = () => {
     const navigate = useNavigate();
@@ -25,14 +28,22 @@ const LandingPage = () => {
     }
 
   return (
-    <section id='landingPage'>
-        <Navbar />
-        <NavHero />
-        <BirthdayCelebrants header='Birthday Celebrants 🎂'/>
-        <BirthdayCelebrants header='Past Birthday Celebrants 🎂'/>
-        {/* team leaders talk component */}
-        <Footer />
-    </section>
+    // think of adding a container element here
+    // think of controlling the padding from here 💁‍♂️
+
+    // Header => Serif
+    // body => san serif
+    <React.Fragment>
+      <Navbar />
+      <section id='landingPage'>
+          <LPHero />
+          <LPAddress />
+          <TeamLeaders />
+          <Excos />
+          <ScoreBoard />
+          <Testimonial />
+      </section>
+    </React.Fragment>
   )
 }
 

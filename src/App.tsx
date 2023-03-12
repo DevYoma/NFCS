@@ -5,7 +5,6 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import Birthday from './Pages/BirthdayPage/Birthday';
 import LandingPage from './Pages/LandingPage';
 import Register from './Pages/Register/Register';
-import TeamPass from './Pages/TeamPass/TeamPass';
 import Home from './Pages/Home/Home';
 import RequireAuth from './Components/RequireAuth';
 import Login from './Pages/Login';
@@ -14,9 +13,7 @@ import { registeruser, logout } from './Features/user/userSlice'
 import { RootState } from './Features/store';
 import Test from './Components/Test';
 import Profile from './Pages/Profile/Profile';
-
-// "node-sass": "^7.0.1",
-
+import How from './Pages/How/How';
 
 function App() {
   
@@ -32,11 +29,13 @@ function App() {
   // }, [])
 
   return (
-    <div className="App">
+    <div className="app">
       <Routes>
+        {/* LANDING PAGES */}
         <Route path='/' element={<LandingPage />} />
-        
-        {/* testing birthday form */}
+        <Route path='/how-it-works' element={<How />} />
+
+            {/* MAIN APP */}
         <Route path="/birthday" element={<Birthday />} />
 
         <Route path='/register' element={ <Register />} />
@@ -45,17 +44,10 @@ function App() {
         
         <Route path='/profile' element={ <Profile />} />
 
-        {/* <Route path='/teampass' element={<TeamPass />} /> */}
-        <Route path="/test" element={<Test />}/>
-
-        {/* <Route path='/home' element={<RequireAuth><Home /></RequireAuth> } /> */}
         <Route path='/app' element={<Home /> } />
 
         <Route path="*" element={(<h1>404 page</h1>)}/>
       </Routes>
-
-     
-
     </div>
   );
 }

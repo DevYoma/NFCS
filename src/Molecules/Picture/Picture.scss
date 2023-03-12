@@ -1,0 +1,51 @@
+.MPicture{
+    // border: 1px solid black;
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    &__main{
+        // border: 1px solid red;
+        // for landscape, which orientation is important to you
+        width: 400px !important;
+        height: 486px !important;
+        z-index: 1;
+        object-fit: cover;
+    }
+
+    .MPicture__dots1{
+        position: absolute;
+        top: -50px;
+        left: 60px;
+        width: 265px !important;
+        height: 127px;
+        // border: 1px solid red;
+    }
+
+    .MPicture__dots2{
+        position: absolute;
+        right: 45px;
+        bottom: -30px;
+        width: 265px !important;
+        height: 127px;
+    }
+
+    // ADDRESS DOTS
+    .MPicture__addressDots1{
+        // border: 1px solid red;
+        position: absolute;
+        top: -25px;
+        left: 65px;
+    }
+
+    .MPicture__addressDots2{
+        position: absolute;
+        // border: 2px solid green;
+        bottom: -30px;
+        right: 65px;
+    }
+
+    .MPicture__marginBottom{
+        margin-bottom: 20px;
+    }
+}

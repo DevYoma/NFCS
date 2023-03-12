@@ -227,7 +227,7 @@ const Register = () => {
           
     
             // ADDING REGISTERED USER TO COLLECTION
-            await setDoc(doc(db, "users", registerUserFB.user.uid ), { // cities => collection. // LA => Document Id
+            await setDoc(doc(db, "users", registerUserFB.user.uid ), { // cities => collection. // LA => Document Id    
                 ...formData,
                 timeStamp: serverTimestamp()
             });
