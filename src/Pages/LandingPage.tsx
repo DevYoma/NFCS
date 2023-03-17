@@ -11,6 +11,7 @@ import TeamLeaders from '../Components/TeamLeaders/TeamLeaders';
 import Excos from '../Components/Excos/Excos';
 import ScoreBoard from '../Components/ScoreBoard/ScoreBoard';
 import Testimonial from '../Components/Testimonials/Testimonials';
+import Footer from '../Components/Footer/Footer';
 
 const LandingPage = () => {
     const navigate = useNavigate();
@@ -42,6 +43,7 @@ const LandingPage = () => {
           <Excos />
           <ScoreBoard />
           <Testimonial />
+          <Footer />
       </section>
     </React.Fragment>
   )

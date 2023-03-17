@@ -1,20 +1,84 @@
 #footer{
-    // margin-top: 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    // border: 1px solid red;
-    margin-inline: auto;
-    padding:  22.5px 30px;
-    width: 100%;
+    // min-height: 100vh;
+    font-family: sans-serif;
+    background-color: #1E1E1E;
+    color: white;
+    display: grid; 
+    // grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1.5fr 1fr 1fr;
+    padding: 229px 180px 166px;
 
-    .footer__icons > *{
-        margin-right: 24px;
+    & > div:first-child{
+        // border: 1px solid red;
+    }
+
+    & > div:nth-child(2){
+        // border: 1px solid blue;
+    }
+
+    & > div:nth-child(3){
+        padding-top: 5px;
+        border: 1px solid orange;
+    }
+
+    .footer__section1{
+        &Body{
+            margin: 22px 0px 41px;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 20px;
+            letter-spacing: 0.008em;
+        }
+
+        &CopyRight{
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 24px;
+            letter-spacing: 0.008em;
+        }
     }
 
     .footer__links{
         display: flex;
-        flex: 0.4;
-        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+
+        .footer__linksHeader{
+            margin-left: -20px;
+            // border: 1px solid red;
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 35.82px;
+            margin-bottom: 5px;
+        }
+
+        ul{
+            li{
+                // list-style: none;
+
+                &:not(:last-child){
+                    margin-bottom: 1rem;
+                }
+            }
+        }
+    }
+
+    .footer__connect{
+
+        & > *{
+            display: flex;
+            align-items: center;
+        }
+
+        &Header{
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 24px;
+        }
+
+        & > *:not(:last-child){
+            // border: 1px solid red;
+            margin-bottom: 20px;
+        }
     }
 }
