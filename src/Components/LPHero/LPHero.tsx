@@ -2,10 +2,8 @@ import React from 'react'
 import './LPHero.scss';
 import MakeShiftLogo from '../../assets/makeShiftLogo.png';
 import { useNavigate } from 'react-router-dom';
-import Picture from '../../Molecules/Picture/Picture';
-import LandscapePic from '../../assets/landscapeHero.png';
-import HeroNewImg from '../../assets/HeroImgNew.png';
-import Dots from '../../assets/dots.png';
+import NewImg from '../../assets/HeroNew.png';
+import NewImg1 from '../../assets/HeroNew1.png';
 
 const LPHero = () => {
     const navigate = useNavigate();
@@ -25,19 +23,27 @@ const LPHero = () => {
         </div>
 
         <div className="LPHero__right">
-            <Picture 
-                dotOne={true}
-                dotTwo={true}
-                addressDotOne={false}
-                addressDotTwo={false}
-                // main={HeroNewImg}
-                main={LandscapePic}
-                picture1={Dots}
-                picture2={Dots}
-            />
+           <div>
+            <img src={NewImg} alt="Picture" />
+           </div>
+           <div>
+            <img src={NewImg1} alt="picture" />
+           </div>
         </div>
     </div>
   )
 }
 
 export default LPHero
+
+
+ {/* <Picture 
+    dotOne={true}
+    dotTwo={true}
+    addressDotOne={false}
+    addressDotTwo={false}
+    // main={HeroNewImg}
+    main={LandscapePic}
+    picture1={Dots}
+    picture2={Dots}
+/> */}

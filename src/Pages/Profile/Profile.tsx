@@ -106,7 +106,7 @@ const Profile = () => {
 
         <button onClick={handleNameUpdate}>Update Name</button> <br />
 
-        <button onClick={() => handleDelete(userId)}>Delete Account</button>
+        {/* <button onClick={() => handleDelete(userId)}>Delete Account</button> */}
       </div>
     </div>
   )

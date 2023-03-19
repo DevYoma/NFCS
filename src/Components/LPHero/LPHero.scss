@@ -57,13 +57,22 @@
 
     .LPHero__right{
         flex: 0.4;
+        border: 2px solid green;
+        display: flex;
+
+        & > div:first-child{
+            background: red;
+            width: 377px;
+            background: #F4F4F4;
+            border-radius: 8px;
+        }
     }
 
     .LPHero__right{
         // border: 2px solid black;
-        img{
-            width: 100%;
-            height: auto;
-        }
+        // img{
+        //     width: 100%;
+        //     height: auto;
+        // }
     }
 }

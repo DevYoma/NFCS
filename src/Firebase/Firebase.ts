@@ -1,6 +1,5 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore"
 import { getStorage } from "firebase/storage"
@@ -8,7 +7,6 @@ import { getMessaging, getToken } from "firebase/messaging";
 
 const firebaseConfig = {
   apiKey: `${process.env.REACT_APP_APIKEY}`,
-  // apiKey: `${process.env.REACT_APP_API_KEY}`,
   authDomain: `${process.env.REACT_APP_AUTHDOMAIN}`,
   projectId: `${process.env.REACT_APP_PROJECTID}`,
   storageBucket: `${process.env.REACT_APP_STORAGEBUCKET}`,

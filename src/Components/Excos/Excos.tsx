@@ -71,7 +71,7 @@ const Excos = () => {
 
             <div className="excos__container">
                 {nfcsExcos.map((nfcsExco: any) => (
-                    <div className="exco">
+                    <div className="exco" key={nfcsExco.id}>
                         <img src={nfcsExco.picture} alt={nfcsExco.name} />
                         <h3>{nfcsExco.name}</h3>
                         <p>{nfcsExco.role}</p>
