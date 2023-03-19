@@ -31,8 +31,7 @@ const BoardCount = ({ width, backgroundColor, name, percent, border, opacity }: 
                 }}
             >
                 <div>
-                    <p>350 Registered {name} Members</p>
-
+                    {/* <p>350 Registered {name} Members</p> */}
                 </div>
             </div>
         </div>
