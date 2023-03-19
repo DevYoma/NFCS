@@ -44,26 +44,43 @@ export const nfcsExcos = [
         name: "Adekoya Toluwani", 
         picture: Exco2,
         role: 'Exco '
+    },
+    {
+        id: 7, 
+        name: "Adekoya Toluwani", 
+        picture: Exco4,
+        role: 'Exco '
+    },
+    {
+        id: 8, 
+        name: "Adekoya Toluwani", 
+        picture: Exco1,
+        role: 'Exco '
     }
 ]
 
 const Excos = () => {
+
+    const handlePadding = () => {
+
+    }
+    
   return (
     <div className="excos">
         <h2 className="excos__header">NFCS EXCOS</h2>
 
-        <div className="excos__container">
-            {nfcsExcos.map((nfcsExco: any) => (
-                <div className="exco">
-                    <img src={nfcsExco.picture} alt={nfcsExco.name} />
-                    <h3>{nfcsExco.name}</h3>
-                    <p>{nfcsExco.role}</p>
-                </div>
-            ))}
-        </div>
+            <div className="excos__container">
+                {nfcsExcos.map((nfcsExco: any) => (
+                    <div className="exco">
+                        <img src={nfcsExco.picture} alt={nfcsExco.name} />
+                        <h3>{nfcsExco.name}</h3>
+                        <p>{nfcsExco.role}</p>
+                    </div>
+                ))}
+            </div>
 
         <div className="arrowRight">
-            <IconButton onClick={() => alert("Working 🚀")}>
+            <IconButton onClick={handlePadding}>
                 <ArrowForwardIcon sx={{
                     color: "white"
                 }}/>

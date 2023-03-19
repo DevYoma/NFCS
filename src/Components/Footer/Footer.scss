@@ -4,9 +4,17 @@
     background-color: #1E1E1E;
     color: white;
     display: grid; 
-    // grid-template-columns: repeat(3, 1fr);
     grid-template-columns: 1.5fr 1fr 1fr;
     padding: 229px 180px 166px;
+
+    @media screen and (max-width: 1000px) {
+        padding: 4rem 5%;
+        grid-template-columns: 1fr;
+    
+        & > *:not(:last-child){
+            margin-bottom: 2rem;
+        }
+    }
 
     & > div:first-child{
         // border: 1px solid red;
@@ -18,10 +26,30 @@
 
     & > div:nth-child(3){
         padding-top: 5px;
-        border: 1px solid orange;
+        // border: 1px solid orange;
     }
 
     .footer__section1{
+        // border: 1px solid red;
+
+       @media screen and (max-width: 1000px) {
+            & > *:not(div){
+                // border: 1px solid orange;
+                text-align: center;
+            }
+       }
+
+        &Header{
+            // border: 1px solid red;
+            // display: flex;
+            // justify-content: center;
+
+            @media screen and (max-width: 1000px) {
+                display: flex;
+                justify-content: center;
+            }
+        }
+
         &Body{
             margin: 22px 0px 41px;
             font-weight: 500;
@@ -36,9 +64,13 @@
             line-height: 24px;
             letter-spacing: 0.008em;
         }
+
+        
+
     }
 
     .footer__links{
+        // border: 1px solid green;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -64,10 +96,24 @@
     }
 
     .footer__connect{
+        // border: 1px solid yellow;
+        text-align: left;
 
-        & > *{
-            display: flex;
-            align-items: center;
+        @media screen and (max-width: 1000px) {
+            text-align: center;
+
+            & > div{
+                text-align: center;
+                // margin-inline: auto;
+                display: flex;
+                justify-content: center;
+            }
+            // margin-inline: auto;
+        }
+        
+        & > *:not(:last-child){
+            // border: 1px solid red;
+            margin-bottom: 20px;
         }
 
         &Header{
@@ -76,9 +122,21 @@
             line-height: 24px;
         }
 
-        & > *:not(:last-child){
-            // border: 1px solid red;
-            margin-bottom: 20px;
+        &Links{
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
+
+        &WhatsApp,
+        &Email{
+            display: flex;
+            align-items: center;
+
+            span{
+                margin-left: 15px;
+            }
+        }
+
     }
 }

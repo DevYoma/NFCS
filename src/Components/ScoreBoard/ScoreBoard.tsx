@@ -17,22 +17,38 @@ const ScoreBoard = () => {
             <div className="scoreBoard__count">
 
                 <BoardCount 
-                    name='Team Jericho'
+                    name='Jericho'
+                    backgroundColor='#4318FFB2'
+                    border='1px solid black'
+                    percent={90}
+                    opacity={70}
+                />
+                <BoardCount 
+                name='Galilee'
+                backgroundColor='#4318FFB2'
+                border='1px solid black'
+                percent={80}
+                opacity={70}
+                />
+
+                <BoardCount 
+                    name='Jordan'
+                    backgroundColor='#4318FFB2'
+                    border='1px solid black'
+                    percent={70}
+                    opacity={70}
+                />
+
+                <BoardCount 
+                    name='Nile'
                     backgroundColor='#4318FFB2'
                     border='1px solid black'
                     percent={60}
                     opacity={70}
                 />
-                <BoardCount 
-                name='Team Jericho'
-                backgroundColor='#4318FFB2'
-                border='1px solid black'
-                percent={40}
-                opacity={70}
-                />
 
                 <BoardCount 
-                    name='Team Jericho'
+                    name='Bethany'
                     backgroundColor='#4318FFB2'
                     border='1px solid black'
                     percent={50}
@@ -40,26 +56,10 @@ const ScoreBoard = () => {
                 />
 
                 <BoardCount 
-                    name='Team Jericho'
-                    backgroundColor='#4318FFB2'
-                    border='1px solid black'
-                    percent={65}
-                    opacity={70}
-                />
-
-                <BoardCount 
-                    name='Team Jericho'
+                    name='Carpanaum'
                     backgroundColor='#4318FFB2'
                     border='1px solid black'
                     percent={40}
-                    opacity={70}
-                />
-
-                <BoardCount 
-                    name='Team Jericho'
-                    backgroundColor='#4318FFB2'
-                    border='1px solid black'
-                    percent={80}
                     opacity={70}
                 />
             </div>

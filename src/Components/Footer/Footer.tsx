@@ -46,12 +46,12 @@ const Footer = () => {
             <YouTubeIcon />
           </div>
 
-          <div className="footer__whatsApp">
+          <div className="footer__connectWhatsApp">
             <WhatsApp />
             <span>+234 888-3334-509</span>
           </div>
 
-          <div className="footer__email">
+          <div className="footer__connectEmail">
             <Email /> 
             <span>infonfcs@gmail.com</span>
           </div>

@@ -5,6 +5,10 @@
     background: #F8F5FF;
     // border: 1px solid red;
 
+    @media screen and (max-width: 1000px) {
+        padding: 4rem 5%;
+    }
+
     &__header{
         font-family: serif;
         font-weight: 700;
@@ -13,13 +17,22 @@
         letter-spacing: 0.008em;
         color: var(--app-primary-color);
         margin-bottom: 73px;
+
+        @media screen and (max-width: 500px) {
+            font-size: 40px;
+            margin-bottom: 50px;
+        }
+
     }
 
+
     &__container{
-        // border: 1px solid red;
+        // border: 4px solid red;
         display: flex;
+        justify-content: space-between;
         gap: 40px;
         flex-wrap: wrap;
+        // gap: 40px;
 
         .testimonial{
             padding-top: 22px;
@@ -28,8 +41,13 @@
             background: #FFFFFF;
             box-shadow: 8px 8px 16px rgba(142, 152, 168, 0.08);
             border-radius: 10px;
-            height: 191px;
-            width: 30%;
+            // max-width: 30%;
+            // flex: ;
+            flex: 1 1 30%; // grow shrink idealSize
+
+            @media screen and (max-width: 1000px) {
+                flex: 1 1 50%;
+            }
 
             &__header{
                 display: flex;
@@ -62,8 +80,13 @@
 
             &__body{
                 // border: 1px solid red;
-                width: 60%;
+                width: 75%;
                 margin-top: 10px;
+                padding-bottom: 30px;
+
+                @media screen and (max-width: 500px) {
+                    width: 90%;
+                }
 
                 p{
                     font-family: sans-serif;

@@ -4,6 +4,10 @@
     padding: 103px 115px 71px;
     // min-height: 100vh;
 
+    @media screen and (max-width: 1000px) {
+        padding: 50px 5% 50px;
+    }
+
     &__header{
         font-family: serif;
         font-weight: 700;
@@ -11,6 +15,10 @@
         line-height: 54px;
         letter-spacing: 0.008em;
         color: #1E1E1E;
+
+        @media screen and (max-width: 768px) {
+            font-size: 2rem;
+        }
     }
 
     &__text{
@@ -20,6 +28,11 @@
         line-height: 30px;
         letter-spacing: 0.008em;
         color: rgba(30, 30, 30, 0.9);
+
+        @media screen and (max-width: 768px) {
+            font-size: 1rem;
+            line-height: 1rem;
+        }
     }
 
     &__text{

@@ -2,7 +2,7 @@
 .boardCount{
     // border: 1px solid red;
     // margin-bottom: 15px;
-    width: 60%;
+    width: 80%;
 
     @media screen and (max-width: 1000px) {
         // border: 1px solid green;
@@ -33,7 +33,7 @@
     border-radius: inherit;
     // overflow: hidden;
 
-    p{
+    div > p{
         padding: 11px 0px 11px 40px;
         color: white;
     }

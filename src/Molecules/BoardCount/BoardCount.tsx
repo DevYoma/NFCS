@@ -30,7 +30,10 @@ const BoardCount = ({ width, backgroundColor, name, percent, border, opacity }: 
                     // height: "100%"
                 }}
             >
-                <p>350 Registered {name} Members</p>
+                <div>
+                    <p>350 Registered {name} Members</p>
+
+                </div>
             </div>
         </div>
     </div>
