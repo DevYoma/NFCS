@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import './LPNavDrawer.scss';
 import { Box } from '@mui/system';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
+import Button from '../../Atoms/Button/Button';
 
 const LPNavDrawer = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
@@ -32,6 +33,14 @@ const LPNavDrawer = () => {
                 </Link>
 
                 <hr />
+
+                <NavLink
+                    to={'/login'}
+                >
+                    <Button buttonStyle={{ marginTop: "10px", padding: "10px 10px" }}>
+                        Login
+                    </Button>
+                </NavLink>
             </Box>
         </Drawer>
     </div>

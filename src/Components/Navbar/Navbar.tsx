@@ -5,7 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import './Navbar.scss';
 import LPNavDrawer from '../LPNavDrawer/LPNavDrawer';
 
-const Navbar = () => {
+type NavbarProp = {
+    hideLinks?: boolean; 
+    hideDrawer?: boolean;
+}
+
+const Navbar = ({ hideLinks, hideDrawer }: NavbarProp) => {
     const [links] = useState([
         {
             id: 1,
@@ -28,9 +33,14 @@ const Navbar = () => {
 
   return (
     <nav id="navbar">
-        <Logo />
+        <NavLink to={'/'} style={{textDecoration: "none"}}>
+            <Logo />
+        </NavLink>
 
-        <div className="navbar__links">
+        <div className={`
+            navbar__links
+            ${hideLinks ? 'navbar__hideLinks' : ''}
+        `}>
             {links.map(link => (
                 <div key={link.id} className="navbar__link"> 
                     <NavLink 
@@ -48,7 +58,10 @@ const Navbar = () => {
             </button>
         </div>
 
-        <div className="navbar__mobileLinks">
+        <div className={`
+            navbar__mobileLinks
+            ${hideDrawer ? 'navbar__hideMobileLinks' : ''}
+        `}>
             <LPNavDrawer />
         </div>
     </nav>

@@ -5,6 +5,7 @@ type ButtonProps = {
     children: React.ReactNode;
     buttonStyle?: React.CSSProperties; // marginTop and width of button.
     buttonType?: "button" | "submit" | "reset";
+    route?: string;
 }
 
 const Button = ({ children, buttonStyle, buttonType }: ButtonProps) => {

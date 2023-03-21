@@ -19,6 +19,7 @@ import { InputAdornment, InputLabel, MenuItem, Select, TextField } from '@mui/ma
 import ImageIcon from '@mui/icons-material/Image';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { emailApi, emailServiceId, emailTemplateId } from '../../Email/Email';
+import Navbar from '../../Components/Navbar/Navbar';
 
 
 const Register = () => {
@@ -35,7 +36,6 @@ const Register = () => {
         // level: "none",
         team: "",
         birthday: "",
-        // image: "",
         email: "",
         password: "", 
         teampass: ""
@@ -247,23 +247,18 @@ const Register = () => {
 
     // console.log(formData)
   return (
-    <div id="register">
-        <div className="register__left">
-        </div>
+    <React.Fragment>
+        <Navbar 
+            hideDrawer={true}
+            hideLinks={true}
+        />
+        <div id="register">
+            <div className="register__right">
+                
+                <h3>Create your NFCS Birthday reminder account</h3>
+                <p>Already have an account? <Link to={'/login'} style={{textDecoration: "none", color: "#4318FF"}}> Log in</Link></p>
 
-        <div className="register__right">
-            {/* <h1>Let's Get Started</h1> */}
-            <div className="register__rightHeader">
-                <img src={NfcsLogo2} alt="logo2" />
-                <h3>NFCS OAU BIRTHDAY PLATFORM</h3>
-            </div>
-
-            <div className="register__createAccount">
-                <h3>Create An Account</h3>
-                <p>A Few Clicks From Making Your Day Fun And Memorable 🎂</p>
-            </div>
-
-            <form  onSubmit={handleSubmit} className="register__rightForm">
+                <form  onSubmit={handleSubmit} className="register__rightForm">
                     <div>
                         <TextField 
                             className="register__input"
@@ -293,12 +288,12 @@ const Register = () => {
                             {departments.map(depart => (
                                 <MenuItem key={depart.value} value={depart.value}>{depart.label}</MenuItem>
                             ))}
-                             
+                            
                         </Select>
                     </div>
 
                     <div>
-                    <InputLabel id="team-id">Team</InputLabel>
+                    <InputLabel id="team-id">NFCS Team</InputLabel>
                         <Select
                             className='register__select'
                             labelId="team-id"
@@ -311,13 +306,27 @@ const Register = () => {
                             {teams.map(team => (
                                 <MenuItem key={team.value} value={team.value}>{team.label}</MenuItem>
                             ))}
-                             
+                            
                         </Select>
+                    </div>
+
+                    <div>
+                        <TextField 
+                            className="register__input"
+                            type="text"
+                            label='Team Pass'
+                            variant="outlined" 
+                            name="teampass"
+                            placeholder='5fd93ddGalilee'
+                            required
+                            value={formData.teampass}
+                            onChange={handleChange}
+                        />
                     </div>
 
 
                     <div>
-                        <InputLabel>Birthday Date 📆</InputLabel>
+                        <InputLabel>Date of birth 📆</InputLabel>
                         <TextField 
                             className="register__input"
                             type="date"
@@ -333,7 +342,7 @@ const Register = () => {
                         <div className='register__rightFormLabel'>
                             <label>Image</label>
                         </div>
-                       
+                    
                         <TextField 
                             className="register__input"
                             type="file"
@@ -343,9 +352,9 @@ const Register = () => {
                             onChange={(e: any) => setFile(e.target.files[0])}
                             InputProps={{
                                 endAdornment: (
-                                  <InputAdornment position="end">
+                                <InputAdornment position="end">
                                     <ImageIcon />
-                                  </InputAdornment>
+                                </InputAdornment>
                                 ),
                             }}
                         />
@@ -378,7 +387,7 @@ const Register = () => {
                             onChange={handleChange}
                             InputProps={{
                                 endAdornment: (
-                                  <InputAdornment 
+                                <InputAdornment 
                                     position="end" 
                                     onClick={() => setShowPassword(!showPassword)}
                                     style={{
@@ -386,23 +395,9 @@ const Register = () => {
                                     }}
                                 >
                                     {showPassword ? <VisibilityOff /> : <Visibility />}
-                                  </InputAdornment>
+                                </InputAdornment>
                                 ),
                             }}
-                        />
-                    </div>
-
-                    <div>
-                        <TextField 
-                            className="register__input"
-                            type="text"
-                            label='Team Pass'
-                            variant="outlined" 
-                            name="teampass"
-                            placeholder='Team Pass'
-                            required
-                            value={formData.teampass}
-                            onChange={handleChange}
                         />
                     </div>
 
@@ -411,15 +406,15 @@ const Register = () => {
                         disabled={percentage !== null && percentage < 100} 
                         className="register__formButton"
                     >
-                            Sign Up
+                        Create account
                     </button>
-                    <p className='register__formQuestion'>Have an account already? <Link to={'/login'}>Login</Link></p>
+                </form>    
 
-            </form>    
-
-            <ToastContainer style={{ fontSize: "1rem" }}/>
+                <ToastContainer style={{ fontSize: "1rem" }}/>
+            </div>
         </div>
-    </div>
+
+    </React.Fragment>
   )
 }
 

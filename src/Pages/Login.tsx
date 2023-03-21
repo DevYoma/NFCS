@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import './Login.scss';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import {  registeruser } from '../Features/user/userSlice'
 import { loggedIn } from '../Features/userInfo/userinfoSlice';
@@ -12,6 +12,7 @@ import TextField from '@mui/material/TextField';
 import Logo from '../assets/nfcsLogonew.svg'
 import { InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import Navbar from '../Components/Navbar/Navbar';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
@@ -83,77 +84,66 @@ const Login = () => {
   }
 
   return (
-    <section id="login">
-      <div className="login__left">
-        <div className="login__leftHeaderFormContainer">
-          
-          <div className="login__imgContainer">
-            <img src={Logo} alt="logo" />
+    <React.Fragment>
+      <Navbar 
+        hideDrawer={true}
+        hideLinks={true}
+      />
+        <div className="login">
+          <h1 className="login__header">Log in to your NFCS Birthday reminder account</h1>
+          <p className="login__question">Don’t have an account? <Link to={'/register'} style={{ color: "#4318FF" }}>create one here</Link></p>
+          <div className="login__FormContainer">
+            <form onSubmit={handleLogin} className="login__Form">
 
-            <h3 className="login__nfcs">NFCS</h3>
-            <p className="login__name">Our Lady of Perpetual Light Chapel OAU</p>
+              <div className="login__formDiv">
+                <TextField 
+                    className="input-field"
+                    type="email"
+                    label='Student Email'
+                    variant="outlined" 
+                    name="email"
+                    placeholder='olemore@student.oauife.edu.ng'
+                    required
+                    value={loginData.email}
+                    onChange={handleOnChange}
+                  />
+              </div>
+
+              <div className="login__formDiv">
+                <TextField 
+                    className="input-field"
+                    label='Password'
+                    variant="outlined" 
+                    name="password"
+                    type={showPassword ? "text" : "password"}
+                    value={loginData.password}
+                    required
+                    onChange={handleOnChange}
+
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment 
+                          position="end" 
+                          onClick={() => setShowPassword(!showPassword)}
+                          style={{
+                              cursor: "pointer"
+                          }}
+                      >
+                          {showPassword ? <Visibility /> : <VisibilityOff />}
+                        </InputAdornment>
+                      ),
+                  }}
+                  />
+              </div>
+
+              <p className="login__forgotPassword">Forgot your password?<Link to={'#'} style={{color: "#4318FF"}}> Reset it here</Link></p>          
+              <button className='login__button'>Login</button>
+            </form>
+
+            <ToastContainer style={{ fontSize: "1rem" }}/>
           </div>
-
-          <form onSubmit={handleLogin} className="login__leftForm">
-            <h1 className='login__formWelcome'>Welcome Back</h1>
-            <p className="login__formText">Login to NFCS account</p>
-
-            <div className="login__formDiv">
-              <TextField 
-                  className="input-field"
-                  type="email"
-                  label='Email'
-                  variant="outlined" 
-                  name="email"
-                  placeholder='olemore@student.oauife.edu.ng'
-                  required
-                  value={loginData.email}
-                  onChange={handleOnChange}
-                />
-            </div>
-
-            <div className="login__formDiv">
-               <TextField 
-                  className="input-field"
-                  label='password'
-                  variant="outlined" 
-                  name="password"
-                  type={showPassword ? "text" : "password"}
-                  value={loginData.password}
-                  required
-                  onChange={handleOnChange}
-
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment 
-                        position="end" 
-                        onClick={() => setShowPassword(!showPassword)}
-                        style={{
-                            cursor: "pointer"
-                        }}
-                    >
-                        {showPassword ? <Visibility /> : <VisibilityOff />}
-                      </InputAdornment>
-                    ),
-                }}
-                />
-            </div>
-
-            <p className="login__forgotPassword"><Link to={'#'}> Forgot Password?</Link></p>          
-            <button className='login__button'>Login</button>
-          </form>
-
-          <p className='login__RegisterLink'>
-            Don't have an Account?<Link to={'/register'}> Sign Up</Link>
-          </p>
-
-          <ToastContainer style={{ fontSize: "1rem" }}/>
         </div>
-      </div>
-
-      <div className="login__right">
-      </div>
-    </section>
+    </React.Fragment>
   )
 }
 
