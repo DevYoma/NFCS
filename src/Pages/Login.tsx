@@ -91,7 +91,7 @@ const Login = () => {
       />
         <div className="login">
           <h1 className="login__header">Log in to your NFCS Birthday reminder account</h1>
-          <p className="login__question">Don’t have an account? <Link to={'/register'} style={{ color: "#4318FF" }}>create one here</Link></p>
+          <p className="login__question">Don’t have an account? <Link to={'/register'} style={{ color: "#4318FF", textDecoration: "none" }}>create one here</Link></p>
           <div className="login__FormContainer">
             <form onSubmit={handleLogin} className="login__Form">
 

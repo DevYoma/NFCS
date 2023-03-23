@@ -28,12 +28,13 @@
         display: flex;
         gap: 40px;
         overflow-x: scroll;
-        // border: 1px solid rgba(0,0,0, 0.1);
         margin: 41px 0px 31px;
+        padding-bottom: 20px;
 
         &::-webkit-scrollbar {
             display: none;
-        } // implement CUSTOM SCROLL BAR
+        }
+        
 
         .exco{
             img{
