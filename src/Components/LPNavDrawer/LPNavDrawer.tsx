@@ -7,8 +7,15 @@ import { Link, NavLink } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import Button from '../../Atoms/Button/Button';
 
-const LPNavDrawer = () => {
+type MobileNavDrawer = {
+    onMobileView?: boolean;
+    isLoggedIn?: boolean;
+}
+
+const LPNavDrawer = ({onMobileView, isLoggedIn}: MobileNavDrawer) => {
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
+
+    console.log(isLoggedIn);
 
   return (
     <div>
@@ -22,25 +29,54 @@ const LPNavDrawer = () => {
         </IconButton>
         <Drawer anchor='right' open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} className="navDrawer__container">
             <Box p={2} width={'70vw'} textAlign='left' role='presentation' className='navDrawer'>
-                <Link to={'/'} style={{ textDecoration: "none"}}>
-                    <Typography variant='h6' component='div' className='navDrawer__text navDrawer__app'>Home</Typography>
-                </Link>
-                <Link to={'/how-it-works'} style={{ textDecoration: "none"}}>
-                    <Typography variant='h6' component='div' className='navDrawer__text navDrawer__birthday'>How it works</Typography>
-                </Link>
-                <Link to={'/events'} style={{ textDecoration: "none"}}>
-                    <Typography variant='h6' component='div' className='navDrawer__text navDrawer__profile'>Events</Typography>
-                </Link>
+                {!isLoggedIn ? 
+                    (<React.Fragment>
+                        <Link to={'/'} style={{ textDecoration: "none"}}>
+                            <Typography variant='h6' component='div' className='navDrawer__text navDrawer__app'>Home</Typography>
+                        </Link>
+                        <Link to={'/how-it-works'} style={{ textDecoration: "none"}}>
+                            <Typography variant='h6' component='div' className='navDrawer__text navDrawer__birthday'>How it works</Typography>
+                        </Link>
+                        <Link to={'/events'} style={{ textDecoration: "none"}}>
+                            <Typography variant='h6' component='div' className='navDrawer__text navDrawer__profile'>Events</Typography>
+                        </Link>
+                    </React.Fragment>) 
+                    : 
+                    (<React.Fragment>
+                        <Link to={'/app'} style={{ textDecoration: "none"}}>
+                            <Typography variant='h6' component='div' className='navDrawer__text navDrawer__app'>Birthday</Typography>
+                        </Link>
+                        <Link to={'/profile'} style={{ textDecoration: "none"}}>
+                            <Typography variant='h6' component='div' className='navDrawer__text navDrawer__birthday'>Profile</Typography>
+                        </Link>
+                        {/* <Link to={'/events'} style={{ textDecoration: "none"}}>
+                            <Typography variant='h6' component='div' className='navDrawer__text navDrawer__profile'>Events</Typography>
+                        </Link> */}
+                    </React.Fragment>)
+                }
 
                 <hr />
-
-                <NavLink
-                    to={'/login'}
-                >
-                    <Button buttonStyle={{ marginTop: "10px", padding: "10px 10px" }}>
-                        Login
-                    </Button>
-                </NavLink>
+                {!isLoggedIn ? 
+                    (
+                        <NavLink
+                            to={'/login'}
+                        >
+                            <Button buttonStyle={{ marginTop: "10px", padding: "10px 10px" }}>
+                                Login
+                            </Button>
+                        </NavLink>
+                    ) 
+                    : 
+                    (
+                        <NavLink
+                        to={'/'}
+                    >
+                            <Button buttonStyle={{ marginTop: "10px", padding: "10px 10px", background: "#8E98A8" }}>
+                                Log out
+                            </Button>
+                        </NavLink>
+                    )
+                }
             </Box>
         </Drawer>
     </div>

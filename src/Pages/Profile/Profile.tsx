@@ -6,6 +6,7 @@ import { loggedOut } from '../../Features/userInfo/userinfoSlice';
 import { auth, db } from '../../Firebase/Firebase';
 import './Profile.scss';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../../Components/Navbar/Navbar';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -91,24 +92,27 @@ const Profile = () => {
   }
 
   return (
-    <div className='profilePage'>
-      {/* {apiResponse?.name} */}
-      <h1>Profile Page</h1>
-      <p>{apiResponse?.name}</p>
-      <img src={apiResponse?.img} alt={apiResponse?.name} />
+    <React.Fragment>
+      <Navbar isLoggedIn/>
+      <div className='profilePage'>
+        {/* {apiResponse?.name} */}
+        <h1>Profile Page</h1>
+        <p>{apiResponse?.name}</p>
+        <img src={apiResponse?.img} alt={apiResponse?.name} />
 
-      <div>
-        <input 
-          value={newValue}
-          onChange={(e: any) => setNewValue(e.target.value)}
-          type="text" 
-        />
+        <div>
+          <input 
+            value={newValue}
+            onChange={(e: any) => setNewValue(e.target.value)}
+            type="text" 
+          />
 
-        <button onClick={handleNameUpdate}>Update Name</button> <br />
+          <button onClick={handleNameUpdate}>Update Name</button> <br />
 
-        {/* <button onClick={() => handleDelete(userId)}>Delete Account</button> */}
+          {/* <button onClick={() => handleDelete(userId)}>Delete Account</button> */}
+        </div>
       </div>
-    </div>
+    </React.Fragment>
   )
 }
 

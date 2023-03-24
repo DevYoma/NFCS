@@ -82,6 +82,71 @@
         }
     }
 
+    // APP LINKS WHEN LOGGED IN
+    .navbar__appLinks{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex: 0.35;
+        // border: 1px solid green;
+
+        @media screen and (max-width: 1300px) {
+            &{
+                flex: 0.6;
+            }
+        }
+    
+        @media screen and (max-width: 900px) {
+            &{
+                flex: 0.8;
+            }
+        }
+    
+        @media screen and (max-width: 768px) {
+            &{
+                display: none;
+            }
+        }
+
+        .navbar__appLink{
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 25px;
+            
+            & a{
+                text-decoration: none;
+                color: black;
+            }
+
+            & a.active{
+                color: var(--app-primary-color);
+                text-decoration: underline;
+                // margin-bottom: 5px;
+            }
+        }
+
+        
+        .navbar__loginOutBtn{
+            background: #8E98A8;
+            border-radius: 8px;
+            color: white;
+            // padding: 13px 15px;
+            padding: 10px 15px; // waiting for decision
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 29px;
+            border: none;
+            cursor: pointer;         
+            
+            &:hover{
+                // background: #274bcd;
+                opacity: 0.95;
+            }
+        }
+    }    
+
+
+
     .navbar__hideLinks{
         display: none;
     }

@@ -1,7 +1,5 @@
 import React from 'react'
 import './Logo.scss';
-import LogoTextImg from '../../assets/NFCS.png'
-import LogoImg from '../../assets/NfcsLogo.svg';
 import FakeLogo from '../../assets/makeShiftLogo.png';
 
 type logoProp = {

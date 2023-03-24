@@ -13,6 +13,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import AppNav from '../../Components/AppNav/AppNav';
 import { InputAdornment, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import Navbar from '../../Components/Navbar/Navbar';
     
 type FbDataType = {
   id: string | number;
@@ -117,7 +118,7 @@ const Home = () => {
       <>
         {user && (
           <>
-            <AppNav />
+            <Navbar isLoggedIn={true} />
             <div>
 
               <input 
