@@ -10,12 +10,11 @@ import { auth, db } from '../../Firebase/Firebase';
 import SkeletonUserLoading from '../../Components/Skeletons/SkeletonUserLoading';
 import {LazyLoadImage}  from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import AppNav from '../../Components/AppNav/AppNav';
 import { InputAdornment, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import Navbar from '../../Components/Navbar/Navbar';
     
-type FbDataType = {
+export type FbDataType = {
   id: string | number;
   name: string;
   team: string;
@@ -80,7 +79,7 @@ const Home = () => {
         return () => {
           fetchData();
         }
-    }, [dispatch, navigate]);
+    }, [dispatch]);
 
     // USEEFEECT FOR PERSISTING USER AND USER DATA
     useEffect(() => {
@@ -94,7 +93,7 @@ const Home = () => {
       })
     }, [dispatch])
 
-    // GETTING LOGGED IN USER DETAILS.
+      // GETTING LOGGED IN USER DETAILS.
       const getDataFromId = async (id: number | string | any) => {
         // const docRef = doc(db, "users", "SF");
         const docRef = doc(db, "users", id)

@@ -61,7 +61,7 @@ const Login = () => {
       try{
         const loginUserFB = await signInWithEmailAndPassword(auth, loginData.email, loginData.password)
         console.log(loginUserFB)
-        navigate('/app')
+        navigate('/birthday')
       }catch(error: any){
         // alert(error);
         console.log(error);

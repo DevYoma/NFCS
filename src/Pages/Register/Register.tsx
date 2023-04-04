@@ -232,7 +232,7 @@ const Register = () => {
                 timeStamp: serverTimestamp()
             });
 
-            navigate('/app');
+            navigate('/birthday');
 
             await sendEmailVerification(registerUserFB.user) // verifying email
         } catch(error: any){

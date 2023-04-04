@@ -1,50 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+
 #birthdayPage{
     // padding-left: 35px;
-
-    .birthdayPage__main{
-        padding-left: 20px;
-        padding-top: 20px;
-
-        .birthdayPage__teams{
-            // font-family: 'Quicksand';
-            font-weight: 700;
-            font-size: 12px;
-            line-height: 15px;
-        }
-
-        .birthdayPage__select{
-            // border: 1px solid red;
-            margin: 15px 0px 50px;
-        }
+    font-family: 'Poppins', sans-serif;
     
+    .birthdayPage__main{
+        // border: 1px solid red;
+        margin-top: 66px;
+        padding: 0px 115px 0px;
+
+        .birthdayPage__header{
+            border: 3px solid green;
+        }
+
+        // BIRTHDAY SELECT
+        .birthdayPage__select{
+            border: 4px solid black;
+            margin: 65px 0;
+        }
+
         .birthdayPage__today{
-            margin-bottom: 25px;
-            // font-family: 'Quicksand';
-            font-weight: 700;
-            font-size: 13px;
-            line-height: 16px;
+            margin-bottom: 56px;
+            font-weight: 500;
+            font-size: 24px;
+            line-height: 30px;
+            color: rgba(30, 30, 30, 0.91);
         }
 
         // CARD
         .birthdayCard__container{
             // border: 1px solid red;
             display: flex;
+            justify-content: space-between;
             flex-wrap: wrap;
-            width: fit-content;
-            gap: 15px;
+            gap: 56px 15px;
             margin-bottom: 20px;
-
         }
 
         .birthdayCard{
-            background: #0A55E4;
-            // width: 166px;
-            width: fit-content;
-            // height: 106px;
-            box-shadow: 0px 4px 11px 2px rgba(54, 54, 54, 0.25);
-            border-radius: 5px;
-            padding: 15px;
-            color: #F4F6FA;
+            flex: 0 1 28%;
+            min-height: 208px;
+            background: #FFFFFF;
+            box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            color: black;
+            border: 1px solid lightgray;
+            display: flex;
+            flex-direction: column;
+            
+
+            &.jericho{
+                border-left: 7px solid red;
+            }
+
+            &.bethany{
+                border-left: 7px solid #8AE219;
+            }
+
+            &.capernaum{
+                border-left: 7px solid orange;
+            }
+
+            &.galilee{
+                border-left: 7px solid blue;
+            }
+
+            &.jordan{
+                border-left: 7px solid pink;
+            }
+
+            &.nile{
+                border-left: 7px solid indigo;
+            }
 
             .birthdayCard__header{
                 display: flex;
@@ -52,42 +80,27 @@
                 margin-bottom: 10px;
 
                 .birthdaycard__userImage{
-                    width: 36px;
-                    height: 36px;
+                    width: 48px;
+                    height: 48px;
                     object-fit: cover;
                     border-radius: 99px;
                     margin-right: 10px;
                 }
 
-                .birthday__paragraph{
-                    display: flex;
-                    align-items: center;
-                    // font-family: 'Quicksand';
-                    font-weight: 600;
-                    font-size: 10px;
-                    line-height: 12px;
-                    color: #F4F6FA;
+                .birthdayCard__headerName{
+                    font-weight: 500;
+                    font-size: 24px;
+                    line-height: 30px;
+                    color: #000000;
                 }
 
-                .birthday__icon{
-                    margin-left: 3.3px;
-                    // margin-top: 3.3px;
-                    // width: 15px;
-                    // height: 15px;
-                }
             }
 
             .birthdayCard__body{
                 // border: 1px solid red;
                 position: relative;
 
-                .birthdayCard__bodyName{
-                    // font-family: 'Quicksand';
-                    font-weight: 700;
-                    font-size: 11px;
-                    line-height: 14px;
-                    margin-bottom: 5px;
-                }
+               
 
                 .birthdayCard__bodyDate{
                     // font-family: 'Quicksand';
@@ -95,19 +108,8 @@
                     font-size: 10px;
                     line-height: 12px;
                 }
-
-                .birthdayCard__bodyIcon{
-                    position: absolute;
-                    right: 0;
-                    top: 25%;
-                }
             }
         }
-
-        // .birthdaySkeleton{
-        //     display: flex;
-        //     border: 1px solid red;
-        // }
     }
 
 }

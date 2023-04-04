@@ -1,7 +1,6 @@
-import { collection, getDocs } from '@firebase/firestore';
+import { collection, doc, getDoc, getDocs } from '@firebase/firestore';
 import { CSSProperties, useEffect, useState } from 'react'
-import { db } from '../../Firebase/Firebase';
-import AppNav from '../../Components/AppNav/AppNav';
+import { auth, db } from '../../Firebase/Firebase';
 import './Birthday.scss';
 import BirthdayLogo from '../../assets/birthday.png'
 // import { useDispatch } from 'react-redux';
@@ -13,6 +12,7 @@ import { RootState } from '../../Features/store';
 import { useNavigate, Navigate } from 'react-router-dom'
 import BirthdayCard from '../../Components/BirthdayCard/BirthdayCard';
 import { registeruser, logout } from '../../Features/user/userSlice';
+import Navbar from '../../Components/Navbar/Navbar';
 
 
 type FbDataType = {
@@ -58,10 +58,12 @@ const Birthday = () => {
           label: "Nile",
           value: "nile"
       },
-  ]
+    ]
 
-  const user: boolean = useSelector((state: RootState) => state.user.user)
-  console.log(user);
+    const [fbUser, setFbUser] = useState<any>(null);
+
+    const user: boolean = useSelector((state: RootState) => state.user.user)
+    console.log(user);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -70,7 +72,13 @@ const Birthday = () => {
 
     // USEEFFECT FOR GETTING ALL USER DATA FROM FB
     useEffect(() => {
-        dispatch(registeruser())
+        // dispatch(registeruser())
+
+        // PREVENTING RE-ROUTING ON PAGE REFRESH
+        window.addEventListener("popstate", e => {
+          navigate(1);
+        })
+
         const fetchData = async () => {
             let list: any = [];
             try{
@@ -95,10 +103,19 @@ const Birthday = () => {
           }
     }, [dispatch]);
 
-    // useEffect(() => {
-    //   dispatch(registeruser())
-    // }, [dispatch])
+     // USEEFEECT FOR PERSISTING USER AND USER DATA
+     useEffect(() => {
+      dispatch(registeruser());
 
+      auth.onAuthStateChanged(authState => {
+        console.log("User Id: " + authState?.uid);
+        if(authState){
+          getDataFromId(authState?.uid);
+        }
+      })
+    }, [dispatch])
+
+  
     // BIRTHDAY FILTER LOGIC
     const filterByDate = data.filter(list => {
         return  parseInt((list.birthday.split("-")[2])) === parseInt(today.getDate().toString()) && parseInt(list.birthday.split("-")[1]) - 1 === today.getMonth()
@@ -122,42 +139,69 @@ const Birthday = () => {
         // borderColor: "red",
       };
 
-        // making page go to current page on reload
-          const goBackToPreviousPage = () => {
-            window.addEventListener("load", e => {
-          navigate(-1);
-        })
+    // making page go to current page on reload
+      const goBackToPreviousPage = () => {
+        window.addEventListener("load", e => {
+      navigate(-1);
+    })
 }
+
+
+    // GETTING LOGGED IN USER DETAILS.
+    const getDataFromId = async (id: number | string | any) => {
+      // const docRef = doc(db, "users", "SF");
+      const docRef = doc(db, "users", id)
+      const docSnap = await getDoc(docRef);
+
+      const userDataResult: any = await (docSnap.data())
+      
+      console.log(userDataResult)
+      setFbUser({
+        ...fbUser,
+        userDataResult
+      })
+      
+      return userDataResult;
+    }
+
+    // assigning the returned value from the function to apiResponse.
+    const apiResponse = fbUser?.userDataResult;
 
   return (
     <>
-      {/* {!user && <Navigate to={'/'}/>} */}
-
       {user && (
         <>
         <section id='birthdayPage'>
-          <AppNav />
+          <Navbar isLoggedIn={true}/>
           <div className="birthdayPage__main">
 
-            <h3 className='birthdayPage__teams'>Teams</h3>
-            
-              <select 
-                className='birthdayPage__select'
-                style={{
-                  padding: "3px"
-                }}
-                value={selectedTeam}
-                required
-                onChange={(e: any) => setSelectedTeam(e.target.value)}
-                name="team"
-              >            
+            <div className="birthdayPage__header">
+              <div className="birthdayPage__headerDetails">
+                <h1>Hi {apiResponse?.name}</h1>
+                <p>Welcome back!</p>
+              </div>
+
+              {/* SEARCH FUNCTIONALITY */}
+            </div>
+
+            <select 
+              className='birthdayPage__select'
+              style={{
+                padding: "3px"
+              }}
+              value={selectedTeam}
+              required
+              onChange={(e: any) => setSelectedTeam(e.target.value)}
+              name="team"
+            >            
               {teams.map(team => (
-                      <option key={team.value} value={team.value}>{team.label}</option>
+                <option key={team.value} value={team.value}>{team.label}</option>
               ))}
             </select>
 
-            {filterByDate.length === 0 ? <p className='birthdayPage__today'>We Don't have any Birthday Celebrants today</p> :<p className="birthdayPage__today">We have {filterByDate.length} Birthday Celebrants 🎂</p>}
+            {/* {filterByDate.length === 0 ? <p className='birthdayPage__today'>We Don't have any Birthday Celebrants today</p> :<p className="birthdayPage__today">We have {filterByDate.length} Birthday Celebrants 🎂</p>}  */}
 
+            <div className="birthdayPage__today">Today</div>
 
             {/* FILTERED BIRTHDAY CELEBRANTS */}
             {
@@ -171,35 +215,30 @@ const Birthday = () => {
                       return value;
                     }
                   }).map((data: any) => (
-                      <div className="birthdayCard" key={data.id}>
+                      <div className={`birthdayCard ${data.team}`} key={data.id}>
                         <div className="birthdayCard__header">
                           <img src={data.img} alt="userImg" className='birthdaycard__userImage' />
-                          <p className='birthday__paragraph'>
-                            Happy Birthday  
-                            <img src={BirthdayLogo} alt="birthdayIcon" className='birthday__icon' /> 
-                          </p>
+                          <p className='birthdayCard__headerName'>{data.name}</p>
                         </div>
 
                         <div className="birthdayCard__body">
-                          <p className='birthdayCard__bodyName'>{data.name}</p>
-                          <p className='birthdayCard__bodyDate'>{ordinal(Number(data.birthday.slice(8, 10)))} of {today.toLocaleString('default', {month: 'long'})}</p>
-                          <KeyboardArrowDownIcon fontWeight="400" className='birthdayCard__bodyIcon'/>
+                          {/* <p className='birthdayCard__bodyDate'>{ordinal(Number(data.birthday.slice(8, 10)))} of {today.toLocaleString('default', {month: 'long'})}</p> */}
+                          <p className='birthdayCard__bodyDate'></p>
+
                         </div>
                       </div>
                       // <BirthdayCard data={data}/>
                   ))}
                 </section>
-              ) : (
-                // [1,2].map((n) => <SkeletonElement key={n} type='card' />
-                // )
-                // <p>Loading...</p>
+              ) 
+              : 
+              (
                 <PuffLoader color="#0A55E4" loading={true} cssOverride={override} size={100} />
-                )
-
+              )
             }
           </div>
 
-          <div className="tomorrowBirthday">
+          {/* <div className="tomorrowBirthday">
             <h2>Tomorrow's Birthdays</h2>
             {upComingBirthday.map((upComing: any) => {
               return( 
@@ -208,7 +247,7 @@ const Birthday = () => {
                 </div>
               )
             })}
-          </div>          
+          </div>           */}
         </section>
         </>
       )}

@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+.navDrawer{
+    background: #F7F8FB;
+    height: 100vh;
+    // border: 1px solid red;
+
+    .navDrawer__text{
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 25px;
+    }
+
+    .navDrawer__app{
+        margin-top: 55px;
+    }
+
+    .navDrawer__app,
+    .navDrawer__howItWorks,
+    .navDrawer__events,
+    .navDrawer__profile{
+        margin-bottom: 25px;
+    }
+
+}

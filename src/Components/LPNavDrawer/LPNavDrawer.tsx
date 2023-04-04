@@ -18,7 +18,7 @@ const LPNavDrawer = ({onMobileView, isLoggedIn}: MobileNavDrawer) => {
     console.log(isLoggedIn);
 
   return (
-    <div>
+    <div className='lpNavDrawer'>
         <IconButton 
             edge="end" 
             sx={{ width: "54px", height: "54px"}} 
@@ -35,10 +35,10 @@ const LPNavDrawer = ({onMobileView, isLoggedIn}: MobileNavDrawer) => {
                             <Typography variant='h6' component='div' className='navDrawer__text navDrawer__app'>Home</Typography>
                         </Link>
                         <Link to={'/how-it-works'} style={{ textDecoration: "none"}}>
-                            <Typography variant='h6' component='div' className='navDrawer__text navDrawer__birthday'>How it works</Typography>
+                            <Typography variant='h6' component='div' className='navDrawer__text navDrawer__howItWorks'>How it works</Typography>
                         </Link>
                         <Link to={'/events'} style={{ textDecoration: "none"}}>
-                            <Typography variant='h6' component='div' className='navDrawer__text navDrawer__profile'>Events</Typography>
+                            <Typography variant='h6' component='div' className='navDrawer__text navDrawer__events'>Events</Typography>
                         </Link>
                     </React.Fragment>) 
                     : 
@@ -47,11 +47,8 @@ const LPNavDrawer = ({onMobileView, isLoggedIn}: MobileNavDrawer) => {
                             <Typography variant='h6' component='div' className='navDrawer__text navDrawer__app'>Birthday</Typography>
                         </Link>
                         <Link to={'/profile'} style={{ textDecoration: "none"}}>
-                            <Typography variant='h6' component='div' className='navDrawer__text navDrawer__birthday'>Profile</Typography>
+                            <Typography variant='h6' component='div' className='navDrawer__text navDrawer__profile'>Profile</Typography>
                         </Link>
-                        {/* <Link to={'/events'} style={{ textDecoration: "none"}}>
-                            <Typography variant='h6' component='div' className='navDrawer__text navDrawer__profile'>Events</Typography>
-                        </Link> */}
                     </React.Fragment>)
                 }
 

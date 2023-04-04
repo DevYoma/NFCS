@@ -34,7 +34,8 @@ const Navbar = ({ hideLinks, hideDrawer, isLoggedIn }: NavbarProp) => {
         {
             id: 1, 
             text: "Birthdays", 
-            route: "/app"
+            // route: "/app"
+            route: "/birthday"
         },
         {
             id: 2, 
