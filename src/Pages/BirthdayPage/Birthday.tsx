@@ -178,7 +178,7 @@ const Birthday = () => {
             <div className="birthdayPage__header">
               <div className="birthdayPage__headerDetails">
                 <h1>Hi {apiResponse?.name}</h1>
-                <p>Welcome back!</p>
+                <p>welcome back!</p>
               </div>
 
               {/* SEARCH FUNCTIONALITY */}
@@ -223,8 +223,7 @@ const Birthday = () => {
 
                         <div className="birthdayCard__body">
                           {/* <p className='birthdayCard__bodyDate'>{ordinal(Number(data.birthday.slice(8, 10)))} of {today.toLocaleString('default', {month: 'long'})}</p> */}
-                          <p className='birthdayCard__bodyDate'></p>
-
+                          <p className="birthdayCard__bodyText">It's {data.name.split(" ")[1] ? data.name.split(" ")[1] : data.name.split(" ")[0]  } birthday today 🎂</p>
                         </div>
                       </div>
                       // <BirthdayCard data={data}/>
