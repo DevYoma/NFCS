@@ -199,8 +199,6 @@ const Birthday = () => {
               ))}
             </select>
 
-            {/* {filterByDate.length === 0 ? <p className='birthdayPage__today'>We Don't have any Birthday Celebrants today</p> :<p className="birthdayPage__today">We have {filterByDate.length} Birthday Celebrants 🎂</p>}  */}
-
             <div className="birthdayPage__today">Today</div>
 
             {/* FILTERED BIRTHDAY CELEBRANTS */}

@@ -20,14 +20,17 @@ import ImageIcon from '@mui/icons-material/Image';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { emailApi, emailServiceId, emailTemplateId } from '../../Email/Email';
 import Navbar from '../../Components/Navbar/Navbar';
+import { ClipLoader } from 'react-spinners';
 
 
 const Register = () => {
 
     const [percentage, setPercentage] = useState<null | number>(null)
 
-    const [showpassword, setShowpassword] = useState(false);
-    
+    const [showPassword, setShowPassword] = useState(false);
+
+    const [loading, setLoading] = useState(false);
+
     const [file, setFile] = useState<any>(null)
 
     const [formData, setFormData] = useState({
@@ -56,7 +59,6 @@ const Register = () => {
     // console.log(userInfo);
 
     const navigate = useNavigate()
-    const [showPassword, setShowPassword] = useState(false)
 
 
     // HANDLE CHANGE IN THE INPUT ELEMENTS
@@ -137,12 +139,16 @@ const Register = () => {
       // HANDLING FORM SUBMIT
     const handleSubmit = async (e: any) => {
         e.preventDefault();
+
+        // SETTING THE LOADING STATE TO BE FALSE
+        setLoading(true);
         
         // TEAMPASS  CHECK
         if(!pass.includes(formData.teampass)){
             // alert("Please enter a valid team pass")
             // toast.error("Please enter a valid team pass")
             notify("Please enter a valid team pass")
+            setLoading(false)
             return;
         }
 
@@ -151,6 +157,7 @@ const Register = () => {
             // alert("Your team pass does not match your team")
             // toast.error("Your team pass does not match your team")
             notify("Your team pass does not match your team")
+            setLoading(false)
             return;
         }
 
@@ -158,6 +165,7 @@ const Register = () => {
         if(!formData.email.includes('student.oauife.edu.ng')){
             // alert("This is not a valid email address")
             notify("This is not a valid email address")
+            setLoading(false)
             return;
         }
 
@@ -173,6 +181,10 @@ const Register = () => {
             // alert("Please Check the form again and enter your details correctly.")
             // toast.error("Please check the form again and enter your details correctly")
             notify("Please check the form again and enter your details correctly")
+
+            // SETTING THE LOADING STATE ON BUTTON TO FALSE
+            setLoading(false);
+
             return;
         }
         else{
@@ -198,6 +210,9 @@ const Register = () => {
 
         try{
             // REGISTERING USER WITH EMAIL AND PASSWORD
+
+            // SETTING THE LOADING STATE TO FALSE
+            setLoading(true);
             
             const registerUserFB = await createUserWithEmailAndPassword(auth, formData.email, formData.password)
             console.log(registerUserFB)
@@ -211,9 +226,9 @@ const Register = () => {
 
           // details for EmailJS
           let toSend = {
-              name: formData.name,
-              email: formData.email,
-              message: message
+            name: formData.name,
+            email: formData.email,
+            message: message
           }
 
           // sending emails to users
@@ -236,6 +251,7 @@ const Register = () => {
 
             await sendEmailVerification(registerUserFB.user) // verifying email
         } catch(error: any){
+            setLoading(false)
             notify(error.message);
             // alert(error)
             // navigate(-1);
@@ -406,7 +422,8 @@ const Register = () => {
                         disabled={percentage !== null && percentage < 100} 
                         className="register__formButton"
                     >
-                        Create account
+                        {/* loading is FALSE by default */}
+                        {loading ? (<ClipLoader color='white'/>) : 'Create Account'}
                     </button>
                 </form>    
 

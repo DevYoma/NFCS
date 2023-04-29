@@ -13,9 +13,12 @@ import Logo from '../assets/nfcsLogonew.svg'
 import { InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import Navbar from '../Components/Navbar/Navbar';
+import { ClipLoader } from 'react-spinners';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
+
+  const [loading, setLoading] = useState(false);
 
   // TOASTIFY ERROR MESSAGE
   function notify(message: string){
@@ -35,10 +38,13 @@ const Login = () => {
   const handleLogin = async (e: any) => {
 
     e.preventDefault();
+
+    setLoading(true)
     
     if(loginData.email === "" || loginData.password === ""){
       // alert("This is not a valid email address")
       notify("Please enter valid details")
+      setLoading(false)
       return;
     }
 
@@ -59,11 +65,17 @@ const Login = () => {
 
       // LOGGING THE USER WITH FIREBASE
       try{
+
+        setLoading(true)
+
         const loginUserFB = await signInWithEmailAndPassword(auth, loginData.email, loginData.password)
         console.log(loginUserFB)
         navigate('/birthday')
       }catch(error: any){
         // alert(error);
+
+        setLoading(false);
+
         console.log(error);
         notify(error.message)
         navigate('/login');
@@ -137,7 +149,7 @@ const Login = () => {
               </div>
 
               <p className="login__forgotPassword">Forgot your password?<Link to={'#'} style={{color: "#4318FF"}}> Reset it here</Link></p>          
-              <button className='login__button'>Login</button>
+              <button className='login__button'>{loading ? (<ClipLoader color='white'/>) : 'Login'}</button>
             </form>
 
             <ToastContainer style={{ fontSize: "1rem" }}/>
