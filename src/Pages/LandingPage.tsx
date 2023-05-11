@@ -13,21 +13,25 @@ import ScoreBoard from '../Components/ScoreBoard/ScoreBoard';
 import Testimonial from '../Components/Testimonials/Testimonials';
 import Footer from '../Components/Footer/Footer';
 import LPWhy from '../Components/LPWhy/LPWhy';
+import TopOfPage from '../utils/topOfPage';
 
 const LandingPage = () => {
-    const navigate = useNavigate();
-    const user = useSelector((state: RootState) => state.user.user)
-    const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const user = useSelector((state: RootState) => state.user.user)
+  const dispatch = useDispatch()
 
-    const register = () => {
-        navigate('/register')
-    }
+  const register = () => {
+      navigate('/register')
+  }
 
-    // console.log(user);
+  // console.log(user);
 
-    const login = () => {
-        navigate('/login')
-    }
+  const login = () => {
+      navigate('/login')
+  }
+
+  // returns user to top of page
+  TopOfPage();
 
   return (
     // think of adding a container element here

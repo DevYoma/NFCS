@@ -66,4 +66,4 @@ export function ordinal(n: number) {
   return dateOrdinal
 };
 
-console.log(ordinal(21))
+// console.log(ordinal(21))

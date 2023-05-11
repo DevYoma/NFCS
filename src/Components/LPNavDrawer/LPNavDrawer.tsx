@@ -15,7 +15,7 @@ type MobileNavDrawer = {
 const LPNavDrawer = ({onMobileView, isLoggedIn}: MobileNavDrawer) => {
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
 
-    console.log(isLoggedIn);
+    // console.log(isLoggedIn);
 
   return (
     <div className='lpNavDrawer'>
@@ -43,7 +43,7 @@ const LPNavDrawer = ({onMobileView, isLoggedIn}: MobileNavDrawer) => {
                     </React.Fragment>) 
                     : 
                     (<React.Fragment>
-                        <Link to={'/app'} style={{ textDecoration: "none"}}>
+                        <Link to={'/birthday'} style={{ textDecoration: "none"}}>
                             <Typography variant='h6' component='div' className='navDrawer__text navDrawer__app'>Birthday</Typography>
                         </Link>
                         <Link to={'/profile'} style={{ textDecoration: "none"}}>

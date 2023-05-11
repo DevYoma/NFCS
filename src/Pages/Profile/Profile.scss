@@ -1,4 +1,173 @@
 .profilePage{
+    // border: 3px solid black;
     min-height: 100vh;
-    // background: red;
+    width: 60%;
+    margin-inline: auto;
+    margin-top: 85px;
+
+    @media screen and (max-width: 768px) {
+        width: 80%;
+        margin-top: 50px;
+    }
+
+    &__header{
+        font-weight: 500;
+        font-size: 40px;
+        line-height: 50px;
+        letter-spacing: 0.008em;
+        color: #111111;
+        margin-bottom: 50px;
+
+        @media screen and (max-width: 768px) {
+            font-size: 30px;
+        }
+    }
+
+    .userInfo{
+        // border: 1px solid red;
+        margin-bottom: 4rem;
+        &__profilePicture{
+            img{
+                border: 1px solid lightgrey;
+                width: 120px;
+                height: 120px;
+                border-radius: 99px;
+                object-fit: cover;
+            }
+        }
+
+        &__changePicture{
+            color: rgba(30, 30, 30, 0.89);
+            margin-top: 15px;
+            margin-bottom: 35px;
+            font-family: sans-serif;
+        }
+
+        &__form{
+            & > div:not(:last-child){
+                // border: 2px solid red;
+                margin-bottom: 1rem;
+            }
+
+            & > div > .userInfo__formField{
+                // border: 2px solid green;
+                width: 100%;
+            }
+
+            & > div > .userInfo__formLabel{
+                margin-bottom: 5px;
+            }
+        }
+        
+        & > .updateFormButton{
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 120%;
+            display: flex;
+            align-items: center;
+            color: #FFFFFF;
+            background: #4318FF;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.02);
+            border-radius: 8px;
+            padding: 20px 50px;
+            border: none;
+            cursor: pointer;
+            margin-top: 50px;
+
+            &:disabled{
+                // display: none;
+                opacity: 0.3;
+                cursor: not-allowed;
+            }
+        }
+    }
+
+    .profilePassword{
+        // border: 1px solid red;
+
+        &__header{
+            font-weight: 500;
+            font-size: 40px;
+            line-height: 50px;
+            letter-spacing: 0.008em;
+            color: #111111;
+
+            @media screen and (max-width: 768px) {
+                font-size: 30px;
+            }
+        }
+
+        &__subText{
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 120%;
+            display: flex;
+            color: #000000;
+            margin-top: 5px;
+            margin-bottom: 40px;
+            color: #4318FF;
+
+            
+            @media screen and (max-width: 768px) {
+                font-size: 20px;
+            }
+        }
+
+        & > div{
+            .password__fields{
+                width: 100%;
+            }
+
+            .password__labels{
+                margin-bottom: 5px;
+            }
+        }
+
+        
+
+        & > div:not(:last-child){
+            margin-bottom: 2rem;
+        }
+        
+        & > .savePasswordButton{
+            // margin-top: 1rem;
+            margin-top: 4rem;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 120%;
+            display: flex;
+            align-items: center;
+            color: #FFFFFF;
+            // background: rgba(153, 153, 153, 0.8);
+            background: #4318FF;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.02);
+            border-radius: 8px;
+            padding: 20px 50px;
+            border: none;
+            cursor: pointer;
+
+            &:disabled{
+                opacity: 0.3;
+                cursor: not-allowed;
+            }
+        }
+    }
+
+    .profilePage__deleteButton{
+        width: 100%;
+        margin-top: 150px;
+        margin-bottom: 200px;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 120%;
+        color: #FFFFFF;
+        // background: rgba(153, 153, 153, 0.8);
+        background: red;
+        opacity: .5;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.02);
+        border-radius: 8px;
+        padding: 20px 50px;
+        border: none;
+        cursor: pointer;
+    }
 }

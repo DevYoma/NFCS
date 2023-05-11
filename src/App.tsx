@@ -7,20 +7,23 @@ import LandingPage from './Pages/LandingPage';
 import Register from './Pages/Register/Register';
 import Home from './Pages/Home/Home';
 import RequireAuth from './Components/RequireAuth';
-import Login from './Pages/Login';
+import Login from './Pages/Login/Login';
 import { useSelector, useDispatch } from 'react-redux'
 import { registeruser, logout } from './Features/user/userSlice'
 import { RootState } from './Features/store';
 import Test from './Components/Test';
 import Profile from './Pages/Profile/Profile';
 import How from './Pages/How/How';
+import TotalNumber from './Pages/ForgotPassword/ForgotPassword';
+import ForgotPassword from './Pages/ForgotPassword/ForgotPassword';
 
 function App() {
   
   const user = useSelector((state: RootState) => state.user.user)
   const dispatch = useDispatch()
 
-  console.log(user)
+  // LOGGING USER STATE BOOLEAN
+  // console.log(user)
 
   // useEffect(() => {
   //   if(user){
@@ -45,6 +48,8 @@ function App() {
         <Route path='/profile' element={ <Profile />} />
 
         <Route path='/app' element={<Home /> } />
+
+        <Route path='/forgot-password' element={<ForgotPassword /> } />
 
         <Route path="*" element={(<h1>404 page</h1>)}/>
       </Routes>

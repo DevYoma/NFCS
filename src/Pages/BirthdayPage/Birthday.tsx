@@ -1,5 +1,5 @@
 import { collection, doc, getDoc, getDocs } from '@firebase/firestore';
-import { CSSProperties, useEffect, useState } from 'react'
+import React, { CSSProperties, useEffect, useState } from 'react'
 import { auth, db } from '../../Firebase/Firebase';
 import './Birthday.scss';
 import BirthdayLogo from '../../assets/birthday.png'
@@ -26,6 +26,7 @@ type FbDataType = {
   }[]
 
 const Birthday = () => {
+  //contains all REGISTERED USERS and TOTAL NUMBER
     const [data, setData] = useState<FbDataType>([])
  
     const [selectedTeam, setSelectedTeam] = useState('')
@@ -60,16 +61,16 @@ const Birthday = () => {
       },
     ]
 
+    // Firebase User Result
     const [fbUser, setFbUser] = useState<any>(null);
 
     const user: boolean = useSelector((state: RootState) => state.user.user)
-    console.log(user);
+    // console.log(user);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const today = new Date();
   
-
     // USEEFFECT FOR GETTING ALL USER DATA FROM FB
     useEffect(() => {
         // dispatch(registeruser())
@@ -103,6 +104,9 @@ const Birthday = () => {
           }
     }, [dispatch]);
 
+    // Checking for all users (TOTAL NUMBER)
+    console.log(data.length)
+
      // USEEFEECT FOR PERSISTING USER AND USER DATA
      useEffect(() => {
       dispatch(registeruser());
@@ -126,8 +130,8 @@ const Birthday = () => {
       return parseInt((list.birthday.split("-")[2])) === parseInt((today.getDate() + 1).toString()) && parseInt(list.birthday.split("-")[1]) - 1 === today.getMonth()
     })
 
-    console.log(upComingBirthday);
-    console.log(today.getDate() -1);
+    // console.log(upComingBirthday);
+    // console.log(today.getDate() -1);
 
     // BIRTHDAY FOR THE DAY
     // console.log(filterByDate);
@@ -154,8 +158,9 @@ const Birthday = () => {
       const docSnap = await getDoc(docRef);
 
       const userDataResult: any = await (docSnap.data())
-      
-      console.log(userDataResult)
+
+      // USERDATA LOGGED TO CONSOLE
+      // console.log(userDataResult)
       setFbUser({
         ...fbUser,
         userDataResult
@@ -207,9 +212,10 @@ const Birthday = () => {
                 <section className='birthdayCard__container'>
                   { filterByDate.filter((value: any) => {
                     if(selectedTeam === ""){
+                      console.log(value);
                       return value
                     }else if(value?.team === selectedTeam){
-                      console.log(value);
+                      // console.log(value);
                       return value;
                     }
                   }).map((data: any) => (
@@ -220,11 +226,9 @@ const Birthday = () => {
                         </div>
 
                         <div className="birthdayCard__body">
-                          {/* <p className='birthdayCard__bodyDate'>{ordinal(Number(data.birthday.slice(8, 10)))} of {today.toLocaleString('default', {month: 'long'})}</p> */}
                           <p className="birthdayCard__bodyText">It's {data.name.split(" ")[1] ? data.name.split(" ")[1] : data.name.split(" ")[0]  } birthday today 🎂</p>
                         </div>
                       </div>
-                      // <BirthdayCard data={data}/>
                   ))}
                 </section>
               ) 

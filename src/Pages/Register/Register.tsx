@@ -21,6 +21,7 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { emailApi, emailServiceId, emailTemplateId } from '../../Email/Email';
 import Navbar from '../../Components/Navbar/Navbar';
 import { ClipLoader } from 'react-spinners';
+import TopOfPage from '../../utils/topOfPage';
 
 
 const Register = () => {
@@ -262,6 +263,9 @@ const Register = () => {
     }
 
     // console.log(formData)
+
+    // takes user to top of page
+    TopOfPage();
   return (
     <React.Fragment>
         <Navbar 
@@ -290,7 +294,7 @@ const Register = () => {
                     </div>
 
                     <div>
-                    <InputLabel id="department-id">Department</InputLabel>
+                        <InputLabel id="department-id">Department</InputLabel>
                         <Select
                             className='register__select'
                             labelId="department-id"
@@ -339,7 +343,6 @@ const Register = () => {
                             onChange={handleChange}
                         />
                     </div>
-
 
                     <div>
                         <InputLabel>Date of birth 📆</InputLabel>

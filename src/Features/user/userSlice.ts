@@ -20,6 +20,7 @@ export const userSlice = createSlice({
     //   state.value -= 1
     state.user = true
     },
+
     // logout: (state, action: PayloadAction<number>) => {
         logout: (state) => {
     //   state.value += action.payload

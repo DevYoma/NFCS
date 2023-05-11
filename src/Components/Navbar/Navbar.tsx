@@ -46,7 +46,7 @@ const Navbar = ({ hideLinks, hideDrawer, isLoggedIn }: NavbarProp) => {
 
     const navigate = useNavigate();
 
-    console.log(isLoggedIn);
+    // console.log(isLoggedIn);
   return (
     <nav id="navbar">
         <NavLink to={!isLoggedIn ? '/' : '#'} style={{textDecoration: "none"}}>

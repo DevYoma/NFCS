@@ -3,36 +3,29 @@ import './BoardCount.scss';
 type ProgressBarProp = {
     width?: number;
     backgroundColor: string;
-    name: string; // progress bar name
+    teamName: string; // progress bar name
+    teamNumber: number;
     percent: number;
-    border: string;
+    border?: string;
     opacity: number;
 }
 
-const BoardCount = ({ width, backgroundColor, name, percent, border, opacity }: ProgressBarProp) => {
+const BoardCount = ({ width, backgroundColor, teamName, teamNumber, percent, border, opacity }: ProgressBarProp) => {
   return (
     <div className="boardCount">
-        {/* <div className="boardCount__header">
-            <p>{name}</p>
-        </div> */}
+        <p className="boardCount__teamName">{teamName}: {teamNumber}</p>
         <div className="boardCount__progressBar" style={{
             border: border,
             height: "inherit", 
-            // background: "red",
+            background: "rgba(153, 153, 153, 0.1)"
         }}>
             <div className="boardCount__progressBarInner" 
                 style={{
                     width: `${percent}%`, 
-                    backgroundColor,
-                    opacity: `${opacity}%`,
-                    // border: "1px solid red",
-                    // marginLeft: "40px"
-                    // height: "100%"
+                    backgroundColor: `${backgroundColor}`,
+                    // opacity: `${opacity}%`,
                 }}
             >
-                <div>
-                    {/* <p>350 Registered {name} Members</p> */}
-                </div>
             </div>
         </div>
     </div>

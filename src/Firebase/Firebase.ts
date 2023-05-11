@@ -3,7 +3,6 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore"
 import { getStorage } from "firebase/storage"
-import { getMessaging, getToken } from "firebase/messaging";
 
 const firebaseConfig = {
   apiKey: `${process.env.REACT_APP_APIKEY}`,
