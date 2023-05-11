@@ -152,7 +152,7 @@ const Login = () => {
                   />
               </div>
 
-              <p className="login__forgotPassword">Forgot your password?<Link to={'#'} style={{color: "#4318FF"}}> Reset it here</Link></p>          
+              <p className="login__forgotPassword">Forgot your password?<Link to={'/forgot-password'} style={{color: "#4318FF"}}> Reset it here</Link></p>          
               <button className='login__button'>{loading ? (<ClipLoader color='white'/>) : 'Login'}</button>
             </form>
 

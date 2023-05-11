@@ -11,6 +11,7 @@ import Avatar from '../../assets/avatar.png';
 import { InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { departments } from '../../utils/helper';
 
+
 type userDataResultType = {
   birthday: string;
   department: string;
@@ -233,6 +234,7 @@ const Profile = () => {
 
           <p 
             className="profilePassword__subText"
+            onClick={() => navigate('/forgot-password')}
           >
             Tap here if you have forgotten your old password
           </p>
@@ -240,7 +242,7 @@ const Profile = () => {
             <InputLabel className='password__labels'>Student Email</InputLabel>
             <TextField
               className='password__fields'
-              type="text"
+              type="email"
               variant="outlined" 
               value={apiResponse?.email}
               disabled
