@@ -116,6 +116,12 @@ const Birthday = () => {
         if(authState){
           getDataFromId(authState?.uid);
         }
+        else if(authState === null){
+          navigate('/')
+        }
+        else{
+          navigate(-1); // PROTECTED ROUTE
+        }
       })
     }, [dispatch])
 

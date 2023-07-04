@@ -3,9 +3,13 @@ import React, { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import './LPNavDrawer.scss';
 import { Box } from '@mui/system';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import Button from '../../Atoms/Button/Button';
+import { auth } from '../../Firebase/Firebase';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../Features/user/userSlice';
+import { loggedOut } from '../../Features/userInfo/userinfoSlice';
 
 type MobileNavDrawer = {
     onMobileView?: boolean;
@@ -16,6 +20,18 @@ const LPNavDrawer = ({onMobileView, isLoggedIn}: MobileNavDrawer) => {
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
 
     // console.log(isLoggedIn);
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        auth.signOut().then(() => {
+            dispatch(logout())
+            dispatch(loggedOut);
+
+            navigate('/')
+        })
+    }
 
   return (
     <div className='lpNavDrawer'>
@@ -65,13 +81,12 @@ const LPNavDrawer = ({onMobileView, isLoggedIn}: MobileNavDrawer) => {
                     ) 
                     : 
                     (
-                        <NavLink
-                        to={'/'}
-                    >
-                            <Button buttonStyle={{ marginTop: "10px", padding: "10px 10px", background: "#8E98A8" }}>
-                                Log out
-                            </Button>
-                        </NavLink>
+                        <Button 
+                            buttonStyle={{ marginTop: "10px", padding: "10px 10px", background: "#8E98A8" }}
+                            onClick={handleLogout}
+                        >
+                            Log out
+                        </Button>
                     )
                 }
             </Box>

@@ -17,7 +17,7 @@ import { ClipLoader } from 'react-spinners';
 import TopOfPage from '../../utils/topOfPage';
 
 const Login = () => {
-  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
 
   const [loading, setLoading] = useState(false);
 

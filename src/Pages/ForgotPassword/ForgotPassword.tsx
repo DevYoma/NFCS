@@ -13,7 +13,8 @@ const ForgotPassword = () => {
 
     // alert(email)
     
-    sendPasswordResetEmail(auth, email, {url: 'http://localhost:3000/login'})
+    // find a way to conditionally route to localhost and hostedSite based on a given condition
+    sendPasswordResetEmail(auth, email, {url: 'http://localhost:3000/login'}) 
     .then((res: any) => {
       console.log(res)
       alert("Email Sent, check your email")
@@ -29,7 +30,7 @@ const ForgotPassword = () => {
       
       <div className="forgotPassword">
         <h1 className="forgotPassword__header">Password Reset</h1>
-        <p className="forgotPassword__subText">A reset password OTP would be sent to the mobile number below</p>
+        <p className="forgotPassword__subText">A reset password OTP would be sent to your email address</p>
 
         <form className="forgotPassword__form">
           <div>

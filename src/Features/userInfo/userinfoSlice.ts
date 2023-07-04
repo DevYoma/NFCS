@@ -19,8 +19,10 @@ export const userInfoSlice = createSlice({
     },
     // logout: (state, action: PayloadAction<number>) => {
     loggedOut: (state) => {
-        // localStorage.clear();
-        state.userInfo = null;
+      // localStorage.removeItem(); ITS EITHER YOU REMOVEITEM OR JUST CLEAR 
+      // REMOVEITEMS 
+      state.userInfo = null;
+      localStorage.removeItem("formValues"); 
     }
   },
 })

@@ -1,17 +1,23 @@
-import React, {  useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import Logo from '../../Atoms/Logo/Logo'
 import { useNavigate } from 'react-router-dom';
 import './Navbar.scss';
 import LPNavDrawer from '../LPNavDrawer/LPNavDrawer';
+import { auth } from '../../Firebase/Firebase';
+import { signOut } from 'firebase/auth';
+import { logout } from '../../Features/user/userSlice';
+import { loggedOut } from '../../Features/userInfo/userinfoSlice';
+import { useDispatch } from 'react-redux';
 
 type NavbarProp = {
     hideLinks?: boolean; 
     hideDrawer?: boolean;
     isLoggedIn?: boolean;
+    hideBoxShadow?: boolean;
 }
 
-const Navbar = ({ hideLinks, hideDrawer, isLoggedIn }: NavbarProp) => {
+const Navbar = ({ hideLinks, hideDrawer, isLoggedIn, hideBoxShadow }: NavbarProp) => {
     const [links] = useState([
         {
             id: 1,
@@ -45,10 +51,28 @@ const Navbar = ({ hideLinks, hideDrawer, isLoggedIn }: NavbarProp) => {
     ])
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     // console.log(isLoggedIn);
+
+    const handleLogout = () => {
+        signOut(auth).then(() => {
+            dispatch(logout());
+            dispatch(loggedOut())
+            navigate('/');
+        }).catch((error: any) => {
+            alert(error)
+        })
+        // localStorage.removeItem("formValues");
+
+    }
+
   return (
-    <nav id="navbar">
+    <nav id="navbar" 
+        className={`
+            ${hideBoxShadow ? 'navbar__shadow' : ''}
+        `}
+    >
         <NavLink to={!isLoggedIn ? '/' : '#'} style={{textDecoration: "none"}}>
             <Logo />
         </NavLink>
@@ -80,7 +104,7 @@ const Navbar = ({ hideLinks, hideDrawer, isLoggedIn }: NavbarProp) => {
             
             {isLoggedIn ? 
             (<button
-                onClick={() => navigate('/')} 
+                onClick={handleLogout} 
                 className="navbar__loginOutBtn"
             >
                 Logout
