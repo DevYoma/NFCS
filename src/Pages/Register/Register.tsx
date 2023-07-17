@@ -217,6 +217,7 @@ const Register = () => {
             
             const registerUserFB = await createUserWithEmailAndPassword(auth, formData.email, formData.password)
             console.log(registerUserFB)
+            console.log(registerUserFB.user.emailVerified)
 
             // Sending Emails to users
             let message = `
@@ -250,7 +251,7 @@ const Register = () => {
 
             navigate('/birthday');
 
-            await sendEmailVerification(registerUserFB.user) // verifying email
+            // await sendEmailVerification(registerUserFB.user) => this actually works
         } catch(error: any){
             setLoading(false)
             notify(error.message);
