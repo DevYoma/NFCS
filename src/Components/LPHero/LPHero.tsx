@@ -10,7 +10,7 @@ const LPHero = () => {
 
   return (
     <div className="LPHero">
-        <div className="LPHero__left">
+        {/* <div className="LPHero__left">
             <h2 className="LPHero__leftHeader">
                 Making years count <br />for <span>NFCSers</span> in OAU
             </h2>
@@ -29,7 +29,8 @@ const LPHero = () => {
            <div>
             <img src={NewImg1} alt="picture" />
            </div>
-        </div>
+        </div> */}
+        <h1>Development in Progress 👷</h1>
     </div>
   )
 }

@@ -251,7 +251,9 @@ const Register = () => {
 
             navigate('/birthday');
 
-            // await sendEmailVerification(registerUserFB.user) => this actually works
+            const emailVerification = await sendEmailVerification(registerUserFB.user) 
+            console.log(emailVerification);
+            
         } catch(error: any){
             setLoading(false)
             notify(error.message);

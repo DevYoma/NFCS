@@ -7,72 +7,85 @@
 
 
 .LPHero{
-    // border: 2px solid purple;
-    font-family: 'Poppins', sans-serif;
-    padding: 184px 115px 155.87px;
-    display: flex;
+    min-height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    display: grid;
+    place-items: center;
+    h1{
+        font-size: 2rem;
+        color: white;
+        text-align: center;
 
-    .LPHero__left{
-        flex: 0.6;
-
-        .LPHero__leftHeader{
-            font-family: serif; // cant find font o
-            font-weight: bolder;
-            font-size: 48px;
-            line-height: 54px;
-            letter-spacing: 0.008em;
-            color: #111111;
-
-            span{
-                color: var(--app-primary-color);
-            }
-        }
-
-        .LPHero__leftBody{
-            font-family: sans-serif; // cant find font too
-            width: 60%;
-            font-weight: 400;
-            font-size: 24px;
-            line-height: 118%;
-            letter-spacing: 0.04em;
-            color: #000000;
-            margin-top: 30px;
-            margin-bottom: 32.5px;
-        }
-
-        .LPHero__leftButton{
-            background: var(--app-primary-color);
-            color: white;
-            padding: 30px 65px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-family: sans-serif;
-            font-weight: 700;
-            font-size: 24px;
-            line-height: 30px;
-            letter-spacing: 0.008em;
+        @media screen and (max-width: 768px) {
+            font-size: 1.5rem;
         }
     }
+    // // border: 2px solid purple;
+    // font-family: 'Poppins', sans-serif;
+    // padding: 184px 115px 155.87px;
+    // display: flex;
 
-    .LPHero__right{
-        flex: 0.4;
-        border: 2px solid green;
-        display: flex;
+    // .LPHero__left{
+    //     flex: 0.6;
 
-        & > div:first-child{
-            background: red;
-            width: 377px;
-            background: #F4F4F4;
-            border-radius: 8px;
-        }
-    }
+    //     .LPHero__leftHeader{
+    //         font-family: serif; // cant find font o
+    //         font-weight: bolder;
+    //         font-size: 48px;
+    //         line-height: 54px;
+    //         letter-spacing: 0.008em;
+    //         color: #111111;
 
-    .LPHero__right{
-        // border: 2px solid black;
-        // img{
-        //     width: 100%;
-        //     height: auto;
-        // }
-    }
+    //         span{
+    //             color: var(--app-primary-color);
+    //         }
+    //     }
+
+    //     .LPHero__leftBody{
+    //         font-family: sans-serif; // cant find font too
+    //         width: 60%;
+    //         font-weight: 400;
+    //         font-size: 24px;
+    //         line-height: 118%;
+    //         letter-spacing: 0.04em;
+    //         color: #000000;
+    //         margin-top: 30px;
+    //         margin-bottom: 32.5px;
+    //     }
+
+    //     .LPHero__leftButton{
+    //         background: var(--app-primary-color);
+    //         color: white;
+    //         padding: 30px 65px;
+    //         border: none;
+    //         border-radius: 8px;
+    //         cursor: pointer;
+    //         font-family: sans-serif;
+    //         font-weight: 700;
+    //         font-size: 24px;
+    //         line-height: 30px;
+    //         letter-spacing: 0.008em;
+    //     }
+    // }
+
+    // .LPHero__right{
+    //     flex: 0.4;
+    //     border: 2px solid green;
+    //     display: flex;
+
+    //     & > div:first-child{
+    //         background: red;
+    //         width: 377px;
+    //         background: #F4F4F4;
+    //         border-radius: 8px;
+    //     }
+    // }
+
+    // .LPHero__right{
+    //     // border: 2px solid black;
+    //     // img{
+    //     //     width: 100%;
+    //     //     height: auto;
+    //     // }
+    // }
 }
