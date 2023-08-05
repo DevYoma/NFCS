@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './Login.scss';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import {  registeruser } from '../../Features/user/userSlice'
 import { loggedIn } from '../../Features/userInfo/userinfoSlice';
@@ -9,7 +9,7 @@ import { signInWithEmailAndPassword } from '@firebase/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import TextField from '@mui/material/TextField';
-import Logo from '../assets/nfcsLogonew.svg'
+// import Logo from '../assets/nfcsLogonew.svg'
 import { InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import Navbar from '../../Components/Navbar/Navbar';
@@ -58,7 +58,7 @@ const Login = () => {
       dispatch(loggedIn({
         email: loginData.email,
       }))
-      console.log(loginData)
+      // console.log(loginData)
       // navigate('/home')
     }
 
@@ -69,8 +69,7 @@ const Login = () => {
 
         setLoading(true)
 
-        const loginUserFB = await signInWithEmailAndPassword(auth, loginData.email, loginData.password)
-        console.log(loginUserFB)
+        await signInWithEmailAndPassword(auth, loginData.email, loginData.password)
         navigate('/birthday')
       }catch(error: any){
         // alert(error);

@@ -1,4 +1,4 @@
-import { Drawer, IconButton, Menu, Typography } from '@mui/material';
+import { Drawer, IconButton, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import './LPNavDrawer.scss';

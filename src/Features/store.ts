@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import userReducer from '../Features/user/userSlice'
 import userInfoReducer from '../Features/userInfo/userinfoSlice'
-import userStatsStateSlice from '../Features/userStats/userStatsSlice'
+// import userStatsStateSlice from '../Features/userStats/userStatsSlice'
 export const store = configureStore({
   reducer: {
     user: userReducer,

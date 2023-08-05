@@ -26,9 +26,9 @@
     }
 
     &__reasons{
-        max-width: 1200px;
-        // border: 1px solid orange;
-        // border: 2px solid yellow;
+        // max-width: 1200px;
+        margin-inline: auto;
+        // border: 2px solid red;
         margin-inline: auto;
         margin-top: 100px;
         display: flex;
@@ -45,7 +45,7 @@
         }
 
         .lpWhy__reason{
-            // border: 3px solid yellow;
+            // border: 3px solid yellow;   
             display: flex;
             align-items: baseline;
 

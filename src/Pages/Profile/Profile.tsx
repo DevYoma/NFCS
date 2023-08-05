@@ -1,27 +1,27 @@
-import { deleteDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
+import {  doc, getDoc, updateDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { logout, registeruser } from '../../Features/user/userSlice';
-import { loggedOut } from '../../Features/userInfo/userinfoSlice';
+import {  registeruser } from '../../Features/user/userSlice';
+// import { loggedOut } from '../../Features/userInfo/userinfoSlice';
 import { auth, db } from '../../Firebase/Firebase';
 import './Profile.scss';
-import { Link, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import Navbar from '../../Components/Navbar/Navbar';
-import Avatar from '../../assets/avatar.png';
-import { InputLabel, MenuItem, Select, TextField } from '@mui/material';
-import { departments } from '../../utils/helper';
+import { InputLabel, TextField } from '@mui/material';
+// import Avatar from '../../assets/avatar.png';
+// import { departments } from '../../utils/helper';
 
 
-type userDataResultType = {
-  birthday: string;
-  department: string;
-  email: string;
-  img: string;
-  name: string;
-  team: string;
-  teampass: string;
-  timeStamp: Date;
-}
+// type userDataResultType = {
+//   birthday: string;
+//   department: string;
+//   email: string;
+//   img: string;
+//   name: string;
+//   team: string;
+//   teampass: string;
+//   timeStamp: Date;
+// }
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -52,7 +52,7 @@ const Profile = () => {
       navigate(-1); // PROTECTED ROUTE
     }
   })
-}, [])
+}, [dispatch,  navigate])
 
   // GETTING LOGGED IN USER DETAILS.
   const getDataFromId = async (id: number | string | any) => {
@@ -62,7 +62,7 @@ const Profile = () => {
 
     const userDataResult: any = await (docSnap.data())
     
-    console.log(userDataResult) // RETURNS USER DETAILS
+    // console.log(userDataResult) // RETURNS USER DETAILS
     setFbUser({
       ...fbUser,
       userDataResult
@@ -78,10 +78,10 @@ const Profile = () => {
 
   const handleNameUpdate = (e:any) => {
     e.preventDefault();
-    // if (newName !== ''){
-    //   alert("Name has been updated")
-    //   return;
-    // }
+    if (newName === ' ' || newName.length <= 3){
+      alert("Enter a Valid name")
+      return;
+    }
 
     // alert(`Name updated to ${newName}`)
     alert('Data has been updated')
@@ -123,26 +123,20 @@ const Profile = () => {
   }
 
   // HANDLING LOGOUT
-  const handleLogout = () => {
-      auth.signOut().then(() => {
-        dispatch(logout());
-        dispatch(loggedOut)
+  // const handleLogout = () => {
+  //     auth.signOut().then(() => {
+  //       dispatch(logout());
+  //       dispatch(loggedOut)
   
-        navigate('/')
-      })
-}
+  //       navigate('/')
+  //     })
+  // }
 
-  const handleDelete = async (id: string) => {
-    // DELETING USER DETAIL
-    const userDoc = doc(db, "users", id)
-    await deleteDoc(userDoc)
-
-    // ROUTING USER TO LANDING PAGE
-    handleLogout();
-
-    // MAKE A COLLECTION OF EMAILS OF DELETED USERS
-
-  }
+  // const handleDelete = async (id: string) => {
+  //   const userDoc = doc(db, "users", id)
+  //   await deleteDoc(userDoc)
+  //   handleLogout();
+  // }
 
   return (
     <React.Fragment>
@@ -288,4 +282,3 @@ const Profile = () => {
 }
 
 export default Profile
-{/* <button onClick={() => handleDelete(userId)}>Delete Account</button> */}

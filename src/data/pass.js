@@ -7,13 +7,3 @@ export const pass =
     'jordan5', 
     'nile6'
 ]
-
-
-// .then(() => {
-//     if(!auth.currentUser.emailVerified) {
-//       sendEmailVerification(auth.currentUser)
-//       .then(() => {
-//         setTimeActive(true)
-//         history.push('/verify-email')
-//       })
-//     .catch(err => alert(err.message))

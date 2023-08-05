@@ -1,21 +1,19 @@
 import { collection, doc, getDoc, getDocs } from '@firebase/firestore';
-import React, { CSSProperties, useEffect, useState } from 'react'
+import { CSSProperties, useEffect, useState } from 'react'
 import { auth, db } from '../../Firebase/Firebase';
 import './Birthday.scss';
-import BirthdayLogo from '../../assets/birthday.png'
-// import { useDispatch } from 'react-redux';
-import { ordinal } from '../../utils/helper';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import PuffLoader from "react-spinners/PuffLoader";
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../Features/store';
-import { useNavigate, Navigate } from 'react-router-dom'
-import BirthdayCard from '../../Components/BirthdayCard/BirthdayCard';
-import { registeruser, logout } from '../../Features/user/userSlice';
+import { useNavigate } from 'react-router-dom'
+import { registeruser } from '../../Features/user/userSlice';
 import Navbar from '../../Components/Navbar/Navbar';
+// import { ordinal } from '../../utils/helper';
+// import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+// import BirthdayCard from '../../Components/BirthdayCard/BirthdayCard';
 
 
-type FbDataType = {
+export type FbDataType = {
     id: string | number;
     name: string;
     team: string;
@@ -95,24 +93,26 @@ const Birthday = () => {
             }catch(error) {
               console.log(error);
             }
-          }
+        }
 
           fetchData();
     
-          return () => {
-            fetchData();
-          }
-    }, [dispatch]);
+          // return () => {
+          //   fetchData();
+          // }
+    }, []);
+
+    // console.log(data);
 
     // Checking for all users (TOTAL NUMBER)
-    console.log(data.length)
+    // console.log(data.length)
 
      // USEEFEECT FOR PERSISTING USER AND USER DATA
      useEffect(() => {
       dispatch(registeruser());
 
       auth.onAuthStateChanged(authState => {
-        console.log("User Id: " + authState?.uid);
+        // console.log("User Id: " + authState?.uid);
         if(authState){
           getDataFromId(authState?.uid);
         }
@@ -135,12 +135,6 @@ const Birthday = () => {
     const upComingBirthday = data.filter(list => {
       return parseInt((list.birthday.split("-")[2])) === parseInt((today.getDate() + 1).toString()) && parseInt(list.birthday.split("-")[1]) - 1 === today.getMonth()
     })
-
-    // console.log(upComingBirthday);
-    // console.log(today.getDate() -1);
-
-    // BIRTHDAY FOR THE DAY
-    // console.log(filterByDate);
 
       // SPINNER
       const override: CSSProperties = {
@@ -189,7 +183,7 @@ const Birthday = () => {
             <div className="birthdayPage__header">
               <div className="birthdayPage__headerDetails">
                 <h1>Hi {apiResponse?.name}</h1>
-                <p>welcome back!</p>
+                <p>welcome</p>
               </div>
 
               {/* SEARCH FUNCTIONALITY */}
@@ -218,7 +212,7 @@ const Birthday = () => {
                 <section className='birthdayCard__container'>
                   { filterByDate.filter((value: any) => {
                     if(selectedTeam === ""){
-                      console.log(value);
+                      // console.log(value);
                       return value
                     }else if(value?.team === selectedTeam){
                       // console.log(value);

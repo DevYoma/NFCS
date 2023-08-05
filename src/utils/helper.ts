@@ -33,28 +33,248 @@ export const teams = [
 // DEPARTMENTS
 export const departments = [
   {
-    label: "Music", 
-    value: "music"
+    "label": "Accounting",
+    "value": "accounting"
   },
   {
-    label: "Electrical Electronics Engineering",
-    value: "electrical electronics engineering"
+    "label": "Adult Education and Lifelong Learning",
+    "value": "adult education and lifelong learning"
   },
   {
-    label: "Medicine and Surgery",
-    value: "medicine and surgery"
+    "label": "Agricultural and Environmental Engineering",
+    "value": "agricultural and environmental engineering"
   },
   {
-    label: "Mechanical Engineering",
-    value: "mechanical engineering"
+    "label": "Agricultural Economics",
+    "value": "agricultural economics"
   },
   {
-    label: "Law", 
-    value: "law"
+    "label": "Agricultural Extension and Rural Sociology",
+    "value": "agricultural extension and rural sociology"
   },
   {
-    label: "Computer Science",
-    value: "computer science"
+    "label": "Animal Science",
+    "value": "animal science"
+  },
+  {
+    "label": "Applied Geophysics",
+    "value": "applied geophysics"
+  },
+  {
+    "label": "Architecture",
+    "value": "architecture"
+  },
+  {
+    "label": "Biochemistry",
+    "value": "biochemistry"
+  },
+  {
+    "label": "Botany",
+    "value": "botany"
+  },
+  {
+    "label": "Building",
+    "value": "building"
+  },
+  {
+    "label": "Business Administration",
+    "value": "business administration"
+  },
+  {
+    "label": "Chemical Engineering",
+    "value": "chemical engineering"
+  },
+  {
+    "label": "Chemistry",
+    "value": "chemistry"
+  },
+  {
+    "label": "Civil Engineering",
+    "value": "civil engineering"
+  },
+  {
+    "label": "Computer Engineering",
+    "value": "computer engineering"
+  },
+  {
+    "label": "Computer Science with Economics",
+    "value": "computer science with economics"
+  },
+  {
+    "label": "Computer Science with Mathematics",
+    "value": "computer science with mathematics"
+  },
+  {
+    "label": "Crop Production And Protection",
+    "value": "crop production and protection"
+  },
+  {
+    "label": "Demography and Social Statistics",
+    "value": "demography and social statistics"
+  },
+  {
+    "label": "Dentistry",
+    "value": "dentistry"
+  },
+  {
+    "label": "Dramatic Arts",
+    "value": "dramatic arts"
+  },
+  {
+    "label": "Economics",
+    "value": "economics"
+  },
+  {
+    "label": "Educational Management",
+    "value": "educational management"
+  },
+  {
+    "label": "Educational Technology",
+    "value": "educational technology"
+  },
+  {
+    "label": "English Language",
+    "value": "english language"
+  },
+  {
+    "label": "Entrepreneurship",
+    "value": "entrepreneurship"
+  },
+  {
+    "label": "Estate Management",
+    "value": "estate management"
+  },
+  {
+    "label": "Family, Nutrition, and Consumer Sciences",
+    "value": "family, nutrition, and consumer sciences"
+  },
+  {
+    "label": "Fine Arts",
+    "value": "fine arts"
+  },
+  {
+    "label": "Food Science and Technology",
+    "value": "food science and technology"
+  },
+  {
+    "label": "Geography",
+    "value": "geography"
+  },
+  {
+    "label": "Geology",
+    "value": "geology"
+  },
+  {
+    "label": "Guidance and Counseling",
+    "value": "guidance and counseling"
+  },
+  {
+    "label": "Health Education",
+    "value": "health education"
+  },
+  {
+    "label": "History and International Studies",
+    "value": "history and international studies"
+  },
+  {
+    "label": "Law",
+    "value": "law"
+  },
+  {
+    "label": "Library and Information Studies",
+    "value": "library and information studies"
+  },
+  {
+    "label": "Linguistics and African Languages",
+    "value": "linguistics and african languages"
+  },
+  {
+    "label": "Mathematics",
+    "value": "mathematics"
+  },
+  {
+    "label": "Materials Science and Engineering",
+    "value": "materials science and engineering"
+  },
+  {
+    "label": "Mechanical Engineering",
+    "value": "mechanical engineering"
+  },
+  {
+    "label": "Medical Rehabilitation",
+    "value": "medical rehabilitation"
+  },
+  {
+    "label": "Medicine and Surgery",
+    "value": "medicine and surgery"
+  },
+  {
+    "label": "Microbiology",
+    "value": "microbiology"
+  },
+  {
+    "label": "Music",
+    "value": "music"
+  },
+  {
+    "label": "Nursing",
+    "value": "nursing"
+  },
+  {
+    "label": "Philosophy",
+    "value": "philosophy"
+  },
+  {
+    "label": "Physical and Health Education",
+    "value": "physical and health education"
+  },
+  {
+    "label": "Physics and Engineering Physics",
+    "value": "physics and engineering physics"
+  },
+  {
+    "label": "Political Science",
+    "value": "political science"
+  },
+  {
+    "label": "Psychology",
+    "value": "psychology"
+  },
+  {
+    "label": "Public Administration",
+    "value": "public administration"
+  },
+  {
+    "label": "Quantity Surveying",
+    "value": "quantity surveying"
+  },
+  {
+    "label": "Religious Studies",
+    "value": "religious studies"
+  },
+  {
+    "label": "Soil Science",
+    "value": "soil science"
+  },
+  {
+    "label": "Statistics",
+    "value": "statistics"
+  },
+  {
+    "label": "Sociology and Anthropology",
+    "value": "sociology and anthropology"
+  },
+  {
+    "label": "Urban and Regional Planning",
+    "value": "urban and regional planning"
+  },
+  {
+    "label": "Yoruba",
+    "value": "yoruba"
+  },
+  {
+    "label": "Zoology",
+    "value": "zoology"
   }
 ]
 

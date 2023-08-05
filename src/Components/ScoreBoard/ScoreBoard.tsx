@@ -1,9 +1,19 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom';
 import BoardCount from '../../Molecules/BoardCount/BoardCount';
 import './ScoreBoard.scss';
 
-const ScoreBoard = () => {
+type ScoreBoardProps = {
+    totalNumber: number;
+    bethanyTeamNumber: number;
+    capernaumTeamNumber: number;
+    galileeTeamNumber: number;
+    jerichoTeamNumber: number;
+    jordanTeamNumber: number;
+    nileTeamNumber: number;
+}
+
+const ScoreBoard = (props: ScoreBoardProps) => {
+    // console.log(props);
     return (
         <div className="scoreBoard">
 
@@ -16,56 +26,50 @@ const ScoreBoard = () => {
             <div className="scoreBoard__body">
 
                 <BoardCount 
-                    teamName='Jericho'
-                    teamNumber={390}
-                    backgroundColor='#3212BF'
+                    teamName='Bethany'
+                    teamNumber={props.bethanyTeamNumber}
                     border='0.5px solid lightgrey'
-                    percent={80}
+                    percent={(props.bethanyTeamNumber / props.totalNumber) * 100 || 7}
                     opacity={70}
                 />
 
                 <BoardCount 
-                    teamName='Bethany'
-                    teamNumber={350}
-                    backgroundColor='#3212BF'
+                    teamName='Capernaum'
+                    teamNumber={props.capernaumTeamNumber}
                     border='0.5px solid lightgrey'
-                    percent={70}
+                    percent={(props.capernaumTeamNumber / props.totalNumber) * 100 || 2}
                     opacity={70}
                 />             
 
                 <BoardCount 
-                    teamName='Nile'
-                    teamNumber={330}
-                    backgroundColor='#3212BF'
-                    border='0.5px solid lightgrey'
-                    percent={65}
-                    opacity={70}
-                />   
-
-                <BoardCount 
                     teamName='Galilee'
-                    teamNumber={300}
-                    backgroundColor='#3212BF'
+                    teamNumber={props.galileeTeamNumber}
                     border='0.5px solid lightgrey'
-                    percent={58}
+                    percent={(props.galileeTeamNumber / props.totalNumber) * 100 || 14}
                     opacity={70}
                 />   
 
                 <BoardCount 
-                    teamName='Carpernaum '
-                    teamNumber={280}
-                    backgroundColor='#3212BF'
+                    teamName='Jericho'
+                    teamNumber={props.jerichoTeamNumber}
                     border='0.5px solid lightgrey'
-                    percent={50}
+                    percent={(props.jerichoTeamNumber / props.totalNumber) * 100 || 27}
                     opacity={70}
                 />   
 
                 <BoardCount 
-                    teamName='Jordan'
-                    teamNumber={220}
-                    backgroundColor='#3212BF'
+                    teamName='Jordan '
+                    teamNumber={props.jordanTeamNumber}
                     border='0.5px solid lightgrey'
-                    percent={40}
+                    percent={(props.jordanTeamNumber / props.totalNumber) * 100 || 10}
+                    opacity={70}
+                />   
+
+                <BoardCount 
+                    teamName='Nile'
+                    teamNumber={props.nileTeamNumber}
+                    border='0.5px solid lightgrey'
+                    percent={(props.nileTeamNumber / props.totalNumber) * 100 || 10}
                     opacity={70}
                 />   
             </div>
@@ -74,6 +78,3 @@ const ScoreBoard = () => {
   }
 
 export default ScoreBoard
-
-// Header => Serif
-// body => san serif
