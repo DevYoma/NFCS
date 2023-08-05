@@ -1,18 +1,18 @@
 import './Home.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import {  logout, registeruser } from '../../Features/user/userSlice'
+import { registeruser } from '../../Features/user/userSlice'
 import { RootState } from '../../Features/store';
-import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { loggedOut } from '../../Features/userInfo/userinfoSlice';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { collection, getDoc, getDocs, doc } from "firebase/firestore";
 import { auth, db } from '../../Firebase/Firebase';
-import SkeletonUserLoading from '../../Components/Skeletons/SkeletonUserLoading';
 import {LazyLoadImage}  from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import { InputAdornment, TextField } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
 import Navbar from '../../Components/Navbar/Navbar';
+// import { loggedOut } from '../../Features/userInfo/userinfoSlice';
+// import SkeletonUserLoading from '../../Components/Skeletons/SkeletonUserLoading';
+// import { InputAdornment, TextField } from '@mui/material';
+// import SearchIcon from '@mui/icons-material/Search';
     
 export type FbDataType = {
   id: string | number;
@@ -37,7 +37,7 @@ const Home = () => {
     const dispatch = useDispatch()
 
     // userInfo details
-    const userInfo: any = useSelector((state: RootState) => state.userInfo.userInfo)
+    // const userInfo: any = useSelector((state: RootState) => state.userInfo.userInfo)
 
     // console.log(userInfo);
 
@@ -50,9 +50,7 @@ const Home = () => {
 
     // USEEFFECT TO FETCH DATA COLLECTION FROM FIRESTORE.
     useEffect(() => {
-
       // dispatch(registeruser());
-
       window.addEventListener("popstate", e => {
         navigate(1);
       })
@@ -76,9 +74,9 @@ const Home = () => {
 
         fetchData();
   
-        return () => {
-          fetchData();
-        }
+        // return () => {
+        //   fetchData();
+        // }
     }, [dispatch]);
 
     // USEEFEECT FOR PERSISTING USER AND USER DATA

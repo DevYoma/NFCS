@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import './Register.scss'
 import {  Link, useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { registeruser } from '../../Features/user/userSlice'
 import { loggedIn } from '../../Features/userInfo/userinfoSlice';
-import { RootState } from '../../Features/store';
+// import { RootState } from '../../Features/store';
 import { pass } from '../../data/pass';
 import { auth, db, storage } from '../../Firebase/Firebase';
-import { createUserWithEmailAndPassword, sendEmailVerification } from '@firebase/auth';
+import { createUserWithEmailAndPassword } from '@firebase/auth';
 import { doc, serverTimestamp, setDoc } from '@firebase/firestore';
 import { ref, uploadBytesResumable, getDownloadURL } from '@firebase/storage';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import emailjs from '@emailjs/browser';
 import { teams, departments } from '../../utils/helper';
-import NfcsLogo2 from '../../assets/nfcsLogo2.svg'; 
+// import NfcsLogo2 from '../../assets/nfcsLogo2.svg'; 
 import { InputAdornment, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import ImageIcon from '@mui/icons-material/Image';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -34,14 +34,16 @@ const Register = () => {
 
     const [file, setFile] = useState<any>(null)
 
+    const [password, setPassword] = useState("");
+
     const [formData, setFormData] = useState({
         name: "",
         department: "",
-        // level: "none",
         team: "",
         birthday: "",
         email: "",
-        password: "", 
+        // password: "", 
+        telephone: "",
         teampass: ""
     })
 
@@ -135,8 +137,6 @@ const Register = () => {
         file && uploadFile();
     }, [file])
 
-    
-
       // HANDLING FORM SUBMIT
     const handleSubmit = async (e: any) => {
         e.preventDefault();
@@ -146,8 +146,6 @@ const Register = () => {
         
         // TEAMPASS  CHECK
         if(!pass.includes(formData.teampass)){
-            // alert("Please enter a valid team pass")
-            // toast.error("Please enter a valid team pass")
             notify("Please enter a valid team pass")
             setLoading(false)
             return;
@@ -155,8 +153,6 @@ const Register = () => {
 
         // TEAMPASS X TEAM CHECK
         if(!formData.teampass.includes(formData.team)){
-            // alert("Your team pass does not match your team")
-            // toast.error("Your team pass does not match your team")
             notify("Your team pass does not match your team")
             setLoading(false)
             return;
@@ -164,7 +160,6 @@ const Register = () => {
 
         // EMAIL CHECK
         if(!formData.email.includes('student.oauife.edu.ng')){
-            // alert("This is not a valid email address")
             notify("This is not a valid email address")
             setLoading(false)
             return;
@@ -174,14 +169,15 @@ const Register = () => {
         if(formData.birthday === "" || 
            formData.department === "" || 
            formData.email === "" ||  
-           formData.password === "" || 
+           formData.telephone === "" || 
            formData.team === "" || 
            formData.name === "" || 
-           formData.teampass === "" )
+           formData.teampass === "" || 
+           password === "")
            {
             // alert("Please Check the form again and enter your details correctly.")
             // toast.error("Please check the form again and enter your details correctly")
-            notify("Please check the form again and enter your details correctly")
+            notify("Please check the form again and enter your details correctly");
 
             // SETTING THE LOADING STATE ON BUTTON TO FALSE
             setLoading(false);
@@ -190,7 +186,7 @@ const Register = () => {
         }
         else{
             // START IMAGE PROCESSING HERE => the file onChange={(e: any) => setFile(e.target.files[0])} => so this means you must have a file useState.
-            console.log(formData)
+            // console.log(formData)
             
             localStorage.setItem("formValues", JSON.stringify(formData))
             dispatch(registeruser())
@@ -215,9 +211,9 @@ const Register = () => {
             // SETTING THE LOADING STATE TO FALSE
             setLoading(true);
             
-            const registerUserFB = await createUserWithEmailAndPassword(auth, formData.email, formData.password)
-            console.log(registerUserFB)
-            console.log(registerUserFB.user.emailVerified)
+            const registerUserFB = await createUserWithEmailAndPassword(auth, formData.email, password)
+            // console.log(registerUserFB)
+            // console.log(registerUserFB.user.emailVerified)
 
             // Sending Emails to users
             let message = `
@@ -251,8 +247,8 @@ const Register = () => {
 
             navigate('/birthday');
 
-            const emailVerification = await sendEmailVerification(registerUserFB.user) 
-            console.log(emailVerification);
+            // const emailVerification = await sendEmailVerification(registerUserFB.user) 
+            // console.log(emailVerification);
             
         } catch(error: any){
             setLoading(false)
@@ -385,6 +381,20 @@ const Register = () => {
                     <div>
                         <TextField 
                             className="register__input"
+                            type="number"
+                            label='Phone Number'
+                            variant="outlined" 
+                            name="telephone"
+                            placeholder='09039393939'
+                            required
+                            value={formData.telephone}
+                            onChange={handleChange}
+                        />
+                    </div>
+
+                    <div>
+                        <TextField 
+                            className="register__input"
                             type="text"
                             label='Student Email'
                             variant="outlined" 
@@ -405,8 +415,8 @@ const Register = () => {
                             name="password"
                             placeholder='password'
                             required
-                            value={formData.password}
-                            onChange={handleChange}
+                            value={password}
+                            onChange={(e: any) => setPassword(e.target.value)}
                             InputProps={{
                                 endAdornment: (
                                 <InputAdornment 

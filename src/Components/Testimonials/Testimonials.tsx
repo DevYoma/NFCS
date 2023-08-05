@@ -1,6 +1,5 @@
 import './Testimonials.scss'
 import Testimonial1 from '../../assets/testimonial1.png'
-import Testimonial2 from '../../assets/testimonial2.png'
 
 const Testimonials = () => {
   return (

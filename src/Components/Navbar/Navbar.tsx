@@ -1,5 +1,5 @@
-import React, {  useEffect, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import Logo from '../../Atoms/Logo/Logo'
 import { useNavigate } from 'react-router-dom';
 import './Navbar.scss';

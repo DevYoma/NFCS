@@ -11,33 +11,18 @@ const LPWhy = () => {
   const [lists] = useState<WhyProp[]>([
     {
       id: 1,
-      reason: "Convinience", 
-      text: "It's time to stop jumping buses and sweating tirelessly to get to work."
+      reason: "BIRTHDAY REMINDERS", 
+      text: "Team Leaders and Members can use this product to keep track of the birthdays of their team members, making it easier for them to acknowledge and celebrate each person on their special day"
     },
     {
       id: 2,
-      reason: "Convinience", 
-      text: "It's time to stop jumping buses and sweating tirelessly to get to work."
+      reason: "MEMBER PROFILES", 
+      text: "Team leaders will have a consistent pool of data on their team members, including contact information and other important details. "
     },
     {
       id: 3,
-      reason: "Convinience", 
-      text: "It's time to stop jumping buses and sweating tirelessly to get to work."
-    },
-    {
-      id: 4,
-      reason: "Convinience", 
-      text: "It's time to stop jumping buses and sweating tirelessly to get to work."
-    },
-    {
-      id: 5,
-      reason: "Convinience", 
-      text: "It's time to stop jumping buses and sweating tirelessly to get to work."
-    },
-    {
-      id: 6,
-      reason: "Convinience", 
-      text: "It's time to stop jumping buses and sweating tirelessly to get to work."
+      reason: "TIME-SAVING", 
+      text: "Our product can save student (team leaders especially) from the hassle of having to collate and gather data manually on whatsApp. Everything the need is conveniently located in one place"
     }
   ])
   return (
