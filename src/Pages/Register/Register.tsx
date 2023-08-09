@@ -23,6 +23,11 @@ import Navbar from '../../Components/Navbar/Navbar';
 import { ClipLoader } from 'react-spinners';
 import TopOfPage from '../../utils/topOfPage';
 
+import { ID } from 'appwrite';
+import { account, databases } from '../../AppWrite/Appwrite';
+// @ts-ignore
+import { v4 as uuidv4 } from 'uuid'
+
 
 const Register = () => {
 
@@ -151,6 +156,12 @@ const Register = () => {
             return;
         }
 
+        if(password.length < 8){
+            notify("Please enter a password with 8 or more values");
+            setLoading(false)
+            return;
+        }
+
         // TEAMPASS X TEAM CHECK
         if(!formData.teampass.includes(formData.team)){
             notify("Your team pass does not match your team")
@@ -244,6 +255,37 @@ const Register = () => {
                 ...formData,
                 timeStamp: serverTimestamp()
             });
+
+            // APPWRITE STUFF
+            const promise = account.create(
+                ID.unique(),
+                formData.email,
+                password, 
+                formData.name
+            )
+
+            promise.then(
+                function(response){
+                    // console.log("Appwrite " + response);
+                },
+                function(error){
+                    // console.log("Appwrite" + error);
+                }
+            )
+
+            const dataPromise = databases.createDocument('64ceea379b69c1ef2b66', '64ceea8cc086f25e06da', uuidv4(), formData)
+
+            // dataPromise.then(
+            //     function(response){
+            //         console.log(response);
+            //     },
+            //     function(error){
+            //         console.log(error);
+            //     }
+            // )
+            
+
+            // END OF APPWRITE STUFF
 
             navigate('/birthday');
 

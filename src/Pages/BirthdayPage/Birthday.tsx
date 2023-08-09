@@ -8,6 +8,7 @@ import { RootState } from '../../Features/store';
 import { useNavigate } from 'react-router-dom'
 import { registeruser } from '../../Features/user/userSlice';
 import Navbar from '../../Components/Navbar/Navbar';
+import { databases } from '../../AppWrite/Appwrite';
 // import { ordinal } from '../../utils/helper';
 // import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 // import BirthdayCard from '../../Components/BirthdayCard/BirthdayCard';
@@ -26,6 +27,8 @@ export type FbDataType = {
 const Birthday = () => {
   //contains all REGISTERED USERS and TOTAL NUMBER
     const [data, setData] = useState<FbDataType>([])
+    const [appWriteData, setAppWriteData] = useState<any>([])
+    const [appWriteTotalNumber, setAppTotalNumber] = useState(0)
  
     const [selectedTeam, setSelectedTeam] = useState('')
     const teams = [
@@ -68,6 +71,25 @@ const Birthday = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const today = new Date();
+
+    // USEEFFECT FOR GETTING ALL DATA FROM APPWRITE
+
+    useEffect(() => {
+      const getTodos = databases.listDocuments('64ceea379b69c1ef2b66','64ceea8cc086f25e06da')
+
+      getTodos.then(
+        function(response){
+          setAppWriteData(response.documents)
+          setAppTotalNumber(response.total)
+        },
+        function(error){
+          console.log(error);
+        }
+      )
+    }, [])
+
+    console.log(appWriteData);
+    console.log(appWriteTotalNumber);
   
     // USEEFFECT FOR GETTING ALL USER DATA FROM FB
     useEffect(() => {
