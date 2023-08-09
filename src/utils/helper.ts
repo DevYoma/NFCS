@@ -145,6 +145,10 @@ export const departments = [
     "value": "estate management"
   },
   {
+    "label": "Electrical and Electronics Engineering",
+    "value": "electrical and electronics engineering"
+  },
+  {
     "label": "Family, Nutrition, and Consumer Sciences",
     "value": "family, nutrition, and consumer sciences"
   },

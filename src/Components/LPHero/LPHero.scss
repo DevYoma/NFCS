@@ -7,85 +7,88 @@
 
 
 .LPHero{
-    min-height: 100vh;
-    background: rgba(0, 0, 0, 0.7);
-    display: grid;
-    place-items: center;
-    h1{
-        font-size: 2rem;
-        color: white;
-        text-align: center;
+    position: relative;
+    // min-height: 100vh;
+    height: auto;
+    // border: 1px solid red;
+    display: flex;
 
-        @media screen and (max-width: 768px) {
-            font-size: 1.5rem;
+    @media screen and (max-width: 1024px) {
+        flex-direction: column;
+    }
+
+    .absolute{
+        position: absolute;
+        // z-index: 1;
+
+        @media screen and (max-width: 1024px) {
+            display: none;
         }
     }
-    // // border: 2px solid purple;
-    // font-family: 'Poppins', sans-serif;
-    // padding: 184px 115px 155.87px;
-    // display: flex;
+    
+    .absolute1{
+      right: 0;
+    }
 
-    // .LPHero__left{
-    //     flex: 0.6;
+    .absolute2{
+        right: 30rem;
+        top: 30rem;
+    }
 
-    //     .LPHero__leftHeader{
-    //         font-family: serif; // cant find font o
-    //         font-weight: bolder;
-    //         font-size: 48px;
-    //         line-height: 54px;
-    //         letter-spacing: 0.008em;
-    //         color: #111111;
+    .absoluteDots{
+        top: 7.9rem;
+        right: 43%;
+    }
 
-    //         span{
-    //             color: var(--app-primary-color);
-    //         }
-    //     }
+    &Left,
+    &Right{
+        flex: 0.5;
+    }
 
-    //     .LPHero__leftBody{
-    //         font-family: sans-serif; // cant find font too
-    //         width: 60%;
-    //         font-weight: 400;
-    //         font-size: 24px;
-    //         line-height: 118%;
-    //         letter-spacing: 0.04em;
-    //         color: #000000;
-    //         margin-top: 30px;
-    //         margin-bottom: 32.5px;
-    //     }
+    &Left{
+        padding-top: 13.25rem;
+        padding-left: 5.25rem;
 
-    //     .LPHero__leftButton{
-    //         background: var(--app-primary-color);
-    //         color: white;
-    //         padding: 30px 65px;
-    //         border: none;
-    //         border-radius: 8px;
-    //         cursor: pointer;
-    //         font-family: sans-serif;
-    //         font-weight: 700;
-    //         font-size: 24px;
-    //         line-height: 30px;
-    //         letter-spacing: 0.008em;
-    //     }
-    // }
+        @media screen and (max-width: 1024px) {
+            padding-top: 2.5rem;
+        }
+        // border: 1px solid green;
 
-    // .LPHero__right{
-    //     flex: 0.4;
-    //     border: 2px solid green;
-    //     display: flex;
+        &__header{
+            // border: 1px solid red;
+            color: #111;
+            font-size: 3rem;
+            font-weight: 700;
+            // line-height: normal;
+            letter-spacing: 0.024rem;
+            max-width: 22ch;
 
-    //     & > div:first-child{
-    //         background: red;
-    //         width: 377px;
-    //         background: #F4F4F4;
-    //         border-radius: 8px;
-    //     }
-    // }
+            span{
+                color: #4318FF;
+            }
+        }
 
-    // .LPHero__right{
-    //     // border: 2px solid black;
-    //     // img{
-    //     //     width: 100%;
-    //     //     height: auto;
-    //     // }
-    // }
+        &__text{
+            margin: 1rem 0 2.5rem;
+            // border: 1px solid red;
+            max-width: 65%;
+            color: rgba(30, 30, 30, 0.80);
+            font-size: 1.5rem;
+            font-weight: 400;
+            line-height: 130%; /* 1.95rem */
+            letter-spacing: 0.03rem;
+        }
+    }
+
+    &Right{
+        z-index: 1;
+        // border: 1px solid green;
+        padding-right: 2.06rem;
+        padding-top: 9.8rem;
+
+        img.LPHeroRight__mainImg{
+            display: block;
+            width: 100%;
+        }
+    }
 }

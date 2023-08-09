@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './LandingPage.scss';
 import Navbar from '../Components/Navbar/Navbar';
 import LPHero from '../Components/LPHero/LPHero';
@@ -9,46 +9,28 @@ import Testimonial from '../Components/Testimonials/Testimonials';
 import Footer from '../Components/Footer/Footer';
 import LPWhy from '../Components/LPWhy/LPWhy';
 import TopOfPage from '../utils/topOfPage';
-import { FbDataType } from './Home/Home';
-// import { useNavigate } from 'react-router-dom';
-// import { useSelector, useDispatch } from 'react-redux'
-// import { RootState } from '../Features/store';
-// import LPAddress from '../Components/LPAddress/LPAddress';
-// import { db } from '../Firebase/Firebase';
-// import { collection, getDocs } from 'firebase/firestore';
-// import {  logout } from '../Features/user/userSlice'
+import { databases } from '../AppWrite/Appwrite';
+
+
 
 const LandingPage = () => {
-  const [datas, setData] = useState<FbDataType>([])
-  const [bethanyNumber, setBethanyNumber] = useState(0);
-  const [capernaumNumber, setCapernaumNumber] = useState(0);
-  const [galileeNumber, setGalileeNumber] = useState(0);
-  const [jerichoNumber, setJerichoNumber] = useState(0);
-  const [jordanNumber, setJordanNumber] = useState(0);
-  const [nileNumber, setNileNumber] = useState(0);
-  
-  // const navigate = useNavigate();
-  // const user = useSelector((state: RootState) => state.user.user)
-  // const dispatch = useDispatch()
+  const [appWriteData, setAppWriteData] = useState<any>([])
+  const [appWriteTotalUsers, setAppwriteTotalUsers] = useState(0);
 
-  // console.log(user);
+  useEffect(() => {
+    const getTotalNumber = databases.listDocuments('64ceea379b69c1ef2b66','64ceea8cc086f25e06da');
 
-  // const fetchData = async () => {
-  //   let list: any = [];
-  //   try{
-  //     const querySnapshot = await getDocs(collection(db, "users"));
-  //     querySnapshot.forEach((doc) => {
-  //       list.push({id: doc.id, ...doc.data()}) // spreading the data object in the list object.
-  //       // doc.data() is never undefined for query doc snapshots
-  //       // console.log(doc.id, " => ", doc.data());
-
-  //       setData(list);
-  //       // return datas;
-  //     });
-  //   }catch(error) {
-  //     console.log(error);
-  //   }
-  // }
+    getTotalNumber.then(
+      function(response){
+        setAppWriteData(response.documents)
+        setAppwriteTotalUsers(response.total)
+      }, 
+      function(error){
+        console.log(error);
+      }
+    )
+    
+  }, [])
 
   // returns user to top of page
   TopOfPage();
@@ -63,13 +45,13 @@ const LandingPage = () => {
           <TeamLeaders />
           <Excos />
           <ScoreBoard 
-            totalNumber={datas.length}
-            bethanyTeamNumber={datas.filter(datum => datum.team === 'bethany').length}
-            capernaumTeamNumber={datas.filter(datum => datum.team === 'capernaum').length}
-            galileeTeamNumber={datas.filter(datum => datum.team === 'galilee').length}
-            jerichoTeamNumber={datas.filter(datum => datum.team === 'jericho').length}
-            jordanTeamNumber={datas.filter(datum => datum.team === 'jordan').length}
-            nileTeamNumber={datas.filter(datum => datum.team === 'nile').length}
+            totalNumber={appWriteTotalUsers}
+            bethanyTeamNumber={appWriteData.filter((datum: any) => datum.team === 'bethany').length}
+            capernaumTeamNumber={appWriteData.filter((datum: any) => datum.team === 'capernaum').length}
+            galileeTeamNumber={appWriteData.filter((datum: any) => datum.team === 'galilee').length}
+            jerichoTeamNumber={appWriteData.filter((datum: any) => datum.team === 'jericho').length}
+            jordanTeamNumber={appWriteData.filter((datum: any) => datum.team === 'jordan').length}
+            nileTeamNumber={appWriteData.filter((datum: any) => datum.team === 'nile').length}
           />
           <Testimonial />
           <Footer />

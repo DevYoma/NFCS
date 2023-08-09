@@ -88,8 +88,8 @@ const Birthday = () => {
       )
     }, [])
 
-    console.log(appWriteData);
-    console.log(appWriteTotalNumber);
+    // console.log(appWriteData);
+    // console.log(appWriteTotalNumber);
   
     // USEEFFECT FOR GETTING ALL USER DATA FROM FB
     useEffect(() => {

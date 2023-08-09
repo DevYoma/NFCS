@@ -29,7 +29,7 @@ const ScoreBoard = (props: ScoreBoardProps) => {
                     teamName='Bethany'
                     teamNumber={props.bethanyTeamNumber}
                     border='0.5px solid lightgrey'
-                    percent={(props.bethanyTeamNumber / props.totalNumber) * 100 || 7}
+                    percent={(props.bethanyTeamNumber / props.totalNumber) * 100 }
                     opacity={70}
                 />
 
@@ -37,7 +37,7 @@ const ScoreBoard = (props: ScoreBoardProps) => {
                     teamName='Capernaum'
                     teamNumber={props.capernaumTeamNumber}
                     border='0.5px solid lightgrey'
-                    percent={(props.capernaumTeamNumber / props.totalNumber) * 100 || 2}
+                    percent={(props.capernaumTeamNumber / props.totalNumber) * 100 }
                     opacity={70}
                 />             
 
@@ -45,7 +45,7 @@ const ScoreBoard = (props: ScoreBoardProps) => {
                     teamName='Galilee'
                     teamNumber={props.galileeTeamNumber}
                     border='0.5px solid lightgrey'
-                    percent={(props.galileeTeamNumber / props.totalNumber) * 100 || 14}
+                    percent={(props.galileeTeamNumber / props.totalNumber) * 100}
                     opacity={70}
                 />   
 
@@ -53,7 +53,7 @@ const ScoreBoard = (props: ScoreBoardProps) => {
                     teamName='Jericho'
                     teamNumber={props.jerichoTeamNumber}
                     border='0.5px solid lightgrey'
-                    percent={(props.jerichoTeamNumber / props.totalNumber) * 100 || 27}
+                    percent={(props.jerichoTeamNumber / props.totalNumber) * 100}
                     opacity={70}
                 />   
 
@@ -61,7 +61,7 @@ const ScoreBoard = (props: ScoreBoardProps) => {
                     teamName='Jordan '
                     teamNumber={props.jordanTeamNumber}
                     border='0.5px solid lightgrey'
-                    percent={(props.jordanTeamNumber / props.totalNumber) * 100 || 10}
+                    percent={(props.jordanTeamNumber / props.totalNumber) * 100}
                     opacity={70}
                 />   
 
@@ -69,7 +69,7 @@ const ScoreBoard = (props: ScoreBoardProps) => {
                     teamName='Nile'
                     teamNumber={props.nileTeamNumber}
                     border='0.5px solid lightgrey'
-                    percent={(props.nileTeamNumber / props.totalNumber) * 100 || 10}
+                    percent={(props.nileTeamNumber / props.totalNumber) * 100}
                     opacity={70}
                 />   
             </div>
