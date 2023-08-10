@@ -1,13 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+// font-family: 'Poppins' sans-serif;
+
 .scoreBoard{
+    font-family: 'Poppins' sans-serif;
     background: #F8F8F8;
     // border: 3px solid red;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
-    // padding: 103px 115px 71px;
-
-    // @media screen and (max-width: 1000px) {
-    //     padding: 50px 5% 50px;
-    // }
 
     &__header{
         background: white;
@@ -15,18 +14,24 @@
         padding: 20px 0px;
         border-radius: 25px;
         border: 1px solid lightgray;
-        // box-shadow: ;
-        // box-shadow: 15.3354px 15.3354px 15.3354px rgba(0, 0, 0, 0.1), 7.66768px 7.66768px 59.4775px rgba(0, 0, 0, 0.5);
-
+        
         &Text{
+            // color: red;
             font-weight: 500;
-            font-size: 21.4695px;
             line-height: 26px;
             letter-spacing: -0.236165px;
             color: rgba(30, 30, 30, 0.85);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
 
             @media screen and (max-width: 768px) {
-                
+                font-size: 2.25rem;
+                margin-bottom: 1.25rem;
+            }
+
+            @media screen and (max-width: 480px) {
+                font-size: 2rem;
+                margin-bottom: 1rem;
             }
         }
 

@@ -4,8 +4,10 @@ import LPImg from '../../assets/newLPImg.png'
 import Blur1 from '../../assets/blurUp.png';
 import Blur2 from '../../assets/blurDown.png';
 import TopDots from '../../assets/lpDots.png'
+import { useNavigate } from 'react-router-dom';
 
 const LPHero = () => {
+  const navigate = useNavigate();
   return (
     <div className="LPHero">
       <img src={Blur1} alt="blur1" className="absolute absolute1" />
@@ -22,7 +24,7 @@ const LPHero = () => {
 
         <div className="LPHeroLeft__button">
           <Button
-            buttonStyle={{ padding: "1.1rem 3.75rem" }}
+            onClick={() => navigate('/register')}
           >
             Join our family
           </Button>

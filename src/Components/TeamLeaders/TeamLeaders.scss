@@ -5,8 +5,19 @@
 
     .teamLeaders__header{
         text-align: center;
-        margin-bottom: 64px;
+        margin-bottom: 4rem;
         font-size: 2rem;
+        // border: 1px solid red;
+
+        @media screen and (max-width: 768px) {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        @media screen and (max-width: 480px) {
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+        }
     }
 
     .teamLeaders__cover{

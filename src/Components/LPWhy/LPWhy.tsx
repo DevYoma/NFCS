@@ -22,7 +22,7 @@ const LPWhy = () => {
     {
       id: 3,
       reason: "Time-Saving", 
-      text: "Our product can save student (team leaders especially) from the hassle of having to collate and gather data manually on whatsApp. Everything the need is conveniently located in one place"
+      text: "This product can save student (team leaders especially) from the hassle of having to collate and gather data manually on whatsApp. Everything the need is conveniently located in one place"
     }
   ])
   return (

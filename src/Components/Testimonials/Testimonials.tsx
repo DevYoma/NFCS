@@ -7,7 +7,7 @@ const Testimonials = () => {
       <h1 className="testimonials__header">NFCS Testimonials</h1>
 
       <div className="testimonials__container">
-        {[1,2,3,4,5,6].map((person: any) => (
+        {[1,2,3].map((person: any) => (
           <div className="testimonial" key={person}>
             <div className="testimonial__header">
               <img src={Testimonial1} alt="dey play 😆" />

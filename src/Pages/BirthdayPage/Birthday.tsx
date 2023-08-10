@@ -8,11 +8,6 @@ import { RootState } from '../../Features/store';
 import { useNavigate } from 'react-router-dom'
 import { registeruser } from '../../Features/user/userSlice';
 import Navbar from '../../Components/Navbar/Navbar';
-import { databases } from '../../AppWrite/Appwrite';
-// import { ordinal } from '../../utils/helper';
-// import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-// import BirthdayCard from '../../Components/BirthdayCard/BirthdayCard';
-
 
 export type FbDataType = {
     id: string | number;
@@ -72,25 +67,7 @@ const Birthday = () => {
     const dispatch = useDispatch();
     const today = new Date();
 
-    // USEEFFECT FOR GETTING ALL DATA FROM APPWRITE
 
-    useEffect(() => {
-      const getTodos = databases.listDocuments('64ceea379b69c1ef2b66','64ceea8cc086f25e06da')
-
-      getTodos.then(
-        function(response){
-          setAppWriteData(response.documents)
-          setAppTotalNumber(response.total)
-        },
-        function(error){
-          console.log(error);
-        }
-      )
-    }, [])
-
-    // console.log(appWriteData);
-    // console.log(appWriteTotalNumber);
-  
     // USEEFFECT FOR GETTING ALL USER DATA FROM FB
     useEffect(() => {
         // dispatch(registeruser())
@@ -118,16 +95,7 @@ const Birthday = () => {
         }
 
           fetchData();
-    
-          // return () => {
-          //   fetchData();
-          // }
     }, []);
-
-    // console.log(data);
-
-    // Checking for all users (TOTAL NUMBER)
-    // console.log(data.length)
 
      // USEEFEECT FOR PERSISTING USER AND USER DATA
      useEffect(() => {

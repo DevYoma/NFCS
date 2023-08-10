@@ -9,6 +9,7 @@ import Login from './Pages/Login/Login';
 import Profile from './Pages/Profile/Profile';
 import How from './Pages/How/How';
 import ForgotPassword from './Pages/ForgotPassword/ForgotPassword';
+import Events from './Pages/Events/Events';
 
 function App() {
   return (
@@ -26,6 +27,8 @@ function App() {
         <Route path='/login' element={ <Login />} />
         
         <Route path='/profile' element={ <Profile />} />
+
+        <Route path='/events' element={ <Events />} />
 
         <Route path='/app' element={<Home /> } />
 

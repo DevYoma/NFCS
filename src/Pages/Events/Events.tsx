@@ -1,9 +1,12 @@
 import React from 'react'
 import './Events.scss';
+import Navbar from '../../Components/Navbar/Navbar';
 
 const Events = () => {
   return (
-    <div>Events</div>
+    <div className="eventsPage">
+      <Navbar />
+    </div>
   )
 }
 

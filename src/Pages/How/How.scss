@@ -1,6 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
 .how{
+    // font-family: 'Poppins' sans-serif;
     min-height: 100vh;
     background: whitesmoke;
+    color: #111;
 
+    &__header{
+        margin: 5rem 0 7rem;
+        text-align: center;
+        
+        h1{
+            letter-spacing: 0.024rem;
+            font-size: 3rem;
+
+            @media screen and (max-width: 1024px) {
+                font-size: 2.5rem;
+            }
+
+            @media screen and (max-width: 768px) {
+                font-size: 2rem;
+            }
+
+            @media screen and (max-width: 480px) {
+                font-size: 1.6rem;
+                padding: 0 5%;
+            }
+        }
+    }
+
+    &__steps{
+        // border: 3px solid orange;
+        padding: 0 5rem;
+
+        @media screen and (max-width: 480px) {
+            padding: 0 5%;
+        }
+
+        & > *:not(:last-child){
+            margin-bottom: 8.5rem;
+        }
+    }
+
+    &__ready{
+        text-align: center;
+        // border: 1px solid red;
+        margin: 5rem 0 5rem;
+
+        h2{
+            margin-bottom: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.02rem;
+            font-size: 2.5rem;
+
+            @media screen and (max-width: 1024px) {
+                font-size: 2.25rem;
+            }
+
+            @media screen and (max-width: 768px) {
+                font-size: 2rem;
+            }
+
+            @media screen and (max-width: 480px) {
+                font-size: 1.6rem;
+            }
+        }
+    }
     
 }
