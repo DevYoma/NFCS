@@ -206,6 +206,7 @@ const Profile = () => {
             disabled={newName === "" && newDepartment === ""}
             className="updateFormButton"
             onClick={handleNameUpdate} 
+            title='This button glows up when you enter new details in the fields'
           >
             Save Changes
           </button>

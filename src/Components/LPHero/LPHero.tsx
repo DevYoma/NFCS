@@ -6,12 +6,14 @@ import Blur1 from '../../assets/blurUp.png';
 import TopDots from '../../assets/lpDots.png'
 import { useNavigate } from 'react-router-dom';
 import { imagesCarousel } from '../../data/carouselData';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {  ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 
 const LPHero = () => {
   const navigate = useNavigate();
   const [currImg, setCurrImg] = useState(0);
+
+  const [count, setCount] = useState(0);
 
   const handleForwardClick = () => {
     currImg < imagesCarousel.length - 1 &&  setCurrImg(currImg + 1);
@@ -20,6 +22,18 @@ const LPHero = () => {
   const handleBackwardClick = () => {
     currImg > 0 && setCurrImg(currImg - 1)
   }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCount(prevCount => prevCount + 1);
+      setCurrImg((prevCurrImg) => (prevCurrImg + 1) % imagesCarousel.length);
+      // if(currImg > 0){
+      //   setCurrImg(currImg - 1)
+      // }
+    }, 10000); // 30 seconds in milliseconds
+
+    return () => clearTimeout(timer); // Cleanup the timer on component unmount
+  }, [count]); // Re
 
   return (
     <div className="LPHero">
@@ -44,10 +58,10 @@ const LPHero = () => {
         </div>
       </div>
       <div className="LPHeroRight">
-        <div className="LPHeroRight-al"><ArrowBackIos onClick={handleBackwardClick}/></div>
+        {/* <div className="LPHeroRight-al"><ArrowBackIos onClick={handleBackwardClick}/></div> */}
         <img className='LPHeroRight__mainImg' src={imagesCarousel[currImg].img} alt="youth posing for the camera" />
         {/* <div className="LPHeroRight__mainImg" style={{ backgroundImage: `url(${imagesCarousel[currImg].img})` }}></div> */}
-        <div className="LPHeroRight-ar"><ArrowForwardIos onClick={handleForwardClick}/></div>
+        {/* <div className="LPHeroRight-ar"><ArrowForwardIos onClick={handleForwardClick}/></div> */}
       </div>
     </div>
   )
