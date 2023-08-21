@@ -3,25 +3,13 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import {  registeruser } from '../../Features/user/userSlice';
 // import { loggedOut } from '../../Features/userInfo/userinfoSlice';
-import { auth, db } from '../../Firebase/Firebase';
+import { auth, db, storage } from '../../Firebase/Firebase';
 import './Profile.scss';
 import {  useNavigate } from 'react-router-dom';
 import Navbar from '../../Components/Navbar/Navbar';
 import { InputLabel, TextField } from '@mui/material';
-// import Avatar from '../../assets/avatar.png';
-// import { departments } from '../../utils/helper';
-
-
-// type userDataResultType = {
-//   birthday: string;
-//   department: string;
-//   email: string;
-//   img: string;
-//   name: string;
-//   team: string;
-//   teampass: string;
-//   timeStamp: Date;
-// }
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { toast } from 'react-toastify';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -30,10 +18,6 @@ const Profile = () => {
   const [userId, setUserId] = useState<any>('')
   const [fbUser, setFbUser] = useState<any>(null);
 
-  // Password reset state
-  const [oldPassword, setOldPassword] = useState('')
-  const [newPassword, setNewPassword] = useState('')
-  
   const dispatch = useDispatch();
 
   // USEEFEECT FOR PERSISTING USER AND USER DATA
@@ -75,6 +59,11 @@ const Profile = () => {
   const apiResponse = fbUser?.userDataResult;
 
   // console.log(apiResponse);
+
+   // TOASTIFY function
+   function notify(message: string){
+    toast.error(message);
+}
 
   const handleNameUpdate = (e:any) => {
     e.preventDefault();
@@ -122,22 +111,6 @@ const Profile = () => {
     }
   }
 
-  // HANDLING LOGOUT
-  // const handleLogout = () => {
-  //     auth.signOut().then(() => {
-  //       dispatch(logout());
-  //       dispatch(loggedOut)
-  
-  //       navigate('/')
-  //     })
-  // }
-
-  // const handleDelete = async (id: string) => {
-  //   const userDoc = doc(db, "users", id)
-  //   await deleteDoc(userDoc)
-  //   handleLogout();
-  // }
-
   return (
     <React.Fragment>
       <Navbar isLoggedIn/>
@@ -145,11 +118,23 @@ const Profile = () => {
         <h2 className="profilePage__header">Profile Settings</h2>
 
         <form className="userInfo">
-          <div className="userInfo__profilePicture">
-            <img src={apiResponse?.img} alt="avatar" />
-          </div>
+          <div className="userInfo__picTop">
+            <div className="userInfo__profilePicture">
+              <img src={apiResponse?.img} alt="avatar" />
+            </div>
 
-          <p className="userInfo__changePicture">Change Profile photo</p>
+            {/* <button className="userInfo__changePicture" onClick={handleImageChange}>Change Profile photo</button> */}
+            <label className='userInfo__changePictureInput'>
+              <input 
+                
+                // type="file" 
+                // onChange={handleImageChange}
+                onClick={() => alert("Feature in progress")} 
+                style={{ display: "none" }}
+              />
+              <span style={{ fontSize: "2.5rem", fontWeight: "500" }}>+</span>
+            </label>
+          </div>
 
           <div className="userInfo__form">
               {/* update Full Name */}
@@ -159,7 +144,6 @@ const Profile = () => {
                   className='userInfo__formField'
                   type="text"
                   variant="outlined" 
-                  required
                   value={newName}
                   placeholder={apiResponse?.name}
                   onChange={(e: any) => setNewName(e.target.value)}
@@ -173,7 +157,6 @@ const Profile = () => {
                   className='userInfo__formField'
                   type="text"
                   variant="outlined" 
-                  required
                   placeholder={apiResponse?.department}
                   value={newDepartment}
                   onChange={(e:any) => setNewDepartment(e.target.value)}
@@ -227,55 +210,6 @@ const Profile = () => {
             Save Changes
           </button>
         </form>
-
-        <form className='profilePassword'>
-          <h1 className="profilePassword__header">Password reset</h1>
-
-          <p 
-            className="profilePassword__subText"
-            onClick={() => navigate('/forgot-password')}
-          >
-            Tap here if you have forgotten your old password
-          </p>
-          <div>
-            <InputLabel className='password__labels'>Student Email</InputLabel>
-            <TextField
-              className='password__fields'
-              type="email"
-              variant="outlined" 
-              value={apiResponse?.email}
-              disabled
-            />
-          </div>
-
-          <div>
-            <InputLabel className='password__labels'>Old Password</InputLabel>
-            <TextField
-              className='password__fields' 
-              type="text"
-              variant="outlined" 
-              value={oldPassword}
-              required
-              onChange={(e:any) => setOldPassword(e.target.value)}
-            />
-          </div>
-
-          <div>
-            <InputLabel className='password__labels'>New Password</InputLabel>
-            <TextField
-              className='password__fields' 
-              type="text"
-              variant="outlined" 
-              value={newPassword}
-              required
-              onChange={(e:any) => setNewPassword(e.target.value)}
-            />
-          </div>
-
-          <button disabled={oldPassword === "" || newPassword === ""} className="savePasswordButton">Save Changes</button>
-        </form>
-
-        <button onClick={() => alert('Delete Account Feature WIP 👷‍♂️')} className="profilePage__deleteButton">Delete account</button>
       </div>
     </React.Fragment>
   )

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import './Excos.scss';
 import Exco1 from '../../assets/exco1.png';
 import Exco2 from '../../assets/exco2.png';

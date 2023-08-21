@@ -26,6 +26,21 @@
     .userInfo{
         // border: 1px solid red;
         margin-bottom: 4rem;
+
+        &__picTop{
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            width: fit-content;
+            position: relative;
+        }
+
+        &__changePictureInput{
+            // border: 1px solid red;
+            position: absolute;
+            bottom: 0px;
+            right: 6%;
+            cursor: pointer;
+        }
+
         &__profilePicture{
             img{
                 border: 1px solid lightgrey;
@@ -44,6 +59,8 @@
         }
 
         &__form{
+            // border: 1px solid;
+            margin-top: 1.25rem;
             & > div:not(:last-child){
                 // border: 2px solid red;
                 margin-bottom: 1rem;

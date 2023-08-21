@@ -4,6 +4,7 @@ import { InputLabel, TextField } from '@mui/material'
 import { sendPasswordResetEmail } from 'firebase/auth';
 import './ForgotPassword.scss';
 import { auth } from '../../Firebase/Firebase';
+import {notify}  from '../../utils/helper'
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
@@ -17,11 +18,13 @@ const ForgotPassword = () => {
     sendPasswordResetEmail(auth, email, {url: 'http://localhost:3000/login'}) 
     .then((res: any) => {
       console.log(res)
-      alert("Email Sent, check your email")
+      // alert("Email Sent, check your email")
+      notify("A link has been sent to your Email")
     })
     .catch((e:any) =>{
       console.log(e.message)
-      alert(e.message)
+      // alert(e.message)
+      notify(e.message);
     })
   }
   return (

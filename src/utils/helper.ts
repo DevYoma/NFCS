@@ -1,4 +1,4 @@
-export function nofity(message: string){
+export function notify(message: string){
     console.log(message);
 }
 

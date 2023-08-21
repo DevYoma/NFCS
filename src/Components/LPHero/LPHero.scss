@@ -97,17 +97,37 @@
         z-index: 1;
         // border: 1px solid green;
         padding-right: 2.06rem;
-        padding-top: 9.8rem;
+        margin-top: 9.8rem;
+        display: flex;
 
         
         @media screen and (max-width: 1024px) {
-            padding-top: 3rem;
+            margin-top: 3rem;
             padding-right: 0;
+            width: 90%;
+            margin-inline: auto;
+        }
+
+        // &-al{
+        //     flex: 0.2;
+        //     background: rgba(0, 0, 0, 0.4);
+        //     background: 1px solid red;
+        // }
+        
+        &-al, &-ar{
+            flex: 0.05;
+            background: rgba(0, 0, 0, 0.09); 
+
+            display: grid;
+            place-content: center;
+            z-index: -1;
         }
 
         img.LPHeroRight__mainImg{
             display: block;
             width: 100%;
+            // border: 2px solid red;
+            flex: 1;
 
             @media screen and (max-width: 1024px) {
                 // border: 1px solid red;

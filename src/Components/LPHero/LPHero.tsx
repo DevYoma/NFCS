@@ -2,12 +2,25 @@ import Button from '../../Atoms/Button/Button';
 import './LPHero.scss';
 import LPImg from '../../assets/newLPImg.png'
 import Blur1 from '../../assets/blurUp.png';
-import Blur2 from '../../assets/blurDown.png';
+// import Blur2 from '../../assets/blurDown.png';
 import TopDots from '../../assets/lpDots.png'
 import { useNavigate } from 'react-router-dom';
+import { imagesCarousel } from '../../data/carouselData';
+import { useState } from 'react';
+import {  ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 
 const LPHero = () => {
   const navigate = useNavigate();
+  const [currImg, setCurrImg] = useState(0);
+
+  const handleForwardClick = () => {
+    currImg < imagesCarousel.length - 1 &&  setCurrImg(currImg + 1);
+  }
+
+  const handleBackwardClick = () => {
+    currImg > 0 && setCurrImg(currImg - 1)
+  }
+
   return (
     <div className="LPHero">
       <img src={Blur1} alt="blur1" className="absolute absolute1" />
@@ -31,7 +44,10 @@ const LPHero = () => {
         </div>
       </div>
       <div className="LPHeroRight">
-        <img className='LPHeroRight__mainImg' src={LPImg} alt="landing-page-image" />
+        <div className="LPHeroRight-al"><ArrowBackIos onClick={handleBackwardClick}/></div>
+        <img className='LPHeroRight__mainImg' src={imagesCarousel[currImg].img} alt="youth posing for the camera" />
+        {/* <div className="LPHeroRight__mainImg" style={{ backgroundImage: `url(${imagesCarousel[currImg].img})` }}></div> */}
+        <div className="LPHeroRight-ar"><ArrowForwardIos onClick={handleForwardClick}/></div>
       </div>
     </div>
   )

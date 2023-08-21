@@ -8,6 +8,7 @@ import './Footer.scss';
 
 
 const Footer = () => {
+  const date = new Date();
   return (
       <section id="footer">
        {/* <Logo /> */}
@@ -21,7 +22,7 @@ const Footer = () => {
           </p>
 
           <p className="footer__section1CopyRight">
-            2023 NFCS. All rights reserved.
+            {date.getFullYear()} NFCS. All rights reserved.
           </p>
        </div>
 

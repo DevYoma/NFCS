@@ -4,8 +4,12 @@ import Footer from '../../Components/Footer/Footer'
 import Navbar from '../../Components/Navbar/Navbar'
 import './How.scss'
 import Steps, { objProperties } from '../../Components/Steps/Steps'
+import TopOfPage from '../../utils/topOfPage'
 
 const How = () => {
+  
+  TopOfPage();
+
   const steps = [
     {
       id: 1, 

@@ -40,7 +40,6 @@ const LandingPage = () => {
       <Navbar />
       <section id='landingPage'>
           <LPHero />
-          {/* <LPAddress /> */} 
           <LPWhy />
           <TeamLeaders />
           <Excos />
