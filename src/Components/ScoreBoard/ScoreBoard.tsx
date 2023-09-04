@@ -20,7 +20,7 @@ const ScoreBoard = (props: ScoreBoardProps) => {
             {/* SCORE-BOARD HEADER */}
             <div className="scoreBoard__header">
                 <p className="scoreBoard__headerText">Scoreboard</p>
-                <p className="scoreBoard__headerSubText">Registered Team Members</p>
+                <p className="scoreBoard__headerSubText">Registered Team Members - {props.totalNumber}</p>
             </div>
             
             <div className="scoreBoard__body">

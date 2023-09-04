@@ -15,7 +15,7 @@ const ForgotPassword = () => {
     // alert(email)
     
     // find a way to conditionally route to localhost and hostedSite based on a given condition
-    sendPasswordResetEmail(auth, email, {url: 'http://localhost:3000/login'}) 
+    sendPasswordResetEmail(auth, email, {url: 'https://nfcs-1e729.web.app/login'}) 
     .then((res: any) => {
       console.log(res)
       // alert("Email Sent, check your email")

@@ -28,7 +28,7 @@ const Footer = () => {
 
 
        <div className='footer__links'>
-        <p className="footer__linksHeader">Company</p>
+        <p className="footer__linksHeader">Community</p>
         <ul>
           <li>About Us</li>
           <li>Alumni</li>

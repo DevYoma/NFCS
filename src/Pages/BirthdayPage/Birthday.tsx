@@ -22,7 +22,7 @@ export type FbDataType = {
 const Birthday = () => {
   //contains all REGISTERED USERS and TOTAL NUMBER
     const [data, setData] = useState<FbDataType>([])
-    // const [appWriteData, setAppWriteData] = useState<any>([])
+    const [appWriteData, setAppWriteData] = useState<any>([])
     // const [appWriteTotalNumber, setAppTotalNumber] = useState(0)
  
     const [selectedTeam, setSelectedTeam] = useState('')
