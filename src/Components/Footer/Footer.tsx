@@ -5,10 +5,19 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import Logo from '../../Atoms/Logo/Logo';
 import './Footer.scss';
-
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
   const date = new Date();
+  const navigate = useNavigate();
+
+  const handleLinks = (linkParameter: string): void => {
+    if (linkParameter === '') {
+      alert("Coming Soon")
+    }
+    window.open(linkParameter, "_self");
+  }
+
   return (
       <section id="footer">
        {/* <Logo /> */}
@@ -30,10 +39,10 @@ const Footer = () => {
        <div className='footer__links'>
         <p className="footer__linksHeader">Community</p>
         <ul>
-          <li>About Us</li>
-          <li>Alumni</li>
-          <li>Events</li>
-          <li>Gallery</li>
+          <li onClick={() => alert("Coming Soon")} style={{ cursor: "pointer" }}>About Us</li>
+          <li onClick={() => alert("Coming Soon")} style={{ cursor: "pointer" }}>Alumni</li>
+          <li onClick={() => navigate('/events')} style={{ cursor: "pointer" }}>Events</li>
+          <li onClick={() => alert("Coming Soon")} style={{ cursor: "pointer" }}>Gallery</li>
         </ul>
        </div>
 
@@ -41,15 +50,14 @@ const Footer = () => {
           <p className="footer__connectHeader">Connect with us</p>
 
           <div className="footer__connectLinks">
-            <FacebookIcon />
-            <Twitter />
-            <InstagramIcon />
-            <YouTubeIcon />
+            <FacebookIcon onClick={() => handleLinks('')}/>
+            <Twitter onClick={() => handleLinks('https://twitter.com/oau_nfcs?s=21&t=3bd4O4nB1q-fsrVh1l27aA')}/>
+            <InstagramIcon onClick={() => handleLinks('https://instagram.com/nfcsoauofficial?igshid=MzRlODBiNWFlZA==')}/>
           </div>
 
-          <div className="footer__connectWhatsApp">
+          <div className="footer__connectWhatsApp" onClick={() => handleLinks('https://wa.me/+2349044107842')}>
             <WhatsApp />
-            <span>+234 888-3334-509</span>
+            <span>+234 904 410 7842</span>
           </div>
 
           <div className="footer__connectEmail">
