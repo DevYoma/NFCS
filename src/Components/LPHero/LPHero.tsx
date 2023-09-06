@@ -60,7 +60,6 @@ const LPHero = () => {
       <div className="LPHeroRight">
         {/* <div className="LPHeroRight-al"><ArrowBackIos onClick={handleBackwardClick}/></div> */}
         <img className='LPHeroRight__mainImg' src={imagesCarousel[currImg].img} alt="youth posing for the camera" />
-        {/* <div className="LPHeroRight__mainImg" style={{ backgroundImage: `url(${imagesCarousel[currImg].img})` }}></div> */}
         {/* <div className="LPHeroRight-ar"><ArrowForwardIos onClick={handleForwardClick}/></div> */}
       </div>
     </div>

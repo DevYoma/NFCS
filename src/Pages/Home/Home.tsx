@@ -164,7 +164,7 @@ const Home = () => {
 
         )}
 
-        {!user && goBackToPreviousPage() }
+        {/* {!user && goBackToPreviousPage() } */}
       </>
   )
 }
