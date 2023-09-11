@@ -40,6 +40,18 @@
             img{
                 border: 1px solid lightgray;
                 border-radius: 24px;
+                // display: none;
+                width: 300px;
+                height: 400px;
+                object-fit: cover;
+            }
+
+            h3{
+                font-size: 1.25rem;
+            }
+
+            p{
+                opacity: 0.8;
             }
         }
     }

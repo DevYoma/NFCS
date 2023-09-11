@@ -1,61 +1,177 @@
 import { useRef, useState } from 'react'
 import './Excos.scss';
-import Exco1 from '../../assets/exco1.png';
-import Exco2 from '../../assets/exco2.png';
-import Exco3 from '../../assets/exco3.png';
-import Exco4 from '../../assets/exco4.png';
 import { IconButton } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import President from '../../assets/excos/joel.jpg';
+import VicePresident from '../../assets/excos/catherine.jpg';
+import Secretary from '../../assets/excos/stephen.jpg';
+import ViceSecretary from '../../assets/excos/elizabeth.jpg';
+import FinancialSecretary from '../../assets/excos/helen.jpg';
+import Treasurer from '../../assets/excos/ope.jpg';
+import BroCoordinator from '../../assets/excos/chigozie.jpg';
+import FemaleCoordinator from '../../assets/excos/rosemary.jpg';
+import ProtocolMale from '../../assets/excos/john.jpg';
+import ProtocolFemale from '../../assets/excos/faith.jpg';
+import PublicityMale from '../../assets/excos/pelumi.jpg';
+import PublicityFemale from '../../assets/excos/tolu.jpg';
+import WelfareMale from '../../assets/excos/seun.jpg';
+import WelfareFemale from '../../assets/excos/florence.jpg';
+import AcademicFemale from '../../assets/excos/chisom.jpg';
+import AcademicMale from '../../assets/excos/julius.jpg';
+import SportMale from '../../assets/excos/benedict.jpg';
+import SportFemale from '../../assets/excos/emily.jpg';
+import PD from '../../assets/excos/uche.jpg';
+import Fedcamps from '../../assets/excos/cynthia.jpg';
+import Calsan from '../../assets/excos/vivian.jpg';
+import RockTheatre from '../../assets/excos/ben.jpg';
+import Crusaders from '../../assets/excos/doreen.jpg';
+import ExOfficio from '../../assets/excos/matuluko.jpg'
 
 
 export const nfcsExcos = [
     {
         id: 1, 
-        name: "Adekoya Toluwani", 
-        picture: Exco1,
-        role: 'Exco 🚀'
+        name: "Nnamani Joel Ifeanyichukwu", 
+        picture: President,
+        role: 'President'
     },
     {
         id: 2, 
-        name: "Adekoya Toluwani", 
-        picture: Exco2,
-        role: 'Exco '
+        name: "Popoola Catherine", 
+        picture: VicePresident,
+        role: 'Vice President '
     },
     {
         id: 3, 
-        name: "Adekoya Toluwani", 
-        picture: Exco3,
-        role: 'Exco '
+        name: "Omosebi Stephen", 
+        picture: Secretary,
+        role: 'General Secretary. '
     },
     {
         id: 4, 
-        name: "Adekoya Toluwani", 
-        picture: Exco4,
-        role: 'Exco '
+        name: "Isichei Elizabeth Chukwuamaka.", 
+        picture: ViceSecretary,
+        role: 'ExcoAssistant General Secretary'
     },
     {
         id: 5, 
-        name: "Adekoya Toluwani", 
-        picture: Exco1,
-        role: 'Exco '
+        name: "Amodu Helen", 
+        picture: FinancialSecretary,
+        role: 'Financial Secretary'
     },
     {
         id: 6, 
-        name: "Adekoya Toluwani", 
-        picture: Exco2,
-        role: 'Exco '
+        name: "Oyafemi Opeyemi", 
+        picture: Treasurer,
+        role: 'Office-Treasurer '
     },
     {
         id: 7, 
-        name: "Adekoya Toluwani", 
-        picture: Exco4,
-        role: 'Exco '
+        name: "Ndife Chigozie Charles", 
+        picture: BroCoordinator,
+        role: "Brother's coordinator"
     },
     {
         id: 8, 
-        name: "Adekoya Toluwani", 
-        picture: Exco1,
-        role: 'Exco '
+        name: "Fagunwa Rosemary", 
+        picture: FemaleCoordinator,
+        role: "Sister's Coordinator"
+    },
+    {
+        id: 9,
+        name: "Aderinto John",
+        picture: ProtocolMale,
+        role: "Protocol Committee Head(Male)"
+    },
+    {
+        id: 10, 
+        name: "Daniel Faith",
+        picture: ProtocolFemale,
+        role: "Protocol Committee Head(Female)"
+    },
+    {
+        id: 11, 
+        name: "Omotunde Sylvester",
+        picture: PublicityMale, 
+        role: "Publicity Committee Head(Male)"
+    }, 
+    {
+        id: 12, 
+        name: "Agbemuko Tolulope",
+        picture: PublicityFemale, 
+        role: "Publicity Committee Head(Female)"
+    },
+    {
+        id: 13, 
+        name: "Adebayo Alexander", 
+        picture: WelfareMale ,
+        role: "Welfare Head(Male)"
+    },
+    {
+        id: 14, 
+        name: "Oha Florence", 
+        picture: WelfareFemale ,
+        role: "Welfare Head(Female)"
+    },
+    {
+        id: 15, 
+        name: "Okeke Chisom", 
+        picture: AcademicFemale ,
+        role: "Academic Head (Female)"
+    },
+    {
+        id: 16, 
+        name: "Ojuawo Julius", 
+        picture: AcademicMale ,
+        role: "Academic Head(Male)"
+    },
+    {
+        id: 17, 
+        name: "Adovonne Emily", 
+        picture: SportFemale ,
+        role: "Sport Director(Female)"
+    },
+    {
+        id: 18, 
+        name: "Disi Benedict", 
+        picture: SportMale ,
+        role: "Sport Director(Male)"
+    },
+    {
+        id: 19, 
+        name: "Uchenna Obi", 
+        picture: PD ,
+        role: "Predegree Coordinator(Male)"
+    },
+    {
+        id: 20, 
+        name: "Cynthia Ukor", 
+        picture: Fedcamps ,
+        role: " FECAMDS President"
+    },
+    {
+        id: 21, 
+        name: "Okechukwu Vivian", 
+        picture: Calsan ,
+        role: "CALSAN President"
+    },
+    {
+        id: 22, 
+        name: "Omotola Benedict", 
+        picture: RockTheatre ,
+        role: "Rock Theatre Head"
+    },
+    {
+        id: 23, 
+        name: "Adaiwo Doreen", 
+        picture: Crusaders ,
+        role: "Crusaders Head"
+    },
+    {
+        id: 24, 
+        name: "Matuluko Mary",
+        picture: ExOfficio,
+        role: "Ex Officio"
     }
 ]
 

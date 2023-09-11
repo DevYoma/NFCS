@@ -1,46 +1,46 @@
 import React from 'react'
 import './TeamLeaders.scss';
-import BethanyTL from '../../assets/bethanyTL.png';
-import CarpernaumTL from '../../assets/capernaumLead.png';
-import GalileeTL from '../../assets/galileeLead.png';
-import JerichoTL from '../../assets/jerichoLead.png';
-import JordanTL from '../../assets/jordanLead.png';
-import NileTL from '../../assets/nileLead.png';
+import BethanyTL from '../../assets/teamLeads/ada.jpg';
+import CapernaumTL from '../../assets/teamLeads/richard.jpg';
+import GalileeTL from '../../assets/teamLeads/beatrice.jpg';
+import JerichoTL from '../../assets/teamLeads/taiwo.jpg';
+import JordanTL from '../../assets/teamLeads/lolade.jpg';
+import NileTL from '../../assets/teamLeads/popori.jpg';
 
 export const teamLeaders = [
     {
         id: 1, 
-        name: "Adekoya Toluwani", 
+        name: "Adaora Okoh", 
         team: "Bethany",
         picture: BethanyTL
     },
     {
         id: 2, 
-        name: "Adekoya Toluwani", 
-        team: "Carpernaum", 
-        picture: CarpernaumTL
+        name: "Ogbonna Richard", 
+        team: "Capernaum", 
+        picture: CapernaumTL
     },
     {
         id: 3, 
-        name: "Adekoya Toluwani", 
+        name: "Akhagbosu Beatrice.", 
         team: "Galilee",
         picture: GalileeTL
     },
     {
         id: 4, 
-        name: "Adekoya Toluwani", 
+        name: "Adeniyi Taiwo", 
         team: "Jericho",
         picture: JerichoTL
     },
     {
         id: 5, 
-        name: "Adekoya Toluwani", 
+        name: "Jegede Ololade", 
         team: "Jordan",
         picture: JordanTL
     },
     {
         id: 6, 
-        name: "Adekoya Toluwani", 
+        name: "Ikujunni Peter", 
         team: "Nile", 
         picture: NileTL
     }
@@ -49,7 +49,7 @@ export const teamLeaders = [
 const TeamLeaders = () => {
   return (
     <div className="teamLeaders">
-        <h2 className="teamLeaders__header">Meet your Team Leaders</h2>
+        <h2 className="teamLeaders__header">Team Leaders</h2>
         <div className="teamLeaders__cover">
             {teamLeaders.map((teamLead: any, index) => (
                 <div className="teamLeader" key={teamLead.id}>
