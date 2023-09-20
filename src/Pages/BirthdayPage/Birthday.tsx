@@ -24,7 +24,6 @@ const Birthday = () => {
     const [data, setData] = useState<FbDataType>([])
     const [appWriteData, setAppWriteData] = useState<any>([])
     // const [appWriteTotalNumber, setAppTotalNumber] = useState(0)
- 
     const [selectedTeam, setSelectedTeam] = useState('')
     const teams = [
       {
@@ -115,7 +114,6 @@ const Birthday = () => {
       })
     }, [dispatch])
 
-  
     // BIRTHDAY FILTER LOGIC
     const filterByDate = data.filter(list => {
         return  parseInt((list.birthday.split("-")[2])) === parseInt(today.getDate().toString()) && parseInt(list.birthday.split("-")[1]) - 1 === today.getMonth()

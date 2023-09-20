@@ -6,6 +6,7 @@ export type objProperties = {
     text1: string;
     text2: string;
     rtl?: boolean;
+    pic: string;
 }
 type StepPropsType = {
     stepProp: objProperties
@@ -23,7 +24,13 @@ const Steps = ({ stepProp }: StepPropsType) => {
                 <p>{stepProp.text2}</p>
             </div>
         </div>
-        <div className="steps__right">d</div>
+        <div className="steps__right">
+            {stepProp.pic ? (
+                <img src={stepProp.pic} alt="pic" /> 
+            ) : (
+                null
+            )}
+        </div>
     </div>
   )
 }
