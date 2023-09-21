@@ -23,6 +23,22 @@ const LandingPage = () => {
   const [data, setData] = useState<FbDataType>([])
   const navigate = useNavigate()
 
+  const fetchData = async () => {
+      let list: any = [];
+      try{
+        const querySnapshot = await getDocs(collection(db, "users"));
+        querySnapshot.forEach((doc) => {
+          list.push({id: doc.id, ...doc.data()}) // spreading the data object in the list object.
+          // doc.data() is never undefined for query doc snapshots
+          // console.log(doc.id, " => ", doc.data());
+
+          setData(list)
+          // console.log(list)
+        });
+      }catch(error) {
+        console.log(error);
+      }
+  }
 
   useEffect(() => {
     const getTotalNumber = databases.listDocuments('64ceea379b69c1ef2b66','64ceea8cc086f25e06da');
@@ -33,47 +49,12 @@ const LandingPage = () => {
         setAppwriteTotalUsers(response.total)
       }, 
       function(error){
-        // console.log(error);
+        console.log(error);
+        fetchData();
       }
     )
     
   }, [])
-
-   // USEEFFECT FOR GETTING ALL USER DATA FROM FB
-    useEffect(() => {
-      // dispatch(registeruser())
-
-      // PREVENTING RE-ROUTING ON PAGE REFRESH
-      window.addEventListener("popstate", e => {
-        navigate(1);
-      })
-
-      const fetchData = async () => {
-          let list: any = [];
-          try{
-            const querySnapshot = await getDocs(collection(db, "users"));
-            querySnapshot.forEach((doc) => {
-              list.push({id: doc.id, ...doc.data()}) // spreading the data object in the list object.
-              // doc.data() is never undefined for query doc snapshots
-              // console.log(doc.id, " => ", doc.data());
-
-              setData(list)
-              // console.log(list)
-            });
-          }catch(error) {
-            console.log(error);
-          }
-      }
-
-        fetchData();
-    }, []);
-
-      // USEEFFECT TO READ USER DATA ON PAGE LOAD
-    // useEffect(() => {
-    //   console.log(data.length);
-    //   // console.log(data);
-    // }, [data])
-
 
   // returns user to top of page
   TopOfPage();
