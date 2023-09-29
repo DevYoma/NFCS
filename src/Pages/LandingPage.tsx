@@ -40,6 +40,12 @@ const LandingPage = () => {
       }
   }
 
+  const runWhenAppWriteIsDown = () => {
+    if(appWriteTotalUsers === 0){
+      fetchData()
+    }
+  }
+
   useEffect(() => {
     const getTotalNumber = databases.listDocuments('64ceea379b69c1ef2b66','64ceea8cc086f25e06da');
 
@@ -47,14 +53,18 @@ const LandingPage = () => {
       function(response){
         setAppWriteData(response.documents)
         setAppwriteTotalUsers(response.total)
+
+        runWhenAppWriteIsDown()
       }, 
       function(error){
         console.log(error);
-        fetchData();
+        fetchData();        
       }
     )
     
   }, [])
+
+  console.log(data);
 
   // returns user to top of page
   TopOfPage();
@@ -76,7 +86,7 @@ const LandingPage = () => {
             jordanTeamNumber={appWriteData.filter((datum: any) => datum.team === 'jordan').length || data.filter((datum: any) => datum.team === 'jordan').length}
             nileTeamNumber={appWriteData.filter((datum: any) => datum.team === 'nile').length || data.filter((datum: any) => datum.team === 'nile').length}
           />
-          <Testimonial />
+          {/* <Testimonial /> */}
           <Footer />
       </section>
     </React.Fragment>
