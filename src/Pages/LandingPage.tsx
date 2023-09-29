@@ -40,11 +40,11 @@ const LandingPage = () => {
       }
   }
 
-  const runWhenAppWriteIsDown = () => {
-    if(appWriteTotalUsers === 0){
-      fetchData()
-    }
-  }
+  // const runWhenAppWriteIsDown = () => {
+  //   if(appWriteTotalUsers === 0){
+  //     fetchData()
+  //   }
+  // }
 
   useEffect(() => {
     const getTotalNumber = databases.listDocuments('64ceea379b69c1ef2b66','64ceea8cc086f25e06da');
@@ -54,7 +54,7 @@ const LandingPage = () => {
         setAppWriteData(response.documents)
         setAppwriteTotalUsers(response.total)
 
-        runWhenAppWriteIsDown()
+        // runWhenAppWriteIsDown()
       }, 
       function(error){
         console.log(error);
