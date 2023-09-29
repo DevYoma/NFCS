@@ -64,7 +64,7 @@ const LandingPage = () => {
     
   }, [])
 
-  console.log(data);
+  // console.log(data);
 
   // returns user to top of page
   TopOfPage();
