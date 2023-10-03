@@ -291,3 +291,28 @@ export function ordinal(n: number) {
 };
 
 // console.log(ordinal(21))
+
+// DATE 
+export function formatDate(date: Date) {
+  const day = date.getDate();
+  const month = date.toLocaleString('en-US', { month: 'long' });
+  const suffix = getDaySuffix(day);
+  
+  return `${day}${suffix} of ${month}`;
+}
+
+function getDaySuffix(day: number) {
+  if (day >= 11 && day <= 13) {
+    return 'th';
+  }
+  switch (day % 10) {
+    case 1:
+      return 'st';
+    case 2:
+      return 'nd';
+    case 3:
+      return 'rd';
+    default:
+      return 'th';
+  }
+}

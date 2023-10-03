@@ -8,6 +8,7 @@ import { RootState } from '../../Features/store';
 import { useNavigate } from 'react-router-dom'
 import { registeruser } from '../../Features/user/userSlice';
 import Navbar from '../../Components/Navbar/Navbar';
+import { formatDate } from '../../utils/helper';
 
 export type FbDataType = {
     id: string | number;
@@ -57,14 +58,15 @@ const Birthday = () => {
     ]
 
     // Firebase User Result
-    const [fbUser, setFbUser] = useState<any>(null);
+    const [fbUser, setFbUser] = useState<any>(null); // current user 
 
-    const user: boolean = useSelector((state: RootState) => state.user.user)
-    // console.log(user);
+    const user: boolean = useSelector((state: RootState) => state.user.user) // user boolean login status
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    
     const today = new Date();
+    const formattedDate = formatDate(today);
 
 
     // USEEFFECT FOR GETTING ALL USER DATA FROM FB
@@ -160,6 +162,8 @@ const Birthday = () => {
     // assigning the returned value from the function to apiResponse.
     const apiResponse = fbUser?.userDataResult;
 
+    // console.log(data);
+
   return (
     <>
       {user && (
@@ -192,7 +196,11 @@ const Birthday = () => {
               ))}
             </select>
 
-            <div className="birthdayPage__today">Today</div>
+            <div className="birthdayPage__today">
+              <p>{formattedDate}</p>
+
+              {filterByDate.length === 0 ? <p>No Celebrant(s) today</p> : <p>{filterByDate.length} Celebrant(s) 🥳</p>}
+            </div>
 
             {/* FILTERED BIRTHDAY CELEBRANTS */}
             {
@@ -225,21 +233,17 @@ const Birthday = () => {
                 <PuffLoader color="#0A55E4" loading={true} cssOverride={override} size={100} />
               )
             }
+
+              {/* <p className={filterByDate.length === 0 ? 'birthdayPage__show' : 'birthdayPage__empty'}>No Birthday celebrant today, check back tomorrow</p> */}
+
           </div>
 
-          {/* <div className="tomorrowBirthday">
-            <h2>Tomorrow's Birthdays</h2>
-            {upComingBirthday.map((upComing: any) => {
-              return( 
-                <div>
-                  {upComing.name}
-                </div>
-              )
-            })}
-          </div>           */}
+
+
         </section>
         </>
       )}
+
 
       {!user && goBackToPreviousPage()}
 
