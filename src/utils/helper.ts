@@ -269,6 +269,10 @@ export const departments = [
     "value": "sociology and anthropology"
   },
   {
+    "label": "Surveying and Geoinformatics",
+    "value": "surveying and geoinformatics"
+  },
+  {
     "label": "Urban and Regional Planning",
     "value": "urban and regional planning"
   },
