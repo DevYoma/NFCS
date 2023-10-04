@@ -55,6 +55,7 @@ const LandingPage = () => {
         setAppwriteTotalUsers(response.total)
 
         // runWhenAppWriteIsDown()
+        fetchData()
       }, 
       function(error){
         console.log(error);
@@ -64,7 +65,7 @@ const LandingPage = () => {
     
   }, [])
 
-  // console.log(data);
+  console.log(data);
 
   // returns user to top of page
   TopOfPage();
@@ -78,7 +79,7 @@ const LandingPage = () => {
           <TeamLeaders />
           <Excos />
           <ScoreBoard 
-            totalNumber={data.length || appWriteTotalUsers}
+            totalNumber={appWriteTotalUsers || data.length}
             bethanyTeamNumber={data.filter((datum: any) => datum.team === 'bethany').length || appWriteData.filter((datum: any) => datum.team === 'bethany').length  }
             capernaumTeamNumber={data.filter((datum: any) => datum.team === 'capernaum').length || appWriteData.filter((datum: any) => datum.team === 'capernaum').length}
             galileeTeamNumber={data.filter((datum: any) => datum.team === 'galilee').length || appWriteData.filter((datum: any) => datum.team === 'galilee').length  }
