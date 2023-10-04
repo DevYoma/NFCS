@@ -161,6 +161,10 @@ export const departments = [
     "value": "food science and technology"
   },
   {
+    "label": "Foreign Languages", 
+    "value": "foreign languages"
+  },
+  {
     "label": "Geography",
     "value": "geography"
   },
