@@ -78,13 +78,13 @@ const LandingPage = () => {
           <TeamLeaders />
           <Excos />
           <ScoreBoard 
-            totalNumber={appWriteTotalUsers || data.length}
-            bethanyTeamNumber={appWriteData.filter((datum: any) => datum.team === 'bethany').length || data.filter((datum: any) => datum.team === 'bethany').length}
-            capernaumTeamNumber={appWriteData.filter((datum: any) => datum.team === 'capernaum').length || data.filter((datum: any) => datum.team === 'capernaum').length}
-            galileeTeamNumber={appWriteData.filter((datum: any) => datum.team === 'galilee').length || data.filter((datum: any) => datum.team === 'galilee').length}
-            jerichoTeamNumber={appWriteData.filter((datum: any) => datum.team === 'jericho').length || data.filter((datum: any) => datum.team === 'jericho').length}
-            jordanTeamNumber={appWriteData.filter((datum: any) => datum.team === 'jordan').length || data.filter((datum: any) => datum.team === 'jordan').length}
-            nileTeamNumber={appWriteData.filter((datum: any) => datum.team === 'nile').length || data.filter((datum: any) => datum.team === 'nile').length}
+            totalNumber={data.length || appWriteTotalUsers}
+            bethanyTeamNumber={data.filter((datum: any) => datum.team === 'bethany').length || appWriteData.filter((datum: any) => datum.team === 'bethany').length  }
+            capernaumTeamNumber={data.filter((datum: any) => datum.team === 'capernaum').length || appWriteData.filter((datum: any) => datum.team === 'capernaum').length}
+            galileeTeamNumber={data.filter((datum: any) => datum.team === 'galilee').length || appWriteData.filter((datum: any) => datum.team === 'galilee').length  }
+            jerichoTeamNumber={data.filter((datum: any) => datum.team === 'jericho').length || appWriteData.filter((datum: any) => datum.team === 'jericho').length  }
+            jordanTeamNumber={ data.filter((datum: any) => datum.team === 'jordan').length || appWriteData.filter((datum: any) => datum.team === 'jordan').length }
+            nileTeamNumber={  data.filter((datum: any) => datum.team === 'nile').length || appWriteData.filter((datum: any) => datum.team === 'nile').length }
           />
           {/* <Testimonial /> */}
           <Footer />
