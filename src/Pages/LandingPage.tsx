@@ -65,7 +65,8 @@ const LandingPage = () => {
     
   }, [])
 
-  console.log(data);
+  // console.log('firebase', data.length);
+  // console.log(appWriteTotalUsers);
 
   // returns user to top of page
   TopOfPage();
@@ -79,7 +80,7 @@ const LandingPage = () => {
           <TeamLeaders />
           <Excos />
           <ScoreBoard 
-            totalNumber={appWriteTotalUsers || data.length}
+            totalNumber={data.length || appWriteTotalUsers}
             bethanyTeamNumber={data.filter((datum: any) => datum.team === 'bethany').length || appWriteData.filter((datum: any) => datum.team === 'bethany').length  }
             capernaumTeamNumber={data.filter((datum: any) => datum.team === 'capernaum').length || appWriteData.filter((datum: any) => datum.team === 'capernaum').length}
             galileeTeamNumber={data.filter((datum: any) => datum.team === 'galilee').length || appWriteData.filter((datum: any) => datum.team === 'galilee').length  }
