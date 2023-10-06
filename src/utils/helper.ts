@@ -65,6 +65,10 @@ export const departments = [
     "value": "architecture"
   },
   {
+    "label": "Arts and Social Science Education",
+    "value": "arts and social science education"
+  },
+  {
     "label": "Biochemistry",
     "value": "biochemistry"
   },
@@ -227,6 +231,10 @@ export const departments = [
   {
     "label": "Nursing",
     "value": "nursing"
+  },
+  {
+    "label": "Pharmacy",
+    "value": "pharmacy"
   },
   {
     "label": "Philosophy",
