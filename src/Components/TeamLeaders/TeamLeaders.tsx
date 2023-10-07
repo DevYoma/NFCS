@@ -40,7 +40,7 @@ export const teamLeaders = [
     },
     {
         id: 6, 
-        name: "Ikujunni Peter", 
+        name: "Ikujuni Peter", 
         team: "Nile", 
         picture: NileTL
     }
