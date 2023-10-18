@@ -18,7 +18,6 @@ import { teams, departments } from '../../utils/helper';
 import { InputAdornment, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import ImageIcon from '@mui/icons-material/Image';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { emailApi, emailServiceId, emailTemplateId } from '../../Email/Email';
 import Navbar from '../../Components/Navbar/Navbar';
 import { ClipLoader } from 'react-spinners';
 import TopOfPage from '../../utils/topOfPage';
@@ -241,7 +240,9 @@ const Register = () => {
           }
 
           // sending emails to users
-        emailjs.send(emailServiceId, emailTemplateId, toSend, emailApi)
+          // @ts-ignore
+        emailjs.send(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID, toSend, process.env.REACT_APP_PUBLIC_KEY)
+        // emailjs.send(emailServiceId, emailTemplateId, toSend, emailApi)
           .then((result) => {
             console.log(result.text)
           }, (error) => {
