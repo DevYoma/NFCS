@@ -133,6 +133,10 @@ export const departments = [
     "value": "educational management"
   },
   {
+    "label": "Education and Biology",
+    "value": "education and biology"
+  },
+  {
     "label": "Educational Technology",
     "value": "educational technology"
   },
@@ -267,6 +271,10 @@ export const departments = [
   {
     "label": "Religious Studies",
     "value": "religious studies"
+  },
+  {
+    "label": "Science and Technology Education", 
+    "value": "science and technology education"
   },
   {
     "label": "Soil Science",
