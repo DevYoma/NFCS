@@ -1,4 +1,3 @@
-// import './firebase-messaging-sw'
 import './App.css';
 import { Routes, Route } from 'react-router-dom'
 import Birthday from './Pages/BirthdayPage/Birthday';

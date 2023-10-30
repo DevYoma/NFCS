@@ -1,46 +1,42 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# NFCS OAU
 
-## Available Scripts
+The NFCS OAU(Obafemi Awolowo University) Website is a platform designed to foster collaboration and streamline communication within the NFCS OAU Community. This web application provides an organized hub for team leaders to efficiently manage their team members' information and highlights daily birthday celebrations.
 
-In the project directory, you can run:
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## About the Project
 
-### `yarn test`
+### What was your motivation?
+The reason behind this project was to provide support for the team leaders and executives of the NFCS OAU community, offering them a practical and functional tool for their tasks.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Why did you build this project?
+My aspiration was to create a tangible software piece that not only showcases my skills but also serves as a solution to simplify tasks and assist individuals or groups in their endeavors.
 
-### `yarn build`
+### What problem did it solve?
+The project effectively resolved the challenge of a dispersed pool of data by providing a centralized repository accessible to the governing body of the NFCS OAU community.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### What did you learn?
+The project served as a significant learning experience, honing my skills in ideation, effective communication, and the full execution cycle of an idea to a live product.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### What makes the project stand out?
+The project's impact is notable due to its active utilization by a growing user base, currently standing at 90+ users. The engagement and benefit of real users underscore its significance and real-world application.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Key Features
 
-### `yarn eject`
+- **Team Member Management:** Easily access and organize team members' data on the fly 🚀.
+- **Birthday Celebrations:** Daily display of team members celebrating their birthdays and can be filtered by team.
+- **Mobile Accessibility:** Enjoy a responsive design, accessible on various devices.
+## Tech Stack
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Client:** React, Redux, Typescript, SCSS
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Backend-as-a-service:** Firebase, Appwrite, Email JS(for sending emails to registerd users)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Credits
 
-## Learn More
+This project wouldn't have been possible without the invaluable contributions and support from the following individuals:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **[Toluwani](https://twitter.com/toluwaniii_a)**: For her dedication and valuable insights in building the User Interface that shaped the project.
