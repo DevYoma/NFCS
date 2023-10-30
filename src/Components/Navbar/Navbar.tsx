@@ -56,6 +56,8 @@ const Navbar = ({ hideLinks, hideDrawer, isLoggedIn, hideBoxShadow }: NavbarProp
     // console.log(isLoggedIn);
 
     const handleLogout = () => {
+        dispatch(logout());
+        dispatch(loggedOut())
         signOut(auth).then(() => {
             dispatch(logout());
             dispatch(loggedOut())
@@ -63,8 +65,6 @@ const Navbar = ({ hideLinks, hideDrawer, isLoggedIn, hideBoxShadow }: NavbarProp
         }).catch((error: any) => {
             alert(error)
         })
-        // localStorage.removeItem("formValues");
-
     }
 
   return (

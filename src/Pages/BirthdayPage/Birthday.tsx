@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import { registeruser } from '../../Features/user/userSlice';
 import Navbar from '../../Components/Navbar/Navbar';
 import { formatDate } from '../../utils/helper';
+import { loggedIn, userBirthdayDetail } from '../../Features/userInfo/userinfoSlice';
 
 export type FbDataType = {
     id: string | number;
@@ -61,6 +62,13 @@ const Birthday = () => {
     const [fbUser, setFbUser] = useState<any>(null); // current user 
 
     const user: boolean = useSelector((state: RootState) => state.user.user) // user boolean login status
+
+    // @ts-ignore
+    const userInfo = useSelector((state: RootState) => state.userInfo.userInfo)
+    // @ts-ignore
+    // console.log(userInfo.email);
+
+    // console.log(user);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -161,8 +169,12 @@ const Birthday = () => {
 
     // assigning the returned value from the function to apiResponse.
     const apiResponse = fbUser?.userDataResult;
+    // console.log(apiResponse);
 
     // console.log(data);
+    if(apiResponse){
+      dispatch(userBirthdayDetail(apiResponse))
+    }
 
   return (
     <>
