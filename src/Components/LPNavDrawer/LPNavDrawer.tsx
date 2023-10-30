@@ -25,9 +25,11 @@ const LPNavDrawer = ({onMobileView, isLoggedIn}: MobileNavDrawer) => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
+        dispatch(loggedOut())
+        dispatch(logout())
         auth.signOut().then(() => {
             dispatch(logout())
-            dispatch(loggedOut);
+            dispatch(loggedOut());
 
             navigate('/')
         })

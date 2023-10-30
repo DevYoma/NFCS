@@ -185,8 +185,6 @@ const Register = () => {
            formData.teampass === "" || 
            password === "")
            {
-            // alert("Please Check the form again and enter your details correctly.")
-            // toast.error("Please check the form again and enter your details correctly")
             notify("Please check the form again and enter your details correctly");
 
             // SETTING THE LOADING STATE ON BUTTON TO FALSE
@@ -198,7 +196,7 @@ const Register = () => {
             // START IMAGE PROCESSING HERE => the file onChange={(e: any) => setFile(e.target.files[0])} => so this means you must have a file useState.
             // console.log(formData)
             
-            localStorage.setItem("formValues", JSON.stringify(formData))
+            // localStorage.setItem("formValues", JSON.stringify(formData))
             dispatch(registeruser())
             // dispatching values to the userInfo
             dispatch(loggedIn({
@@ -206,9 +204,7 @@ const Register = () => {
                 birthday: formData.birthday, 
                 department: formData.department,
                 email: formData.email,
-                // image: formData.image, 
                 team: formData.team,
-                // level: formData.level,
             }))
 
         }
@@ -276,23 +272,9 @@ const Register = () => {
 
             const dataPromise = databases.createDocument('64ceea379b69c1ef2b66', '64ceea8cc086f25e06da', uuidv4(), formData)
 
-            // dataPromise.then(
-            //     function(response){
-            //         console.log(response);
-            //     },
-            //     function(error){
-            //         console.log(error);
-            //     }
-            // )
-            
-
             // END OF APPWRITE STUFF
 
             navigate('/birthday');
-
-            // const emailVerification = await sendEmailVerification(registerUserFB.user) 
-            // console.log(emailVerification);
-            
         } catch(error: any){
             setLoading(false)
             notify(error.message);

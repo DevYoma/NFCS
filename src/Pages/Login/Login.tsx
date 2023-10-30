@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import './Login.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
-import {  registeruser } from '../../Features/user/userSlice'
-import { loggedIn } from '../../Features/userInfo/userinfoSlice';
+import {  logout, registeruser } from '../../Features/user/userSlice'
+import { loggedIn, loggedInFailure } from '../../Features/userInfo/userinfoSlice';
 import { auth } from '../../Firebase/Firebase';
 import { signInWithEmailAndPassword } from '@firebase/auth';
 import { ToastContainer, toast } from 'react-toastify';
@@ -54,12 +54,11 @@ const Login = () => {
       // alert("Please enter valid details");
       notify("This is not a valid email address")
     }else{
+      // we don't need to dispatch here
       dispatch(registeruser());
       dispatch(loggedIn({
         email: loginData.email,
       }))
-      // console.log(loginData)
-      // navigate('/home')
     }
 
       // FIREBASE OPERATIONS
@@ -69,9 +68,14 @@ const Login = () => {
 
         setLoading(true)
 
-        await signInWithEmailAndPassword(auth, loginData.email, loginData.password)
-        navigate('/birthday')
+        const loginResult = await signInWithEmailAndPassword(auth, loginData.email, loginData.password)
+        // console.log(loginResult);
+        if (loginResult){
+          navigate('/birthday')
+        }
       }catch(error: any){
+        dispatch(logout())
+        dispatch(loggedInFailure())
         // alert(error);
 
         setLoading(false);
