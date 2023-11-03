@@ -40,3 +40,13 @@ The project's impact is notable due to its active utilization by a growing user 
 This project wouldn't have been possible without the invaluable contributions and support from the following individuals:
 
 - **[Toluwani](https://twitter.com/toluwaniii_a)**: For her dedication and valuable insights in building the User Interface that shaped the project.
+
+## Video Demo
+To provide a visual demonstration of the project's functionality, I've created a video showcasing the key features and user interface. You can watch the demo by clicking the link below:
+
+
+
+
+https://github.com/DevYoma/NFCS/assets/47899828/7e2e96cc-8ba3-4639-ba96-b59e645b07a5
+
+
