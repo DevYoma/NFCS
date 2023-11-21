@@ -13,7 +13,7 @@ const initialState: UserInfoState = {
 }
 
 export const userInfoSlice = createSlice({
-  name: 'user',
+  name: 'userInfo', // readUp
   initialState,
   reducers: {
     // },

@@ -56,9 +56,9 @@ const Login = () => {
     }else{
       // we don't need to dispatch here
       dispatch(registeruser());
-      dispatch(loggedIn({
-        email: loginData.email,
-      }))
+      // dispatch(loggedIn({
+      //   email: loginData.email,
+      // }))
     }
 
       // FIREBASE OPERATIONS
@@ -71,6 +71,9 @@ const Login = () => {
         const loginResult = await signInWithEmailAndPassword(auth, loginData.email, loginData.password)
         // console.log(loginResult);
         if (loginResult){
+          dispatch(loggedIn({
+            email: loginData.email,
+          }))
           navigate('/birthday')
         }
       }catch(error: any){
