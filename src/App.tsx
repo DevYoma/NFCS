@@ -9,6 +9,8 @@ import Profile from './Pages/Profile/Profile';
 import How from './Pages/How/How';
 import ForgotPassword from './Pages/ForgotPassword/ForgotPassword';
 import Events from './Pages/Events/Events';
+import Members from './Pages/Members/Members';
+import PrivateRoute from './Components/PrivateRoute';
 
 function App() {
   return (
@@ -19,19 +21,30 @@ function App() {
         <Route path='/how-it-works' element={<How />} />
 
             {/* MAIN APP */}
-        <Route path="/birthday" element={<Birthday />} />
 
         <Route path='/register' element={ <Register />} />
 
         <Route path='/login' element={ <Login />} />
-        
-        <Route path='/profile' element={ <Profile />} />
 
         <Route path='/events' element={ <Events />} />
 
         <Route path='/app' element={<Home /> } />
 
         <Route path='/forgot-password' element={<ForgotPassword /> } />
+
+        {/* PROTECTED ROUTES */}
+        <Route element={<PrivateRoute />}>
+          <Route path='/profile' element={ <Profile />} />
+        </Route>
+
+        <Route element={<PrivateRoute />}>
+          <Route path="/birthday" element={<Birthday />} />
+        </Route>
+        
+        {/* TEAM LEADERS ROUTES */}
+        <Route element={<PrivateRoute />}>
+          <Route path='/members' element={<Members />}/>
+        </Route>
 
         <Route path="*" element={(<h1>404 page</h1>)}/>
       </Routes>

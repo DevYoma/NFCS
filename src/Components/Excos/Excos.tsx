@@ -220,4 +220,4 @@ const Excos = () => {
   )
 }
 
-export default Excos
+export default Excos;
