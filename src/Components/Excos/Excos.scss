@@ -60,6 +60,17 @@
         padding-right: 10px;
     }
 
+    .arrow{
+        align-items: center;
+        // border: 1px solid red;
+        display: flex;
+        margin-bottom: 33px;
+
+        // @media screen and (max-width: 500px) {
+        //     display: none;
+        // }
+    }
+
     .arrowRight{
         // border: 1px solid red;
         display: flex;
@@ -67,6 +78,16 @@
         width: fit-content;
         background-color: var(--app-primary-color);
         border-radius: 99px;
-        margin-bottom: 33px;
+        // margin-bottom: 33px;
+    }
+
+    .arrowLeft{
+        // border: 1px solid red;
+        display: flex;
+        margin-right: auto;
+        width: fit-content;
+        background-color: var(--app-primary-color);
+        border-radius: 99px;
+        // margin-bottom: 33px;
     }
 }

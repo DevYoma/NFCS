@@ -1,7 +1,8 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import './Excos.scss';
 import { IconButton } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import President from '../../assets/excos/joel.jpg';
 import VicePresident from '../../assets/excos/catherine.jpg';
 import Secretary from '../../assets/excos/stephen.jpg';
@@ -179,6 +180,33 @@ const Excos = () => {
     const elementRef = useRef(null);
     const [arrowDisable, setArrowDisable] = useState<boolean>(true);
 
+    // getting screenWidth
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setScreenWidth(window.innerWidth);
+        }
+
+        // Attach the event listener for window resize
+        window.addEventListener('resize', handleResize);
+
+        // clean up the event listener
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        }
+    }, [])
+
+    // console.log(screenWidth);
+
+    const scrollSpeedByScreenWidth = () => {
+        if (screenWidth <= 500){
+            return 150
+        }else{
+            return 500
+        }
+    }
+
     const handleHorizantalScroll = (element: any, speed: any, distance: any, step: any) => {
         let scrollAmount: number = 0;
         const slideTimer = setInterval(() => {
@@ -195,6 +223,8 @@ const Excos = () => {
         }, speed);
       };
 
+    //   console.log(arrowDisable);
+
   return (
     <div className="excos">
         <h2 className="excos__header">NFCS EXCOS</h2>
@@ -208,13 +238,23 @@ const Excos = () => {
                     </div>
                 ))}
             </div>
+                
+        <div className="arrow">
+            <div className="arrowLeft">
+                <IconButton onClick={() => handleHorizantalScroll(elementRef.current, 10, scrollSpeedByScreenWidth(), -10)}>
+                    <ArrowBackIcon sx={{
+                        color: "white"
+                    }}/>
+                </IconButton>
+            </div>
 
-        <div className="arrowRight">
-            <IconButton onClick={() => handleHorizantalScroll(elementRef.current, 25, 100, 10)}>
-                <ArrowForwardIcon sx={{
-                    color: "white"
-                }}/>
-            </IconButton>
+            <div className="arrowRight">
+                <IconButton onClick={() => handleHorizantalScroll(elementRef.current, 10, scrollSpeedByScreenWidth(), 10)}>
+                    <ArrowForwardIcon sx={{
+                        color: "white"
+                    }}/>
+                </IconButton>
+            </div>
         </div>
     </div>
   )
