@@ -8,7 +8,7 @@ The NFCS OAU(Obafemi Awolowo University) Website is a platform designed to foste
 
 ## About the Project
 
-### What was your motivation?
+### What was my motivation?
 The reason behind this project was to provide support for the team leaders and executives of the NFCS OAU community, offering them a practical and functional tool for their tasks.
 
 ### Why did you build this project?
