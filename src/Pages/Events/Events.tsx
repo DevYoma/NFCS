@@ -2,8 +2,10 @@ import React from 'react'
 import './Events.scss';
 import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/Footer';
+import TopOfPage from '../../utils/topOfPage';
 
 const Events = () => {
+  TopOfPage()
   const events = [
     {
       id: 1, 
