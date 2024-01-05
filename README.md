@@ -32,7 +32,7 @@ The project's impact is notable due to its active utilization by a growing user 
 
 **Client:** React, Redux, Typescript, SCSS
 
-**Backend-as-a-service:** Firebase, Appwrite, Email JS(for sending emails to registerd users)
+**Backend-as-a-service:** Firebase, Email JS(for sending emails to registerd users)
 
 
 ## Credits
