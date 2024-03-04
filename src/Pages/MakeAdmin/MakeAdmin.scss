@@ -1,9 +1,6 @@
-// @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
-// font-family: 'Inter', sans-serif;
-
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
 
-.login {
+.makeAdmin {
   font-family: "Poppins", sans-serif;
   min-height: 100vh;
   // border: 1px solid red;
@@ -39,30 +36,12 @@
     }
   }
 
-  &__question {
-    margin: 22px 0px 35px;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 30px;
-    letter-spacing: 0.008em;
-    color: #111111;
+  &__FormContainer {
+    margin-top: 2.5rem;
+    // border: 1px solid red;
 
-    @media screen and (max-width: 1000px) {
-      // font-size: 2rem;
-      font-size: 18px;
-      line-height: 25px;
-    }
-
-    @media screen and (max-width: 500px) {
-      font-size: 1rem;
-    }
-  }
-
-  .login__FormContainer {
-    // border: 2px solid green;
     margin-inline: auto;
     width: 40%;
-    // width: 100%;
 
     @media screen and (max-width: 1000px) {
       // max-width: 70%;
@@ -77,10 +56,10 @@
       width: 85%;
     }
 
-    .login__Form {
+    .makeAdmin__Form {
       margin-bottom: 30px;
       // border: 1px solid red;
-      .login__formDiv {
+      .makeAdmin__formDiv {
         // border: 1px solid red;
 
         .input-field {
@@ -111,26 +90,7 @@
         }
       }
 
-      .login__forgotPassword {
-        font-weight: 400;
-        font-size: 24px;
-        line-height: 30px;
-        letter-spacing: 0.008em;
-        color: #111111;
-        margin: 10px 0px 71px;
-
-        @media screen and (max-width: 1000px) {
-          font-size: 18px;
-          line-height: 25px;
-          margin: 10px 0px 40px;
-        }
-
-        @media screen and (max-width: 500px) {
-          font-size: 15px;
-        }
-      }
-
-      .login__button {
+      .makeAdmin__button {
         width: 100%;
         background: #0a55e4;
         border-radius: 5px;

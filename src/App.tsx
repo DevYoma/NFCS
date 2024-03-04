@@ -12,6 +12,7 @@ import Events from './Pages/Events/Events';
 import Members from './Pages/Members/Members';
 import PrivateRoute from './Components/PrivateRoute';
 import SaintDay from './Pages/SaintDay/SaintDay';
+import MakeAdmin from './Pages/MakeAdmin/MakeAdmin';
 
 function App() {
   return (
@@ -34,13 +35,15 @@ function App() {
 
         <Route path="/saint" element={<SaintDay />}/>
 
+        <Route path="/admin" element={<MakeAdmin />}/>
+
         {/* PROTECTED ROUTES */}
         <Route element={<PrivateRoute />}>
           <Route path='/profile' element={ <Profile />} />
         </Route>
 
         <Route element={<PrivateRoute />}>
-          <Route path='/app' element={<Home /> } />
+          <Route path='/users' element={<Home /> } />
         </Route>
 
         <Route element={<PrivateRoute />}>
