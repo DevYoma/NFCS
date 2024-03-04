@@ -11,6 +11,7 @@ import ForgotPassword from './Pages/ForgotPassword/ForgotPassword';
 import Events from './Pages/Events/Events';
 import Members from './Pages/Members/Members';
 import PrivateRoute from './Components/PrivateRoute';
+import SaintDay from './Pages/SaintDay/SaintDay';
 
 function App() {
   return (
@@ -28,13 +29,18 @@ function App() {
 
         <Route path='/events' element={ <Events />} />
 
-        <Route path='/app' element={<Home /> } />
 
         <Route path='/forgot-password' element={<ForgotPassword /> } />
+
+        <Route path="/saint" element={<SaintDay />}/>
 
         {/* PROTECTED ROUTES */}
         <Route element={<PrivateRoute />}>
           <Route path='/profile' element={ <Profile />} />
+        </Route>
+
+        <Route element={<PrivateRoute />}>
+          <Route path='/app' element={<Home /> } />
         </Route>
 
         <Route element={<PrivateRoute />}>

@@ -207,7 +207,8 @@ const Birthday = () => {
             {showConfetti && <ConfettiExplosion particleCount={300} force={0.8} duration={6000} width={4000}/>}
             <Navbar isLoggedIn={true} />
             <div className="birthdayPage__main">
-              {birthdayCelebrant && <Portal />}
+              {/* Need to design the Portal 👇 */}
+              {/* {birthdayCelebrant && <Portal />} */}  
               <div className="birthdayPage__header">
                 <div className="birthdayPage__headerDetails">
                   <h1>Hi {apiResponse?.name}</h1>
