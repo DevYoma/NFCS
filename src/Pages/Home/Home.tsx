@@ -22,6 +22,7 @@ export type FbDataType = {
   email: string;
   department: string;
   birthday: string;
+  admin?: boolean;
 }[]
 
 const Home = () => {
@@ -40,6 +41,9 @@ const Home = () => {
     // const userInfo: any = useSelector((state: RootState) => state.userInfo.userInfo)
 
     // console.log(userInfo);
+
+      // Admin Result 👇
+  // console.log(fbUser?.userDataResult.admin);
 
     // making page go to current page on reload
     const goBackToPreviousPage = () => {
@@ -115,7 +119,7 @@ const Home = () => {
       <>
         {user && (
           <>
-            <Navbar isLoggedIn={true} />
+            <Navbar isLoggedIn={true} isAdmin={fbUser?.userDataResult.admin}/>
             <div>
 
               <input 

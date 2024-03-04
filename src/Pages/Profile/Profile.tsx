@@ -11,6 +11,17 @@ import { InputLabel, TextField } from '@mui/material';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { toast } from 'react-toastify';
 
+  export type FBDataType = {
+    id: string | number;
+    name: string;
+    team: string;
+    level: string;
+    email: string;
+    department: string;
+    birthday: string;
+    admin?: boolean;
+  }
+
 const Profile = () => {
   const navigate = useNavigate();
   const [newName, setNewName] = useState('');
@@ -19,6 +30,9 @@ const Profile = () => {
   const [fbUser, setFbUser] = useState<any>(null);
 
   const dispatch = useDispatch();
+
+   // Admin Result 👇
+  // console.log(fbUser?.userDataResult.admin);
 
   // USEEFEECT FOR PERSISTING USER AND USER DATA
  useEffect(() => {
@@ -113,7 +127,7 @@ const Profile = () => {
 
   return (
     <React.Fragment>
-      <Navbar isLoggedIn/>
+      <Navbar isLoggedIn isAdmin={fbUser?.userDataResult.admin}/>
       <div className="profilePage">
         <h2 className="profilePage__header">Profile Settings</h2>
 

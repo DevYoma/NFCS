@@ -1,27 +1,31 @@
-import { collection, doc, getDoc, getDocs } from '@firebase/firestore';
-import { CSSProperties, useEffect, useState } from 'react'
-import { auth, db } from '../../Firebase/Firebase';
-import './Birthday.scss';
+import { collection, doc, getDoc, getDocs } from "@firebase/firestore";
+import { CSSProperties, useEffect, useState } from "react";
+import { auth, db } from "../../Firebase/Firebase";
+import "./Birthday.scss";
 import PuffLoader from "react-spinners/PuffLoader";
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../Features/store';
-import { useNavigate } from 'react-router-dom'
-import { registeruser } from '../../Features/user/userSlice';
-import Navbar from '../../Components/Navbar/Navbar';
-import { formatDate } from '../../utils/helper';
-import { loggedIn, userBirthdayDetail } from '../../Features/userInfo/userinfoSlice';
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../Features/store";
+import { useNavigate } from "react-router-dom";
+import { registeruser } from "../../Features/user/userSlice";
+import Navbar from "../../Components/Navbar/Navbar";
+import { formatDate } from "../../utils/helper";
+import {
+  loggedIn,
+  userBirthdayDetail,
+} from "../../Features/userInfo/userinfoSlice";
 import ConfettiExplosion from "react-confetti-explosion";
-import Portal from '../../Components/Portal/Portal';
+import Portal from "../../Components/Portal/Portal";
 
 export type FbDataType = {
-    id: string | number;
-    name: string;
-    team: string;
-    level: string;
-    email: string;
-    department: string;
-    birthday: string;
-  }[]
+  id: string | number;
+  name: string;
+  team: string;
+  level: string;
+  email: string;
+  department: string;
+  birthday: string;
+  admin?: boolean;
+}[];
 
 const Birthday = () => {
   //contains all REGISTERED USERS and TOTAL NUMBER
@@ -70,6 +74,9 @@ const Birthday = () => {
   // console.log(userInfo);
 
   // console.log(user);
+
+  // Admin Result 👇
+  // console.log(fbUser?.userDataResult.admin);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -193,8 +200,8 @@ const Birthday = () => {
   let showConfetti = false;
   let birthdayCelebrant = false;
 
-  if(formattedMonthAndDate === apiResponse?.birthday.slice(5)){
-    console.log('today is your birthday');
+  if (formattedMonthAndDate === apiResponse?.birthday.slice(5)) {
+    console.log("today is your birthday");
     showConfetti = true;
     birthdayCelebrant = true;
   }
@@ -204,11 +211,18 @@ const Birthday = () => {
       {user && (
         <>
           <section id="birthdayPage">
-            {showConfetti && <ConfettiExplosion particleCount={300} force={0.8} duration={6000} width={4000}/>}
-            <Navbar isLoggedIn={true} />
+            {showConfetti && (
+              <ConfettiExplosion
+                particleCount={300}
+                force={0.8}
+                duration={6000}
+                width={4000}
+              />
+            )}
+            <Navbar isLoggedIn={true} isAdmin={fbUser?.userDataResult.admin} />
             <div className="birthdayPage__main">
               {/* Need to design the Portal 👇 */}
-              {/* {birthdayCelebrant && <Portal />} */}  
+              {/* {birthdayCelebrant && <Portal />} */}
               <div className="birthdayPage__header">
                 <div className="birthdayPage__headerDetails">
                   <h1>Hi {apiResponse?.name}</h1>
@@ -304,6 +318,6 @@ const Birthday = () => {
       {!user && goBackToPreviousPage()}
     </>
   );
-}
+};
 
-export default Birthday
+export default Birthday;

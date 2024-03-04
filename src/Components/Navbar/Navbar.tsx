@@ -15,9 +15,10 @@ type NavbarProp = {
     hideDrawer?: boolean;
     isLoggedIn?: boolean;
     hideBoxShadow?: boolean;
+    isAdmin?: boolean;
 }
 
-const Navbar = ({ hideLinks, hideDrawer, isLoggedIn, hideBoxShadow }: NavbarProp) => {
+const Navbar = ({ hideLinks, hideDrawer, isLoggedIn, hideBoxShadow, isAdmin }: NavbarProp) => {
     const [links] = useState([
         {
             id: 1,
@@ -40,13 +41,20 @@ const Navbar = ({ hideLinks, hideDrawer, isLoggedIn, hideBoxShadow }: NavbarProp
         {
             id: 1, 
             text: "Birthdays", 
-            // route: "/app"
             route: "/birthday"
         },
         {
             id: 2, 
             text: "Profile", 
             route: "/profile"
+        }
+    ])
+
+    const [adminLinks] = useState([
+        {
+            id: 1, 
+            text: "Users", 
+            route: "/users"
         }
     ])
 
@@ -100,6 +108,18 @@ const Navbar = ({ hideLinks, hideDrawer, isLoggedIn, hideBoxShadow }: NavbarProp
                  </NavLink>
              </div>
             ))}
+
+            {/* is an ADMIN */}
+                {(isLoggedIn && isAdmin) && adminLinks.map(appLink => (
+                 <div key={appLink.id} className="navbar__appLink"> 
+                 <NavLink 
+                     to={appLink.route}
+                 >
+                     {appLink.text}
+                 </NavLink>
+             </div>
+            ))}
+            
             
             
             {isLoggedIn ? 
