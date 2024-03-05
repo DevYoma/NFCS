@@ -45,7 +45,7 @@ const MakeAdmin = () => {
     }
 
     // checking if the Admin Password entered is correct
-    if (adminPassword !== process.env.REACT_APP_MY_ADMIN_CHECK_VALUE) {
+    if (adminPassword !== process.env.REACT_APP_MYADMINCHECKVALUE) {
       alert("Password is wrong");
       setLoading(false);
       return;
