@@ -15,6 +15,7 @@ import {
 } from "../../Features/userInfo/userinfoSlice";
 import ConfettiExplosion from "react-confetti-explosion";
 import Portal from "../../Components/Portal/Portal";
+import useFetchUsers from "../../hooks/useFetchUsers";
 
 export type FbDataType = {
   id: string | number;
@@ -24,12 +25,12 @@ export type FbDataType = {
   email: string;
   department: string;
   birthday: string;
-  admin?: boolean;
+  admin?: boolean; // note this can be null as not all users can be admins
 }[];
 
 const Birthday = () => {
   //contains all REGISTERED USERS and TOTAL NUMBER
-  const [data, setData] = useState<FbDataType>([]);
+  const data: FbDataType = useFetchUsers()
   // const [showConfetti, setShowConfetti] = useState(false);
   const [selectedTeam, setSelectedTeam] = useState("");
   const teams = [
@@ -83,35 +84,6 @@ const Birthday = () => {
 
   const today = new Date();
   const formattedDate = formatDate(today);
-
-  // USEEFFECT FOR GETTING ALL USER DATA FROM FB
-  useEffect(() => {
-    // dispatch(registeruser())
-
-    // PREVENTING RE-ROUTING ON PAGE REFRESH
-    window.addEventListener("popstate", (e) => {
-      navigate(1);
-    });
-
-    const fetchData = async () => {
-      let list: any = [];
-      try {
-        const querySnapshot = await getDocs(collection(db, "users"));
-        querySnapshot.forEach((doc) => {
-          list.push({ id: doc.id, ...doc.data() }); // spreading the data object in the list object.
-          // doc.data() is never undefined for query doc snapshots
-          // console.log(doc.id, " => ", doc.data());
-
-          setData(list);
-          // console.log(list)
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchData();
-  }, [navigate]);
 
   // USEEFEECT FOR PERSISTING USER AND USER DATA
   useEffect(() => {

@@ -1,28 +1,31 @@
-import { useEffect, useState } from 'react'
-import Navbar from '../../Components/Navbar/Navbar';
-import { fetchFirebaseUsers } from '../../utils/getFirebaseUsers';
+import "./Members.scss";
+import useFetchUsers from "../../hooks/useFetchUsers";
+
+export type FbDataType = {
+  id: string | number;
+  name: string;
+  team: string;
+  level: string;
+  email: string;
+  department: string;
+  birthday: string;
+  teampass?: string;
+  admin?: boolean;
+  img?: string;
+  telephone?: string;
+}[];
 
 const Members = () => {
-  const [users, setUsers] = useState<any[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try{
-        const userList = await fetchFirebaseUsers();
-        setUsers(userList);
-      }catch(error: any){
-        console.log('Error fetching users', error);
-      }
-    }
-
-    fetchData()
-  }, [])
+  const users: FbDataType = useFetchUsers();
 
   // console.log(users);
 
+  const handleViewStudent = () => {
+    alert("Working")
+  }
+
   return (
-    <div>
-      <Navbar isLoggedIn/>
+    <div className="members">
       <h1>Members Page</h1>
       <table>
         <thead>
@@ -38,20 +41,20 @@ const Members = () => {
         </thead>
         <tbody>
           {users.map((user, i) => (
-            <tr key={user.id}>
+            <tr key={user.id}  onClick={handleViewStudent}>
               <td>{i + 1}</td>
               <td>{user.name}</td>
               <td>{user.department}</td>
               <td>{user.team}</td>
               <td>{user.birthday}</td>
-              <td>{user.phoneNumber}</td>
+              <td>{user.telephone}</td>
               <td>{user.email}</td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
-  )
-}
+  );
+};
 
-export default Members
+export default Members;

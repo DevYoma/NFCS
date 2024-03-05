@@ -1,19 +1,21 @@
-import './Home.scss';
-import { useSelector, useDispatch } from 'react-redux';
-import { registeruser } from '../../Features/user/userSlice'
-import { RootState } from '../../Features/store';
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import "./Home.scss";
+import { useSelector, useDispatch } from "react-redux";
+import { registeruser } from "../../Features/user/userSlice";
+import { RootState } from "../../Features/store";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { collection, getDoc, getDocs, doc } from "firebase/firestore";
-import { auth, db } from '../../Firebase/Firebase';
-import {LazyLoadImage}  from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
-import Navbar from '../../Components/Navbar/Navbar';
+import { auth, db } from "../../Firebase/Firebase";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+import Navbar from "../../Components/Navbar/Navbar";
+import useFetchUsers from "../../hooks/useFetchUsers";
+import Members from "../Members/Members";
 // import { loggedOut } from '../../Features/userInfo/userinfoSlice';
 // import SkeletonUserLoading from '../../Components/Skeletons/SkeletonUserLoading';
 // import { InputAdornment, TextField } from '@mui/material';
 // import SearchIcon from '@mui/icons-material/Search';
-    
+
 export type FbDataType = {
   id: string | number;
   name: string;
@@ -22,115 +24,88 @@ export type FbDataType = {
   email: string;
   department: string;
   birthday: string;
+  teampass?: string;
   admin?: boolean;
-}[]
+  img?: string;
+  telephone?: string;
+}[];
 
 const Home = () => {
+  // const [data, setData] = useState<FbDataType>([])
+  // const [data, setData] = useState<FbDataType | any>(null)
+  const data = useFetchUsers();
+  // console.log(data)
+  const [fbUser, setFbUser] = useState<any>(null);
 
-    // const [data, setData] = useState<FbDataType>([])
-    const [data, setData] = useState<FbDataType | any>(null)
-    const [fbUser, setFbUser] = useState<any>(null);
+  const [searchTitle, setSearchTitle] = useState("");
 
-    const [searchTitle, setSearchTitle] = useState('');
+  const navigate = useNavigate();
+  const user = useSelector((state: RootState) => state.user.user);
+  const dispatch = useDispatch();
 
-    const navigate = useNavigate();
-    const user = useSelector((state: RootState) => state.user.user)
-    const dispatch = useDispatch()
+  // userInfo details
+  // const userInfo: any = useSelector((state: RootState) => state.userInfo.userInfo)
 
-    // userInfo details
-    // const userInfo: any = useSelector((state: RootState) => state.userInfo.userInfo)
+  // console.log(userInfo);
 
-    // console.log(userInfo);
-
-      // Admin Result 👇
+  // Admin Result 👇
   // console.log(fbUser?.userDataResult.admin);
 
-    // making page go to current page on reload
-    const goBackToPreviousPage = () => {
-           window.addEventListener("load", e => {
-          navigate(-1);
-        })
-    }
+  // making page go to current page on reload
+  const goBackToPreviousPage = () => {
+    window.addEventListener("load", (e) => {
+      navigate(-1);
+    });
+  };
 
-    // USEEFFECT TO FETCH DATA COLLECTION FROM FIRESTORE.
-    useEffect(() => {
-      // dispatch(registeruser());
-      window.addEventListener("popstate", e => {
-        navigate(1);
-      })
+  // USEEFEECT FOR PERSISTING USER AND USER DATA
+  useEffect(() => {
+    dispatch(registeruser());
 
-      const fetchData = async () => {
-          let list: any = [];
-          try{
-            const querySnapshot = await getDocs(collection(db, "users"));
-            querySnapshot.forEach((doc) => {
-              list.push({id: doc.id, ...doc.data()}) // spreading the data object in the list object.
-              // doc.data() is never undefined for query doc snapshots
-              // console.log(doc.id, " => ", doc.data());
-  
-              setData(list)
-              // console.log(list)
-            });
-          }catch(error) {
-            console.log(error);
-          }
-        }
-
-        fetchData();
-  
-        // return () => {
-        //   fetchData();
-        // }
-    }, [dispatch]);
-
-    // USEEFEECT FOR PERSISTING USER AND USER DATA
-    useEffect(() => {
-      dispatch(registeruser());
-
-      auth.onAuthStateChanged(authState => {
-        console.log("User Id: " + authState?.uid);
-        if(authState){
-          getDataFromId(authState?.uid);
-        }
-      })
-    }, [dispatch])
-
-      // GETTING LOGGED IN USER DETAILS.
-      const getDataFromId = async (id: number | string | any) => {
-        // const docRef = doc(db, "users", "SF");
-        const docRef = doc(db, "users", id)
-        const docSnap = await getDoc(docRef);
-
-        const userDataResult: any = await (docSnap.data())
-        
-        console.log(userDataResult)
-        setFbUser({
-          ...fbUser,
-          userDataResult
-        })
-        
-        return userDataResult;
+    auth.onAuthStateChanged((authState) => {
+      console.log("User Id: " + authState?.uid);
+      if (authState) {
+        getDataFromId(authState?.uid);
       }
+    });
+  }, [dispatch]);
 
-      // assigning the returned value from the function to apiResponse.
-      const apiResponse = fbUser?.userDataResult;
+  // GETTING LOGGED IN USER DETAILS.
+  const getDataFromId = async (id: number | string | any) => {
+    // const docRef = doc(db, "users", "SF");
+    const docRef = doc(db, "users", id);
+    const docSnap = await getDoc(docRef);
+
+    const userDataResult: any = await docSnap.data();
+
+    console.log(userDataResult);
+    setFbUser({
+      ...fbUser,
+      userDataResult,
+    });
+
+    return userDataResult;
+  };
+
+  // assigning the returned value from the function to apiResponse.
+  const apiResponse = fbUser?.userDataResult;
 
   return (
-      <>
-        {user && (
-          <>
-            <Navbar isLoggedIn={true} isAdmin={fbUser?.userDataResult.admin}/>
-            <div>
-
-              <input 
+    <>
+      {user && (
+        <>
+          <Navbar isLoggedIn={true} isAdmin={fbUser?.userDataResult.admin} />
+          <div>
+            <Members />
+            {/* <input 
                 className="home__input"
                 type="text" 
                 placeholder='Search...'
                 onChange={(e: any) => setSearchTitle(e.target.value)}
-              />
+              /> */}
 
-              {/* Data from FB */}
-              {data && (
+            {/* Data from FB */}
+            {/* {data && (
                 <div className='home__lists'>
                 {data.filter((value: any) => {
                   if(searchTitle === ""){
@@ -159,18 +134,12 @@ const Home = () => {
                   </div>
                 ))}
                 </div>
-              ) }
-              {/* : ([1,2,3,4,5].map((n) => <SkeletonUserLoading key={n}/>))} */}
-             
-            </div>
-          
-          </>
+              ) } */}
+          </div>
+        </>
+      )}
+    </>
+  );
+};
 
-        )}
-
-        {/* {!user && goBackToPreviousPage() } */}
-      </>
-  )
-}
-
-export default Home
+export default Home;
