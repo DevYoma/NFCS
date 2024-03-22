@@ -39,7 +39,7 @@ const Footer = () => {
        <div className='footer__links'>
         <p className="footer__linksHeader">Community</p>
         <ul>
-          <li onClick={() => navigate("/saint")} style={{ cursor: "pointer" }}>Saint of the Day</li>
+          {/* <li onClick={() => navigate("/saint")} style={{ cursor: "pointer" }}>Saint of the Day</li> */}
           <li onClick={() => alert("Coming Soon")} style={{ cursor: "pointer" }}>About Us</li>
           <li onClick={() => alert("Coming Soon")} style={{ cursor: "pointer" }}>Alumni</li>
           <li onClick={() => navigate('/events')} style={{ cursor: "pointer" }}>Events</li>

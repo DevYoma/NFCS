@@ -144,7 +144,7 @@ const Navbar = ({ hideLinks, hideDrawer, isLoggedIn, hideBoxShadow, isAdmin }: N
             navbar__mobileLinks
             ${hideDrawer ? 'navbar__hideMobileLinks' : ''}
         `}>
-            <LPNavDrawer isLoggedIn={isLoggedIn}/>
+            <LPNavDrawer isLoggedIn={isLoggedIn} isAdmin={isAdmin}/>
         </div>
     </nav>
   )
