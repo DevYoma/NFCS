@@ -14,9 +14,10 @@ import { loggedOut } from '../../Features/userInfo/userinfoSlice';
 type MobileNavDrawer = {
     onMobileView?: boolean;
     isLoggedIn?: boolean;
+    isAdmin?: boolean;
 }
 
-const LPNavDrawer = ({onMobileView, isLoggedIn}: MobileNavDrawer) => {
+const LPNavDrawer = ({onMobileView, isLoggedIn, isAdmin}: MobileNavDrawer) => {
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
 
     // console.log(isLoggedIn);
@@ -69,6 +70,13 @@ const LPNavDrawer = ({onMobileView, isLoggedIn}: MobileNavDrawer) => {
                         </Link>
                     </React.Fragment>)
                 }
+
+                {/* is an ADMIN */}
+                {(isLoggedIn && isAdmin) && (
+                    <Link to={'/users'} style={{ textDecoration: "none"}}>
+                        <Typography variant='h6' component='div' className='navDrawer__text navDrawer__profile'>Users</Typography>
+                    </Link>
+                )}
 
                 <hr />
                 {!isLoggedIn ? 
