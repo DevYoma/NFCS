@@ -340,3 +340,8 @@ function getDaySuffix(day: number) {
       return 'th';
   }
 }
+
+export function formatBirthday(dateString: string){
+  const dateObject = new Date(dateString)
+  return formatDate(dateObject);
+}
