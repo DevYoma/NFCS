@@ -2,6 +2,7 @@ import "./Members.scss";
 import useFetchUsers from "../../hooks/useFetchUsers";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { formatBirthday } from "../../utils/helper";
 
 type FbDataType = {
   id: string | number;
@@ -75,7 +76,7 @@ const Members = () => {
               <td>{user.name}</td>
               <td>{user.department}</td>
               <td>{user.team}</td>
-              <td>{user.birthday}</td>
+              <td>{formatBirthday(user.birthday)}</td>
               <td>{user.telephone}</td>
               <td>{user.email}</td>
             </tr>

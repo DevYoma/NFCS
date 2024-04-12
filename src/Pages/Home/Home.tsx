@@ -11,10 +11,6 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import Navbar from "../../Components/Navbar/Navbar";
 import useFetchUsers from "../../hooks/useFetchUsers";
 import Members from "../Members/Members";
-// import { loggedOut } from '../../Features/userInfo/userinfoSlice';
-// import SkeletonUserLoading from '../../Components/Skeletons/SkeletonUserLoading';
-// import { InputAdornment, TextField } from '@mui/material';
-// import SearchIcon from '@mui/icons-material/Search';
 
 export type FbDataType = {
   id: string | number;
@@ -81,7 +77,7 @@ const Home = () => {
     console.log(userDataResult);
     setFbUser({
       ...fbUser,
-      userDataResult,
+      userDataResult, 
     });
 
     return userDataResult;
