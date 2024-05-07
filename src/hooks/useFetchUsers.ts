@@ -4,6 +4,8 @@ import { db } from "./../Firebase/Firebase"; // Assuming you have your Firebase 
 
 const useFetchUsers = () => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,8 +16,11 @@ const useFetchUsers = () => {
           list.push({ id: doc.id, ...doc.data() });
         });
         setData(list);
-      } catch (error) {
-        console.log(error);
+        setLoading(false)
+      } catch (error: any) {
+        // console.log(error);
+        setError(error)
+        setLoading(false)
       }
     };
 

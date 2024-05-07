@@ -27,8 +27,6 @@ export type FbDataType = {
 }[];
 
 const Home = () => {
-  // const [data, setData] = useState<FbDataType>([])
-  // const [data, setData] = useState<FbDataType | any>(null)
   const data = useFetchUsers();
   // console.log(data)
   const [fbUser, setFbUser] = useState<any>(null);
@@ -59,7 +57,7 @@ const Home = () => {
     dispatch(registeruser());
 
     auth.onAuthStateChanged((authState) => {
-      console.log("User Id: " + authState?.uid);
+      // console.log("User Id: " + authState?.uid);
       if (authState) {
         getDataFromId(authState?.uid);
       }
@@ -74,7 +72,7 @@ const Home = () => {
 
     const userDataResult: any = await docSnap.data();
 
-    console.log(userDataResult);
+    // console.log(userDataResult);
     setFbUser({
       ...fbUser,
       userDataResult, 

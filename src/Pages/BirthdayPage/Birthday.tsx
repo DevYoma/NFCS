@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, getDocs } from "@firebase/firestore";
+import { doc, getDoc } from "@firebase/firestore";
 import { CSSProperties, useEffect, useState } from "react";
 import { auth, db } from "../../Firebase/Firebase";
 import "./Birthday.scss";
@@ -10,11 +10,9 @@ import { registeruser } from "../../Features/user/userSlice";
 import Navbar from "../../Components/Navbar/Navbar";
 import { formatDate } from "../../utils/helper";
 import {
-  loggedIn,
   userBirthdayDetail,
 } from "../../Features/userInfo/userinfoSlice";
 import ConfettiExplosion from "react-confetti-explosion";
-import Portal from "../../Components/Portal/Portal";
 import useFetchUsers from "../../hooks/useFetchUsers";
 
 export type FbDataType = {
@@ -70,12 +68,7 @@ const Birthday = () => {
   const user: boolean = useSelector((state: RootState) => state.user.user); // user boolean login status
 
   // @ts-ignore
-  const userInfo = useSelector((state: RootState) => state.userInfo.userInfo);
-  // @ts-ignore
-  // console.log(userInfo);
-
-  // console.log(user);
-
+  // const userInfo = useSelector((state: RootState) => state.userInfo.userInfo);
   // Admin Result 👇
   // console.log(fbUser?.userDataResult.admin);
 

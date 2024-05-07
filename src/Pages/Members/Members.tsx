@@ -4,6 +4,15 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { formatBirthday } from "../../utils/helper";
 
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import { TablePagination } from "@mui/material";
+
 type FbDataType = {
   id: string | number;
   name: string;
@@ -20,6 +29,8 @@ type FbDataType = {
 
 const Members = () => {
   const users: FbDataType[] = useFetchUsers();
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10)
   const [selectedTeam, setSelectedTeam] = useState("All");
   const navigate = useNavigate();
 
@@ -36,6 +47,18 @@ const Members = () => {
   const handleViewStudent = (user: FbDataType) => {
     // route excos to user Details page
     navigate(`/users/${user.team}/${user.id}`);
+  };
+
+  const handlePageChange = (
+    event: React.MouseEvent | null,
+    newpage: number
+  ) => {
+    setPage(newpage);
+  };
+
+  const handleRowsPerPage = (event: any) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
   };
 
   return (
@@ -57,32 +80,58 @@ const Members = () => {
             </option>
           ))}
       </select>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Department</th>
-            <th>Team</th>
-            <th>DOB</th>
-            <th>Phone Number</th>
-            <th>Email</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredUsers.map((user, i) => (
-            <tr key={user.id} onClick={() => handleViewStudent(user)}>
-              <td>{i + 1}</td>
-              <td>{user.name}</td>
-              <td>{user.department}</td>
-              <td>{user.team}</td>
-              <td>{formatBirthday(user.birthday)}</td>
-              <td>{user.telephone}</td>
-              <td>{user.email}</td>
-            </tr>
+
+      <TableContainer component={Paper}>
+        <Table sx={{}} aria-label="simple table"  >
+        <TableHead>
+          <TableRow>
+            <TableCell size="small">ID</TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell>Department</TableCell>
+            <TableCell>Team</TableCell>
+            <TableCell>DOB</TableCell>
+            <TableCell>Phone Number</TableCell>
+            <TableCell>Email</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {filteredUsers
+          .slice(page * rowsPerPage, page*rowsPerPage + rowsPerPage)
+          .map((user, i) => ( 
+            <TableRow
+              key={i}
+              // sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              sx={{ cursor: "pointer" }}
+              onClick={() => handleViewStudent(user)}
+            >
+              {/* <TableCell component="th" scope="row">
+                {i + 1}
+              </TableCell> */}
+              <TableCell component="th">{i + 1}</TableCell>
+              <TableCell>{user.name}</TableCell>
+              <TableCell>{user.department}</TableCell>
+              <TableCell>{user.team}</TableCell>
+              <TableCell>{formatBirthday(user.birthday)}</TableCell>
+              <TableCell>{user.telephone}</TableCell>
+              <TableCell>{user.email}</TableCell>
+            </TableRow>
           ))}
-        </tbody>
-      </table>
+        </TableBody>
+        </Table>
+
+        <TablePagination 
+          rowsPerPageOptions={[10, 25, 50, 100]}
+          page={page}
+          rowsPerPage={rowsPerPage}
+          component="div"
+          onPageChange={handlePageChange}
+          onRowsPerPageChange={handleRowsPerPage}
+          // count={rowsPerPage}
+          count={filteredUsers.length}
+        />
+
+        {/* </TablePagination> */}
+    </TableContainer>
     </div>
   );
 };

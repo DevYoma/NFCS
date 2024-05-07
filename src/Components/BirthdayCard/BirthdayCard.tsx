@@ -4,7 +4,7 @@ import BirthdayLogo from '../../assets/birthday.png'
 import { ordinal } from '../../utils/helper';
 
 type BirthdayCardProp = {
-    data: any;
+  data: any;
 }
 
 const BirthdayCard = ({ data }: BirthdayCardProp) => {
