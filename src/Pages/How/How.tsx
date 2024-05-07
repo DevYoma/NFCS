@@ -30,7 +30,7 @@ const How = () => {
     },
     {
       id: 3, 
-      title: "Manage", 
+      title: "Manage(Team Leaders and Excos)", 
       text1: "Team leads get access to a personalized dashboard, providing invaluable data and tools for effective team management.",
       text2: "Utilize data-driven insights for better celebration planning and seamless event coordination, fostering deeper connections within your team and the federation at large", 
       pic: ''
