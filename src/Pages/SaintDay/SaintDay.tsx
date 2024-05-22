@@ -1,7 +1,7 @@
-import { saintOfTheDay } from "../../services/saintoftheDay"
+// import { saintOfTheDay } from "../../services/saintoftheDay"
 
 const SaintDay = () => {
-    saintOfTheDay()
+    // saintOfTheDay()
   return (
     <div>SaintDay</div>
   )

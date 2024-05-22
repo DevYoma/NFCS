@@ -17,7 +17,7 @@ const useFetchUsers = () => {
         });
         setData(list);
         setLoading(false)
-      } catch (error: any) {
+      } catch (error: any) {  
         // console.log(error);
         setError(error)
         setLoading(false)
