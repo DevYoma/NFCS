@@ -149,7 +149,7 @@ const Register = () => {
         setLoading(true);
         
         // TEAMPASS  CHECK
-        if(!pass.includes(formData.teampass)){
+        if(!pass.includes(formData.teampass.trim())){
             notify("Please enter a valid team pass")
             setLoading(false)
             return;
@@ -194,7 +194,19 @@ const Register = () => {
         }
         else{
             // START IMAGE PROCESSING HERE => the file onChange={(e: any) => setFile(e.target.files[0])} => so this means you must have a file useState.
-            // console.log(formData)
+            console.log(formData)
+
+            // const formattedFormData = {
+            //     name: formData.name, 
+            //     department: formData.department, 
+            //     team: formData.team, 
+            //     birthday: formData.birthday,
+            //     email: formData.email,
+            //     telephone: formData.telephone,
+            //     teampass: formData.teampass.trim()
+            // }
+
+            // console.log(formattedFormData)
             
             // localStorage.setItem("formValues", JSON.stringify(formData))
             dispatch(registeruser())
@@ -217,7 +229,7 @@ const Register = () => {
             // SETTING THE LOADING STATE TO FALSE
             setLoading(true);
             
-            const registerUserFB = await createUserWithEmailAndPassword(auth, formData.email, password)
+            const registerUserFB = await createUserWithEmailAndPassword(auth, formData.email.trim(), password)
             // console.log(registerUserFB)
             // console.log(registerUserFB.user.emailVerified)
 
@@ -231,7 +243,7 @@ const Register = () => {
           // details for EmailJS
           let toSend = {
             name: formData.name,
-            email: formData.email,
+            email: formData.email.trim(),
             message: message
           }
 
@@ -256,7 +268,7 @@ const Register = () => {
             // APPWRITE STUFF
             const promise = account.create(
                 ID.unique(),
-                formData.email,
+                formData.email.trim(),
                 password, 
                 formData.name
             )

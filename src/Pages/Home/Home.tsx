@@ -95,7 +95,7 @@ const Home = () => {
                 type="text" 
                 placeholder='Search...'
                 onChange={(e: any) => {
-                  console.log(searchTitle)
+                  // console.log(searchTitle)
                   setSearchTitle(e.target.value)
                 }}
               />
