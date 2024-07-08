@@ -90,14 +90,15 @@ const Home = () => {
         <>
           <Navbar isLoggedIn={true} isAdmin={fbUser?.userDataResult.admin} />
           <div>
-            <Members />
-            {/* <input 
+            <input 
                 className="home__input"
                 type="text" 
                 placeholder='Search...'
-                onChange={(e: any) => setSearchTitle(e.target.value)}
-              /> */}
-
+                onChange={(e: any) => {
+                  console.log(searchTitle)
+                  setSearchTitle(e.target.value)
+                }}
+              />
             {/* Data from FB */}
             {/* {data && (
                 <div className='home__lists'>
@@ -129,6 +130,9 @@ const Home = () => {
                 ))}
                 </div>
               ) } */}
+
+            <Members searchQuery={searchTitle} />
+
           </div>
         </>
       )}
