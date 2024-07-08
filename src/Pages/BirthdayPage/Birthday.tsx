@@ -14,6 +14,7 @@ import {
 } from "../../Features/userInfo/userinfoSlice";
 import ConfettiExplosion from "react-confetti-explosion";
 import useFetchUsers from "../../hooks/useFetchUsers";
+import { sendEmailsToCelebrants } from "../../utils/sendEmailsToCelebrants";
 
 export type FbDataType = {
   id: string | number;
@@ -94,7 +95,7 @@ const Birthday = () => {
     });
   }, [dispatch, navigate]);
 
-  // BIRTHDAY FILTER LOGIC
+  // BIRTHDAY FILTER LOGIC (gives the birthday logic)
   const filterByDate = data.filter((list) => {
     return (
       parseInt(list.birthday.split("-")[2]) ===
@@ -102,6 +103,8 @@ const Birthday = () => {
       parseInt(list.birthday.split("-")[1]) - 1 === today.getMonth()
     );
   });
+
+  console.log(filterByDate)
 
   // BIRTHDAY FILTER LOGIC FOR NEXT DAY
   const upComingBirthday = data.filter((list) => {
@@ -165,7 +168,10 @@ const Birthday = () => {
   let showConfetti = false;
   let birthdayCelebrant = false;
 
+  // send celebrant email
+
   if (formattedMonthAndDate === apiResponse?.birthday.slice(5)) {
+    // sendEmailsToCelebrants(apiResponse?.email);
     console.log("today is your birthday");
     showConfetti = true;
     birthdayCelebrant = true;

@@ -13,6 +13,10 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { TablePagination } from "@mui/material";
 
+type MemberProp = {
+  searchQuery?: string;
+}
+
 type FbDataType = {
   id: string | number;
   name: string;
@@ -27,7 +31,7 @@ type FbDataType = {
   telephone?: string;
 };
 
-const Members = () => {
+const Members = ({ searchQuery }: MemberProp) => {
   const users: FbDataType[] = useFetchUsers();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10)
@@ -37,6 +41,15 @@ const Members = () => {
   const filteredUsers = users.filter(
     (user) => selectedTeam === "All" || user.team === selectedTeam
   );
+
+  const searchedUsers = users.filter((value: FbDataType) => {
+    if(searchQuery === undefined || searchQuery === "")
+      return null;
+    else if(value.name.toLowerCase().includes(searchQuery.toLowerCase()))
+      return value;
+  })
+
+  const tableSearch = searchedUsers.length === 0 ? filteredUsers : searchedUsers;
 
   const handleChangeTeam = (event: any) => {
     setSelectedTeam(event.target.value);
@@ -95,7 +108,7 @@ const Members = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {filteredUsers
+          {tableSearch
           .slice(page * rowsPerPage, page*rowsPerPage + rowsPerPage)
           .map((user, i) => ( 
             <TableRow
