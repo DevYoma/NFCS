@@ -17,7 +17,6 @@ import { useNavigate } from 'react-router-dom';
 import Portal from '../Components/Portal/Portal';
 
 
-
 const LandingPage = () => {
   const [appWriteData, setAppWriteData] = useState<any>([])
   const [appWriteTotalUsers, setAppwriteTotalUsers] = useState(0);

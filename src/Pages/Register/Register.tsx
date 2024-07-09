@@ -265,7 +265,7 @@ const Register = () => {
                 timeStamp: serverTimestamp()
             });
 
-            // APPWRITE STUFF
+            // // APPWRITE STUFF
             const promise = account.create(
                 ID.unique(),
                 formData.email.trim(),
@@ -276,13 +276,12 @@ const Register = () => {
             promise.then(
                 function(response){
                     // console.log("Appwrite " + response);
+                    databases.createDocument('64ceea379b69c1ef2b66', '64ceea8cc086f25e06da', uuidv4(), formData)
                 },
                 function(error){
                     // console.log("Appwrite" + error);
                 }
             )
-
-            const dataPromise = databases.createDocument('64ceea379b69c1ef2b66', '64ceea8cc086f25e06da', uuidv4(), formData)
 
             // END OF APPWRITE STUFF
 
