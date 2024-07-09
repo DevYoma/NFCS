@@ -243,7 +243,7 @@ const Register = () => {
           // details for EmailJS
           let toSend = {
             name: formData.name,
-            email: formData.email.trim(),
+            email: formData.email,
             message: message
           }
 
