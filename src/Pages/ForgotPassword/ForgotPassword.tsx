@@ -8,24 +8,32 @@ import {notify}  from '../../utils/helper'
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
+    setIsLoading(true);
 
     // alert(email)
     
     // find a way to conditionally route to localhost and hostedSite based on a given condition
-    sendPasswordResetEmail(auth, email, {url: 'https://nfcs-1e729.web.app/login'}) 
-    .then((res: any) => {
-      console.log(res)
-      // alert("Email Sent, check your email")
-      notify("A link has been sent to your Email")
+    sendPasswordResetEmail(auth, email, {
+      url: "https://nfcs-oau.vercel.app/login",
     })
-    .catch((e:any) =>{
-      console.log(e.message)
-      // alert(e.message)
-      notify(e.message);
-    })
+      .then((res: any) => {
+        console.log(res);
+        alert("Email Sent, check your email")
+        notify("A link has been sent to your Email");
+      })
+      .catch((e: any) => {
+        console.log(e.message);
+        alert(e.message)
+        setIsLoading(false);
+        notify(e.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }
   return (
     <div>
@@ -51,10 +59,10 @@ const ForgotPassword = () => {
           <button 
             // onClick={() => alert('working')}
             onClick={handleSubmit}
-            disabled={!email.includes("@student.oauife.edu.ng")} 
+            disabled={!email.includes("@student.oauife.edu.ng") || isLoading === true} 
             className="forgotPassword__button"
           >
-            Submit
+            {isLoading ? "Loading..." : "Submit"}
           </button>
         </form>
       </div>

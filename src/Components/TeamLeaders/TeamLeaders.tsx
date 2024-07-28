@@ -1,46 +1,46 @@
 import React from 'react'
 import './TeamLeaders.scss';
-import BethanyTL from '../../assets/teamLeads/ada.jpg';
-import CapernaumTL from '../../assets/teamLeads/richard.jpg';
-import GalileeTL from '../../assets/teamLeads/beatrice.jpg';
-import JerichoTL from '../../assets/teamLeads/taiwo.jpg';
-import JordanTL from '../../assets/teamLeads/lolade.jpg';
-import NileTL from '../../assets/teamLeads/popori.jpg';
+import BethanyTL from '../../assets/teamLead/UmunakweGenevieve.jpg';
+// import CapernaumTL from '../../assets/teamLeads/richard.jpg';
+import GalileeTL from '../../assets/teamLead/mcday.jpg';
+// import JerichoTL from '../../assets/teamLeads/taiwo.jpg';
+// import JordanTL from '../../assets/teamLeads/lolade.jpg';
+import NileTL from '../../assets/teamLead/StephenChigbogu.jpeg';
 
 export const teamLeaders = [
     {
         id: 1, 
-        name: "Adaora Okoh", 
+        name: "Umunakwe Genevieve", 
         team: "Bethany",
         picture: BethanyTL
     },
-    {
-        id: 2, 
-        name: "Ogbonna Richard", 
-        team: "Capernaum", 
-        picture: CapernaumTL
-    },
+    // {
+    //     id: 2, 
+    //     name: "Ogbonna Richard", 
+    //     team: "Capernaum", 
+    //     picture: CapernaumTL
+    // },
     {
         id: 3, 
-        name: "Akhagbosu Beatrice.", 
+        name: "Gbadegesin Oluwasegun", 
         team: "Galilee",
         picture: GalileeTL
     },
-    {
-        id: 4, 
-        name: "Adeniyi Taiwo", 
-        team: "Jericho",
-        picture: JerichoTL
-    },
-    {
-        id: 5, 
-        name: "Jegede Ololade", 
-        team: "Jordan",
-        picture: JordanTL
-    },
+    // {
+    //     id: 4, 
+    //     name: "Adeniyi Taiwo", 
+    //     team: "Jericho",
+    //     picture: JerichoTL
+    // },
+    // {
+    //     id: 5, 
+    //     name: "Jegede Ololade", 
+    //     team: "Jordan",
+    //     picture: JordanTL
+    // },
     {
         id: 6, 
-        name: "Ikujuni Peter", 
+        name: "Stephen Chigbogu", 
         team: "Nile", 
         picture: NileTL
     }
