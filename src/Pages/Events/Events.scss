@@ -47,7 +47,12 @@
             margin-left: auto;
             margin-right: auto;
             gap: 2.5rem;
-            
+
+            &NoEvent{
+                // border: 1px solid red;
+                text-align: center;
+            }
+
             &Event{
                 position: relative;
                 padding: 1.5rem;
