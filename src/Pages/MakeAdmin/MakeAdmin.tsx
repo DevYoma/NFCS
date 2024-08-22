@@ -25,6 +25,8 @@ const MakeAdmin = () => {
   const [email, setEmail] = useState("");
   const [adminPassword, setAdminPassword] = useState("");
 
+  const registeredEmailsSet = new Set(registeredEmails);
+
   const checkPasswordAndMakeAdmin = async (e: any) => {
     setLoading(true);
     e.preventDefault();
@@ -34,12 +36,13 @@ const MakeAdmin = () => {
     });
 
     // check if the email Entered in form is registered
-    if (registeredEmails.includes(email)) {
+    // if (registeredEmails.includes(email)) {
+    if (registeredEmailsSet.has(email)) {
       setIsUserRegistered(true);
       console.log("Registered User 🚀");
     } else {
       console.log("User is NOT registered 😔");
-      alert("Check the Student Email provided")
+      alert("User Email is not registered")
       setLoading(false);
       return;
     }
@@ -93,12 +96,6 @@ const MakeAdmin = () => {
         "Ever had that 'Am I supposed to be here?' moment? Well, if you're here
         to grant admin privileges, you're definitely in the right place. Ready
         to make some power moves?
-        {/* <Link
-            to={"/register"}
-            style={{ color: "#4318FF", textDecoration: "none" }}
-            >
-            create one here
-            </Link> */}
       </p>
 
       <div className="makeAdmin__FormContainer">
