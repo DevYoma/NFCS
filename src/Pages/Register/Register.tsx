@@ -79,6 +79,12 @@ const Register = () => {
         })
     }
 
+    const handleKeyDown = (e: any) => {
+        if(e.key === 'e' || e.key === 'E' || e.key === '+' || e.key === '-' || e.key === '.' || e.key === ' '){
+            e.preventDefault();
+        }
+    }
+
     // UPLOADING PIC TO FIREBASE STORAGE
     useEffect(() => {
         const uploadFile = () => {
@@ -425,6 +431,8 @@ const Register = () => {
                             required
                             value={formData.telephone}
                             onChange={handleChange}
+                            // inputProps={{ maxLength: 11 }}
+                            onKeyDown={handleKeyDown}
                         />
                     </div>
 
