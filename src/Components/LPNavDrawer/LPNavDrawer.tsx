@@ -59,6 +59,9 @@ const LPNavDrawer = ({onMobileView, isLoggedIn, isAdmin}: MobileNavDrawer) => {
                         <Link to={'/events'} style={{ textDecoration: "none"}}>
                             <Typography variant='h6' component='div' className='navDrawer__text navDrawer__events'>Events</Typography>
                         </Link>
+                        <Link to={'/anthem'} style={{ textDecoration: "none"}}>
+                            <Typography variant='h6' component='div' className='navDrawer__text navDrawer__events'>Anthem</Typography>
+                        </Link>
                     </React.Fragment>) 
                     : 
                     (<React.Fragment>
