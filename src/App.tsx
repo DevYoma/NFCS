@@ -14,6 +14,7 @@ import PrivateRoute from "./Components/PrivateRoute";
 import SaintDay from "./Pages/SaintDay/SaintDay";
 import MakeAdmin from "./Pages/MakeAdmin/MakeAdmin";
 import UserDetails from "./Pages/UserDetails/UserDetails";
+import Anthem from "./Pages/Anthem/Anthem";
 
 function App() {
   return (
@@ -36,6 +37,8 @@ function App() {
         <Route path="/saint" element={<SaintDay />} />
 
         <Route path="/admin" element={<MakeAdmin />} />
+
+        <Route path="/anthem" element={<Anthem />} />
 
         {/* PROTECTED ROUTES */}
         <Route element={<PrivateRoute />}>

@@ -257,6 +257,7 @@ const Birthday = () => {
                           <p className="birthdayCard__headerName">
                             {data.name}
                           </p>
+                          {/* <p></p> */}
                         </div>
 
                         <div className="birthdayCard__body">

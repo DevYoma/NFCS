@@ -1,4 +1,4 @@
-    import { useState } from 'react'
+import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import Logo from '../../Atoms/Logo/Logo'
 import { useNavigate } from 'react-router-dom';
@@ -34,6 +34,11 @@ const Navbar = ({ hideLinks, hideDrawer, isLoggedIn, hideBoxShadow, isAdmin }: N
             id: 3, 
             text: 'Events', 
             route: "/events",
+        },
+        {
+            id: 4, 
+            text: 'Anthem', 
+            route: "/anthem",
         },
     ])
 

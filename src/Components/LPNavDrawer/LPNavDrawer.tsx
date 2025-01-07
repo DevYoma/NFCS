@@ -1,9 +1,9 @@
 import { Drawer, IconButton, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import CloseIcon from '@mui/icons-material/Close';
 import './LPNavDrawer.scss';
 import { Box } from '@mui/system';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
 import Button from '../../Atoms/Button/Button';
 import { auth } from '../../Firebase/Firebase';
